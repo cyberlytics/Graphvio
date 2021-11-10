@@ -82,27 +82,44 @@ Test B
 \section{Anforderungen}
 
 \subsection{Anforderung 1}
-\textit{FilmDaten $=>$ Netflix/Disney/Amazon/IMDB} 
+\textit{FilmDaten $=>$ Netflix+Disney+Amazon+IMDB} 
 \\
 Als Filmliebhaber möchte ich einen Film anhand des Titels suchen können,
 weil ich Metadaten zu diesem Film erhalten möchte.
 \\
 Als Metadaten gelten:
 \\
+Titel
+Streamingdienstanbieter
+Release Year
+IMDB-Rating
+Runtime
+Typ(Film/Serie)
+FSK
+Genre
 \dots
 
+
 \subsection{Anforderung 2}
-\textit{PersonenDaten $=>$ Wikipedia/IMDB}
+\textit{PersonenDaten $=>$ DBpedia+IMDB}
 \\
 Als Filmliebhaber möchte ich Informationen über Filmmitwirkende angeben können,
 um nach diesen zu suchen.
 
 Als Filmmitwirkende gelten:
 \\
+Regisseur
+Komponist
+Schauspieler
+Kinematograph
 \dots
 \\
 Als Informationen gelten:
 \\
+Name
+Geschlecht
+Alter
+Nationalität
 \dots
 \\
 
@@ -113,6 +130,7 @@ und gemeinsame Merkmale dieser erhalten.
 
 Als Merkmale gelten:
 \\
+Siehe Informationen aus Anforderung 1 und 2
 \dots
 \\
 
@@ -132,7 +150,7 @@ Als Filmliebhaber möchte ich Filme aufgrund von gesetzten Filtern erhalten.
 
 Als Filter gelten:
 \\
--Metadaten
+- Siehe Metadaten (Anforderung 1)
 
 \subsection{Anforderung 7}
 
@@ -140,19 +158,25 @@ Als Filmliebhaber möchte ich Suchergebnisse nach Kriterien sortieren können.
 
 Als Kriterien gelten:
 \\
+Erscheinungsdatum
+Rating
+Runtime
 \dots
 \\
 
 \section{Methoden}
 
-Docker\\ 
-Backend mit asp.net/node.js/flask\\ $->$ Andreas Ziegler / Prettner Stephan / Kohl Helge
-Frontend mit blazor/react/vue\\	$->$ Johannes Halbritter / Lukas Kreussel
-Graphdatenbank Neo4j/virtuoso/Jena/neptun\\
-evtl anbindung externer Datenbanken\\
+Über die Daten
 
+In eine lokale Graphdatenbank werden die aktuellen Filme und Serien diverser Streaminganbieter (Netflix, Amazon Prime, Hulu, Disney+) abgespeichert. Außerdem werden diese durch Informationen aus der IMDB (Internet Movie Database) ergänzt. Mithilfe dieses Datenbestandes soll es möglich sein, komplexe Abfragen zu formulieren. Durch den SPARQL-Endpoint der DBpedia ist der Zugriff auf weitere Details möglich.
 
+Backend
 
+Als Backend wird ASP.NET Core verwendet. Dieses von Microsoft entwickelte Framework hat sich in der Welt der Microservices in den letzten Jahren etabliert. Über noch nicht definierte Graph Query Languages soll auf die verwendete Graphdatenbank bzw. DBpedia zugegriffen werden können, um Informationen zu den Filmen und Schauspielern auszulesen.
+
+Frontend
+
+Für die Interaktion mit dem Benutzer wird React verwendet. Über eine REST-Schnittstelle des Backends kann auf benötigte Informationen zugegriffen werden.
 
 \section*{Referenzen}
 
