@@ -1,5 +1,18 @@
 # SWT Projekt Modularbeit
 
+# Anwendungen
+#### Frontend
+- http://localhost:3000/
+
+#### Backend
+- https://localhost:44357/swagger/index.html
+
+#### Database
+Neo4j Browser
+- localhost:7474
+???
+- localhost:7687
+
 # Architektur
 ...
 
