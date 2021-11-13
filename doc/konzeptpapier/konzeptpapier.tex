@@ -24,65 +24,63 @@
 
 	\IEEEauthorblockN{Kohl Helge}
 	\IEEEauthorblockA{
-	\textit{h.kohl@oth-aw.de}\\
+		\textit{h.kohl@oth-aw.de}\\
 	}
 	\and
-	
+
 	\IEEEauthorblockN{Kreussel Lukas}
 	\IEEEauthorblockA{
-	\textit{l.kreussel@oth-aw.de}\\
+		\textit{l.kreussel@oth-aw.de}\\
 	}
 	\and
-	
+
 	\IEEEauthorblockN{Prettner Stephan}
 	\IEEEauthorblockA{
-	\textit{s.prettner@oth-aw.de}\\
+		\textit{s.prettner@oth-aw.de}\\
 	}
 	\and
-	
+
 	\IEEEauthorblockN{Ziegler Andreas}
 	\IEEEauthorblockA{
-	\textit{a.ziegler1@oth-aw.de}\\
+		\textit{a.ziegler1@oth-aw.de}\\
 	}
 }
 
 \maketitle
 
 \begin{abstract}
-This document is a model and instructions for \LaTeX.
-This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.].
+	Ziel des Papers ist es, Filmdatenbanken durchsuchbar zu machen um Informationen über Filme zu erhalten.
 \end{abstract}
 
 
 \section{Einführung}
 
-This document is a model and instructions for \LaTeX.
-Please observe the conference page limits.
+Die Filmbranche ist eine der größten Unterhaltungsindustrien und produzieren eine Vielzahl von Filmmaterial.
+Dadurch ist es schwer einen Überblick über alle Verfügbaren Filme zu behalten.
+Somit werden Filme nur über aktuelle Werbung oder in Gesprächen mit andren Menschen bekannt.
+Um diese beschränkten Möglichkeiten der Filmsuche zu erweitern gibt es Online Filmdatenbanken und Filmempfehlungssysteme.
+Das Projekt ist Teil der Vorlesung "Semantic Web Technologien" an der OTH Amberg-Weiden und soll Filmdatenbanken einfach in mehrenren Richtungen durchsuchbar machen.
+Dazu sollen von Filmen Rückschlüsse auf Mitwirkende und von Mitwirkenden auf Filme gezogen werden können um Informationen über diese zu erhalten.
+Weiterhin sollen die Datenbanken mit Filtern durchsuchbar sein um Filmvorschläge finden zu können.
+
 
 
 
 
 \section{Verwandte Arbeiten}
 
-\begin{itemize}
-	\item \href{https://cinemate.me/}{cinemate}
-	\item \href{https://pickamovieforme.com/}{pickamovieforme}
-	\item \href{https://bestsimilar.com/}{bestsimilar}
-	\item \href{https://tastedive.com/movies}{tastedive}
-\end{itemize}
-
-\subsection{Subsection A}
-
-Test A
-
-\subsection{Subsection B}
-
-Test B
+Nachdem in der Einleitung bereits die Motivation erläutert wurde, werden hier verwandte Arbeiten und Systeme vorgestellt.
+Es gibt bereits eine große Anzahl an Systemen, die einem einen Film vorschlagen können, die jedoch alle mit gewissen Einschränkungen kommen.
+Bei \cite{cinemate} werden Filme aufgrund einer eingegebenen Liste von Filmen vorgeschlagen.
+Mit einem Fragenkatalog über Anlass und Stimmung wird bei \cite{pickamovieforme} ein relativ kleiner Datensatz nach einem Vorschlag durchsucht.
+Für Informationen und Ähnliche Filme in der Gleichen Kategorie kann man bei \cite{bestsimilar} suchen.
+Aktuelle Filme werden bei \cite{tastedive} vorgeschlagen.
+Einen Genaueren Ansatz versucht \cite{MovieGEN} umzusetzen, bei dem die Vorlieben der Nutzer über machine learning und cluster Analyse verglichen werden um eine Filmauswahl zu treffen.
 
 \section{Anforderungen}
 
 \subsection{Anforderung 1}
-\textit{FilmDaten $=>$ Netflix+Disney+Amazon+IMDB} 
+\textit{FilmDaten $=>$ Netflix+Disney+Amazon+IMDB}
 \\
 Als Filmliebhaber möchte ich einen Film anhand des Titels suchen können,
 weil ich Metadaten zu diesem Film erhalten möchte.
@@ -178,35 +176,14 @@ Frontend
 
 Für die Interaktion mit dem Benutzer wird React verwendet. Über eine REST-Schnittstelle des Backends kann auf benötigte Informationen zugegriffen werden.
 
-\section*{Referenzen}
+%\section*{Referenzen}
 
-Please number citations consecutively within brackets \cite{b1}. The 
-sentence punctuation follows the bracket \cite{b2}. Refer simply to the reference 
-number, as in \cite{b3}---do not use ``Ref. \cite{b3}'' or ``reference \cite{b3}'' except at 
-the beginning of a sentence: ``Reference \cite{b3} was the first $\ldots$''
-
-Number footnotes separately in superscripts. Place the actual footnote at 
-the bottom of the column in which it was cited. Do not put footnotes in the 
-abstract or reference list. Use letters for table footnotes.
-
-Unless there are six authors or more give all authors' names; do not use 
-``et al.''. Papers that have not been published, even if they have been 
-submitted for publication, should be cited as ``unpublished'' \cite{b4}. Papers 
-that have been accepted for publication should be cited as ``in press'' \cite{b5}. 
-Capitalize only the first word in a paper title, except for proper nouns and 
-element symbols.
-
-For papers published in translation journals, please give the English 
-citation first, followed by the original foreign-language citation \cite{b6}.
-
-\begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
-\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+\begin{thebibliography}{0}
+	\bibitem{cinemate}https://cinemate.me/
+	\bibitem{pickamovieforme}https://pickamovieforme.com/
+	\bibitem{bestsimilar}https://bestsimilar.com/
+	\bibitem{tastedive}https://tastedive.com/movies
+	\bibitem{MovieGEN}http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.703.4954\&rep=rep1\&type=pdf
 \end{thebibliography}
 \vspace{12pt}
 
