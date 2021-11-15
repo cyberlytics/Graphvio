@@ -12,7 +12,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Konzeptpapier}
+\title{Konzeptpapier\\Graphvio}
 
 % Authoren	
 \author{
@@ -49,19 +49,19 @@
 \maketitle
 
 \begin{abstract}
-	Ziel des Papers ist es, Filmdatenbanken durchsuchbar zu machen um Informationen über Filme zu erhalten.
+	Ziel des Papers ist es, Filmdatenbanken durchsuchbar zu machen, um Informationen über Filme zu erhalten.
 \end{abstract}
 
 
 \section{Einführung}
 
 Die Filmbranche ist eine der größten Unterhaltungsindustrien und produzieren eine Vielzahl von Filmmaterial.
-Dadurch ist es schwer einen Überblick über alle Verfügbaren Filme zu behalten.
-Somit werden Filme nur über aktuelle Werbung oder in Gesprächen mit andren Menschen bekannt.
-Um diese beschränkten Möglichkeiten der Filmsuche zu erweitern gibt es Online Filmdatenbanken und Filmempfehlungssysteme.
-Das Projekt ist Teil der Vorlesung "Semantic Web Technologien" an der OTH Amberg-Weiden und soll Filmdatenbanken einfach in mehrenren Richtungen durchsuchbar machen.
-Dazu sollen von Filmen Rückschlüsse auf Mitwirkende und von Mitwirkenden auf Filme gezogen werden können um Informationen über diese zu erhalten.
-Weiterhin sollen die Datenbanken mit Filtern durchsuchbar sein um Filmvorschläge finden zu können.
+Dadurch ist es schwer einen Überblick über alle verfügbaren Filme zu behalten.
+Somit werden Filme nur über aktuelle Werbung oder in Gesprächen mit anderen Menschen bekannt.
+Um diese beschränkten Möglichkeiten der Filmsuche zu erweitern gibt es Online-Filmdatenbanken und Filmempfehlungssysteme.
+Das Projekt ist Teil der Vorlesung "Semantic Web Technologien" an der OTH Amberg-Weiden und soll Filmdatenbanken einfach in mehreren Richtungen durchsuchbar machen.
+Dazu sollen, ausgehend von Filmen, Rückschlüsse auf Mitwirkende und umgekehrt gezogen werden können, um Informationen über diese zu erhalten.
+Weiterhin sollen die Datenbanken mit Filtern durchsuchbar sein, um Filmvorschläge finden zu können.
 
 
 
@@ -70,56 +70,55 @@ Weiterhin sollen die Datenbanken mit Filtern durchsuchbar sein um Filmvorschläg
 \section{Verwandte Arbeiten}
 
 Nachdem in der Einleitung bereits die Motivation erläutert wurde, werden hier verwandte Arbeiten und Systeme vorgestellt.
-Es gibt bereits eine große Anzahl an Systemen, die einem einen Film vorschlagen können, die jedoch alle mit gewissen Einschränkungen kommen.
+Es gibt bereits eine große Anzahl an Systemen, die einen gewünschten Film vorschlagen können. Diese Systeme kommen jedoch alle mit gewissen Einschränkungen.
 Bei \cite{cinemate} werden Filme aufgrund einer eingegebenen Liste von Filmen vorgeschlagen.
-Mit einem Fragenkatalog über Anlass und Stimmung wird bei \cite{pickamovieforme} ein relativ kleiner Datensatz nach einem Vorschlag durchsucht.
-Für Informationen und Ähnliche Filme in der Gleichen Kategorie kann man bei \cite{bestsimilar} suchen.
+Mit einem Fragenkatalog über Anlass und Stimmung wird bei \cite{pickamovieforme} ein kleiner Datensatz nach einem Vorschlag durchsucht.
+Für Informationen und ähnliche Filme in der gleichen Kategorie kann in der Anwendung von \cite{bestsimilar} gesucht werden.
 Aktuelle Filme werden bei \cite{tastedive} vorgeschlagen.
-Einen Genaueren Ansatz versucht \cite{MovieGEN} umzusetzen, bei dem die Vorlieben der Nutzer über machine learning und cluster Analyse verglichen werden um eine Filmauswahl zu treffen.
+Einen genaueren Ansatz versucht \cite{MovieGEN} umzusetzen, bei dem die Vorlieben der Nutzer über Machine Learning und Clusteranalyse verglichen werden, um eine Filmauswahl zu treffen.
 
 \section{Anforderungen}
 
 \subsection{Anforderung 1}
-\textit{FilmDaten $=>$ Netflix+Disney+Amazon+IMDB}
-\\
+\label{1}
 Als Filmliebhaber möchte ich einen Film anhand des Titels suchen können,
 weil ich Metadaten zu diesem Film erhalten möchte.
 \\
 Als Metadaten gelten:
-\\
-Titel
-Streamingdienstanbieter
-Release Year
-IMDB-Rating
-Runtime
-Typ(Film/Serie)
-FSK
-Genre
-\dots
+\begin{itemize}
+	\item Titel
+	\item Streamingdienstanbieter
+	\item Release Year
+	\item IMDB-Rating
+	\item Runtime
+	\item Typ (Film / Serie)
+	\item FSK
+	\item Genre
+\end{itemize}
 
 
 \subsection{Anforderung 2}
-\textit{PersonenDaten $=>$ DBpedia+IMDB}
-\\
+\label{2}
 Als Filmliebhaber möchte ich Informationen über Filmmitwirkende angeben können,
 um nach diesen zu suchen.
-
+\\
 Als Filmmitwirkende gelten:
-\\
-Regisseur
-Komponist
-Schauspieler
-Kinematograph
-\dots
-\\
+
+\begin{itemize}
+	\item Regisseur
+	\item Komponist
+	\item Schauspieler
+	\item Kinematograph
+\end{itemize}
+
 Als Informationen gelten:
-\\
-Name
-Geschlecht
-Alter
-Nationalität
-\dots
-\\
+
+\begin{itemize}
+	\item Name
+	\item Geschlecht
+	\item Alter
+	\item Nationalität
+\end{itemize}
 
 \subsection{Anforderung 3}
 
@@ -128,9 +127,7 @@ und gemeinsame Merkmale dieser erhalten.
 
 Als Merkmale gelten:
 \\
-Siehe Informationen aus Anforderung 1 und 2
-\dots
-\\
+Siehe Informationen aus Anforderung \ref{1} und \ref{2}.
 
 \subsection{Anforderung 4}
 
@@ -148,42 +145,42 @@ Als Filmliebhaber möchte ich Filme aufgrund von gesetzten Filtern erhalten.
 
 Als Filter gelten:
 \\
-- Siehe Metadaten (Anforderung 1)
+Siehe Metadaten \ref{1}
 
 \subsection{Anforderung 7}
 
 Als Filmliebhaber möchte ich Suchergebnisse nach Kriterien sortieren können.
-
+\\
 Als Kriterien gelten:
-\\
-Erscheinungsdatum
-Rating
-Runtime
-\dots
-\\
+
+\begin{itemize}
+	\item Erscheinungsdatum
+	\item Rating
+	\item Runtime
+\end{itemize}
 
 \section{Methoden}
 
-Über die Daten
+\subsection*{Über die Daten}
 
-In eine lokale Graphdatenbank werden die aktuellen Filme und Serien diverser Streaminganbieter (Netflix, Amazon Prime, Hulu, Disney+) abgespeichert. Außerdem werden diese durch Informationen aus der IMDB (Internet Movie Database) ergänzt. Mithilfe dieses Datenbestandes soll es möglich sein, komplexe Abfragen zu formulieren. Durch den SPARQL-Endpoint der DBpedia ist der Zugriff auf weitere Details möglich.
+In einer lokalen Graphdatenbank werden die aktuellen Filme und Serien diverser Streaminganbieter (Netflix, Amazon Prime, Hulu, Disney+) abgespeichert. Außerdem werden diese durch Informationen aus der IMDB (Internet Movie Database) ergänzt. Mithilfe dieses Datenbestandes soll es möglich sein, komplexe Abfragen zu formulieren. Durch den SPARQL-Endpoint der DBpedia ist der Zugriff auf weitere Details möglich.
 
-Backend
+\subsection*{Backend}
 
 Als Backend wird ASP.NET Core verwendet. Dieses von Microsoft entwickelte Framework hat sich in der Welt der Microservices in den letzten Jahren etabliert. Über noch nicht definierte Graph Query Languages soll auf die verwendete Graphdatenbank bzw. DBpedia zugegriffen werden können, um Informationen zu den Filmen und Schauspielern auszulesen.
 
-Frontend
+\subsection*{Frontend}
 
 Für die Interaktion mit dem Benutzer wird React verwendet. Über eine REST-Schnittstelle des Backends kann auf benötigte Informationen zugegriffen werden.
 
 %\section*{Referenzen}
 
 \begin{thebibliography}{0}
-	\bibitem{cinemate}https://cinemate.me/
-	\bibitem{pickamovieforme}https://pickamovieforme.com/
-	\bibitem{bestsimilar}https://bestsimilar.com/
-	\bibitem{tastedive}https://tastedive.com/movies
-	\bibitem{MovieGEN}http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.703.4954\&rep=rep1\&type=pdf
+	\bibitem{cinemate}Cinemate [Online] \url{https://cinemate.me/} (visited on Nov. 15, 2021)
+	\bibitem{pickamovieforme}Pickamovieforme [Online] \url{https://pickamovieforme.com/} (visited on Nov. 15, 2021)
+	\bibitem{bestsimilar}Bestsimilar [Online] \url{https://bestsimilar.com/} (visited on Nov. 15, 2021)
+	\bibitem{tastedive}Tastedive [Online] \url{https://tastedive.com/movies} (visited on Nov. 15, 2021)
+	\bibitem{MovieGEN}MovieGEN [Online] \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.703.4954\&rep=rep1\&type=pdf} (visited on Nov. 15, 2021)
 \end{thebibliography}
 \vspace{12pt}
 
