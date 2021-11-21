@@ -1,0 +1,29 @@
+Umsetzung Anforderung 1:
+	Textsuchfeld nach film
+	Submit button für Absenden der Suche
+	Auflisten der Titel nach Ergebnis
+	Per "+" Button Metadaten zu Film
+	https://www.kinofenster.de/filme/filmsuche.html/J
+	
+Umsetzung Anforderung 2:
+	Auswahl der Property per Checkbox mit optionaler Sonstigen Textbox
+	Ändern der Titel Suche nach dem gewünschten Property:
+	https://www.traumathek.de/ic/page/45/shop-suche.html
+	
+Umsetzung Anforderung 3:
+	Benutzung der Spezifischen Metadaten Ansicht aus Anforderung 1,
+	um Schnittmenge der Daten anzuzeigen
+	
+Umsetzung Anforderung 4:
+	Verwenden der Multiselect 
+	https://react-select.com/home
+	
+Umsetzung Anforderung 5:
+	Erweiterung von Anforderung 2
+	
+Umsetzung Anforderung 6:
+	Erweiterung von Anforderung 2
+	
+Umsetzung Anforderung 7:
+	Erweiterung von Anforderung 2
+	
