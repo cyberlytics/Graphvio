@@ -1,0 +1,101 @@
+
+		Mon Nov 22 2021
+14:29:29 OpenLink Virtuoso Universal Server
+14:29:29 Version 07.20.3229-pthreads for Linux as of Aug 21 2019
+14:29:29 uses parts of OpenSSL, PCRE, Html Tidy
+14:29:29 SQL Optimizer enabled (max 1000 layouts)
+14:29:29 Compiler unit is timed at 0.000402 msec
+14:29:32 Checkpoint started
+14:29:32 Roll forward started
+14:29:32 Roll forward complete
+14:29:33 Checkpoint started
+14:29:33 Checkpoint finished, log reused
+14:29:33 Checkpoint started
+14:29:33 Checkpoint finished, log reused
+14:29:35 Checkpoint started
+14:29:35 Checkpoint finished, log reused
+14:29:35 Checkpoint started
+14:29:36 Checkpoint finished, log reused
+14:29:36 Checkpoint started
+14:29:36 Checkpoint finished, log reused
+14:29:36 PL LOG: Installing Virtuoso Conductor version 1.00.8783 (DAV)
+14:29:36 PL LOG: Installing with dependencies Virtuoso Conductor version 1.00.8783/2019-08-21 15:37 (DAV)
+14:29:36 Checkpoint started
+14:29:36 Checkpoint finished, log reused
+14:29:40 Checkpoint started
+14:29:40 Checkpoint finished, log reused
+14:29:40 PL LOG: Installation with dependencies complete
+14:29:40 Checkpoint started
+14:29:40 Checkpoint finished, log reused
+14:29:40 HTTP/WebDAV server online at 27015
+14:29:40 Server online at 1111 (pid 21)
+14:29:40 Server received signal 15
+14:29:40 Initiating quick shutdown
+14:29:40 Server shutdown complete
+
+		Mon Nov 22 2021
+14:29:40 OpenLink Virtuoso Universal Server
+14:29:40 Version 07.20.3229-pthreads for Linux as of Aug 21 2019
+14:29:40 uses parts of OpenSSL, PCRE, Html Tidy
+14:29:40 Database version 3126
+14:29:40 SQL Optimizer enabled (max 1000 layouts)
+14:29:41 Compiler unit is timed at 0.000119 msec
+14:29:42 Roll forward started
+14:29:42 Roll forward complete
+14:29:42 Checkpoint started
+14:29:42 Checkpoint finished, log reused
+14:29:44 HTTP/WebDAV server online at 8890
+14:29:44 Server online at 1111 (pid 1)
+14:33:58 Checkpoint started
+14:33:58 Checkpoint finished, log reused
+14:38:32 Server received signal 15
+14:38:32 Initiating quick shutdown
+14:38:32 Server shutdown complete
+
+		Mon Nov 22 2021
+14:38:41 OpenLink Virtuoso Universal Server
+14:38:41 Version 07.20.3229-pthreads for Linux as of Aug 21 2019
+14:38:41 uses parts of OpenSSL, PCRE, Html Tidy
+14:38:41 Database version 3126
+14:38:41 SQL Optimizer enabled (max 1000 layouts)
+14:38:42 Compiler unit is timed at 0.000109 msec
+14:38:43 Roll forward started
+14:38:43 Roll forward complete
+14:38:43 Checkpoint started
+14:38:43 Checkpoint finished, log reused
+14:38:43 HTTP/WebDAV server online at 8890
+14:38:43 Server online at 1111 (pid 1)
+14:41:41 Server received signal 15
+14:41:41 Initiating quick shutdown
+14:41:41 Server shutdown complete
+
+		Mon Nov 22 2021
+14:41:51 OpenLink Virtuoso Universal Server
+14:41:51 Version 07.20.3229-pthreads for Linux as of Aug 21 2019
+14:41:51 uses parts of OpenSSL, PCRE, Html Tidy
+14:41:51 Database version 3126
+14:41:51 SQL Optimizer enabled (max 1000 layouts)
+14:41:52 Compiler unit is timed at 0.000146 msec
+14:41:53 Roll forward started
+14:41:53 Roll forward complete
+14:41:53 Checkpoint started
+14:41:53 Checkpoint finished, log reused
+14:41:53 HTTP/WebDAV server online at 8890
+14:41:53 Server online at 1111 (pid 1)
+14:51:16 Server received signal 15
+14:51:16 Initiating quick shutdown
+14:51:16 Server shutdown complete
+
+		Mon Nov 22 2021
+14:51:28 OpenLink Virtuoso Universal Server
+14:51:28 Version 07.20.3229-pthreads for Linux as of Aug 21 2019
+14:51:28 uses parts of OpenSSL, PCRE, Html Tidy
+14:51:28 Database version 3126
+14:51:28 SQL Optimizer enabled (max 1000 layouts)
+14:51:29 Compiler unit is timed at 0.000114 msec
+14:51:30 Roll forward started
+14:51:30 Roll forward complete
+14:51:30 Checkpoint started
+14:51:30 Checkpoint finished, log reused
+14:51:32 HTTP/WebDAV server online at 8890
+14:51:32 Server online at 1111 (pid 1)

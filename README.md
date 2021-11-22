@@ -8,10 +8,34 @@
 - https://localhost:44357/swagger/index.html
 
 #### Database
-Neo4j Browser
-- localhost:7474
-???
-- localhost:7687
+User/Password: dba
+
+Virtuoso
+- http://localhost:8890/
+Virtuoso Conductor
+- http://localhost:8890/conductor/
+SPARQL Endpoint
+- http://localhost:8890/sparql/
+
+Wie teste ich, ob die Daten in der Datenbank vorhanden sind?
+1. Aufruf des SPARQL Endpoints (http://localhost:8890/sparql/)
+2. Default Data Set Name (Graph IRI): http://localhost:8890/netflix#
+3.
+```
+prefix netflix: <http://localhost:8890/schemas/netflix/>
+
+SELECT *
+WHERE
+{
+  ?id netflix:title ?title
+}
+```
+
+#### Kaggle
+- https://www.kaggle.com/shivamb/netflix-shows
+- https://www.kaggle.com/shivamb/amazon-prime-movies-and-tv-shows
+- https://www.kaggle.com/shivamb/disney-movies-and-tv-shows
+- https://www.kaggle.com/shivamb/hulu-movies-and-tv-shows
 
 # Architektur
 ...
