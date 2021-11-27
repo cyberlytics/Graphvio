@@ -11,6 +11,10 @@ class App extends React.Component {
   }
 
   render() {
+    let a = 0
+    let b = 3
+    let c = a + b
+    
     let content = (
       <div className="App">
         <header className="App-header">
