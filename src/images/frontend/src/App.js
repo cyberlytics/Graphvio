@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
-import Button from './components/Button'
+import SearchForm from './components/SearchForm';
+
+import Textbox from './components/SearchForm'
 class App extends React.Component {
     constructor(props) {
       super(props);
-
       this.backendUrl = process.env.BACKEND_SERVER
 
       this.form = React.createRef();
@@ -16,14 +17,10 @@ render() {
     let b = 3
     let c = a + b
     
-    const func = () => {
-      console.log('click')
-    }
-
-    let content = (
+        let content = (
       <div className="App">
         <header className="App-header"> 
-          <Button color='green' text='hallo' onClick={func}/>
+          <SearchForm/>
         </header>
       </div>
     );
