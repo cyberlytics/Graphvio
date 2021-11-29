@@ -1,8 +1,11 @@
 import React from 'react';
 import './App.css';
 import SearchForm from './components/SearchForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Textbox from './components/SearchForm'
+
+
 class App extends React.Component {
     constructor(props) {
       super(props);
