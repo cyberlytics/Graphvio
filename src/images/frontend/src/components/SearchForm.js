@@ -1,8 +1,9 @@
 import React from 'react';
-
-import Textbox from './Base/Textbox'
+import TextBox from './Base/TextBox'
 import List from './Base/List'
 import Button from './Base/Button'
+import {Form as SearchFormLabel, InputGroup} from 'react-bootstrap';
+import './SearchForm.css'
 
 class SearchForm extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class SearchForm extends React.Component {
             searchText: '',
         };
 
-        this.textbox = null;
+        this.textBox = null;
         this.list = null;
         this.movies = [];
     }
@@ -21,7 +22,7 @@ class SearchForm extends React.Component {
     }
 
     searchFunction = () => {
-        console.log(this.textbox.state.value);
+        console.log(this.textBox.state.value);
         //TODO Backend call
         this.movies = ["Lord of the Rings","The Matrix","Harry Potter"]
         this.list.updateItems(this.movies);
@@ -29,19 +30,22 @@ class SearchForm extends React.Component {
 
     render() {
         return (
-        <form onSubmit={this.handleSubmit}>
-            <Textbox
-            ref={t => this.textbox = t } 
+        <SearchFormLabel onSubmit={this.handleSubmit}>
+            <InputGroup>
+            <TextBox
+            ref={t => this.textBox = t } 
             label="Search"
             name="searchText"
             value={this.state.searchText}
             onEnter = {this.searchFunction}
             />
-            <Button text="submit" onClick={this.searchFunction}>Search</Button>
+            {/* select button type from https://react-bootstrap.github.io/components/buttons/*/}
+            <Button text="submit" variant="primary" onClick={this.searchFunction}>Search</Button>
+            </InputGroup>
         <div>
             <List ref={l => this.list = l}  items = {this.movies}/>
         </div>
-        </form>
+        </SearchFormLabel>
         );
     }
 }
