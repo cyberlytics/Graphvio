@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import {Button as BootstrapButton} from 'react-bootstrap';
 
 
-class Button extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-    
+class Button extends React.Component 
+{   
     handleClick = () => {
         this.props.onClick()
     }
     
     render() {
-        const { color,text, onClick } = this.props
+        const { variant,text } = this.props
     
         return (
-        <button
-            className={`button`}
-            style={{ backgroundColor: color }}
-            onClick={this.handleClick}
+        <BootstrapButton 
+        variant={variant}
+        onClick={this.handleClick}
         >
             {text}
-        </button>
+        </BootstrapButton>
         )
     }
 
@@ -32,7 +29,7 @@ class Button extends React.Component {
 
     propTypes = {
     text: PropTypes.string,
-    color: PropTypes.string,
+    variant: PropTypes.string,
     onClick: PropTypes.func,
     }
 }

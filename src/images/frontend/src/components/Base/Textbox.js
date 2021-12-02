@@ -1,9 +1,7 @@
 import React from 'react';
+import {FormControl as BootstrapTextBox} from 'react-bootstrap';
 
-import PropTypes from 'prop-types'
-
-
-class Textbox extends React.Component 
+class TextBox extends React.Component 
 {
     constructor(props) 
     {
@@ -15,7 +13,7 @@ class Textbox extends React.Component
 
     componentDidMount() 
     {
-        this.textbox.focus();
+        this.textBox.focus();
     }
 
     handleChange(event) 
@@ -36,9 +34,9 @@ class Textbox extends React.Component
     render() 
     {
         return (
-            <input
+            <BootstrapTextBox
                 type="text"
-                ref={(input) => { this.textbox = input; }}
+                ref={(input) => { this.textBox = input; }}
                 value={this.state.value}
                 onChange={this.handleChange.bind(this)}
                 onKeyUp={this.handleKeyUp.bind(this)}
@@ -46,5 +44,5 @@ class Textbox extends React.Component
         );
     }
 } 
-export default Textbox
+export default TextBox
 

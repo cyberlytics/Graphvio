@@ -99,3 +99,39 @@
 14:51:30 Checkpoint finished, log reused
 14:51:32 HTTP/WebDAV server online at 8890
 14:51:32 Server online at 1111 (pid 1)
+
+		Mon Nov 29 2021
+12:01:24 OpenLink Virtuoso Universal Server
+12:01:24 Version 07.20.3229-pthreads for Linux as of Aug 21 2019
+12:01:24 uses parts of OpenSSL, PCRE, Html Tidy
+12:01:24 Database version 3126
+12:01:24 SQL Optimizer enabled (max 1000 layouts)
+12:01:26 Compiler unit is timed at 0.000139 msec
+12:01:27 Roll forward started
+12:01:27     5 transactions, 400 bytes replayed (100 %)
+12:01:27 Roll forward complete
+12:01:27 Checkpoint started
+12:01:27 Checkpoint finished, log reused
+12:01:29 HTTP/WebDAV server online at 8890
+12:01:29 Server online at 1111 (pid 1)
+12:04:56 Server received signal 15
+12:04:56 Initiating quick shutdown
+12:04:56 Server shutdown complete
+
+		Mon Nov 29 2021
+12:06:58 OpenLink Virtuoso Universal Server
+12:06:58 Version 07.20.3229-pthreads for Linux as of Aug 21 2019
+12:06:58 uses parts of OpenSSL, PCRE, Html Tidy
+12:06:58 Database version 3126
+12:06:58 SQL Optimizer enabled (max 1000 layouts)
+12:06:59 Compiler unit is timed at 0.000195 msec
+12:07:00 Roll forward started
+12:07:00     3 transactions, 185 bytes replayed (100 %)
+12:07:00 Roll forward complete
+12:07:00 Checkpoint started
+12:07:00 Checkpoint finished, log reused
+12:07:00 HTTP/WebDAV server online at 8890
+12:07:00 Server online at 1111 (pid 1)
+12:15:11 Server received signal 15
+12:15:11 Initiating quick shutdown
+12:15:11 Server shutdown complete
