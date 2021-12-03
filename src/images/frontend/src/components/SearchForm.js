@@ -1,6 +1,6 @@
 import React from 'react';
 import TextBox from './Base/TextBox'
-import List from './Base/List'
+import ExpandableMovieList from './ExpandableMovieList'
 import Button from './Base/Button'
 import {Form as SearchFormLabel, InputGroup} from 'react-bootstrap';
 import './SearchForm.css'
@@ -43,7 +43,7 @@ class SearchForm extends React.Component {
             <Button text="submit" variant="primary" onClick={this.searchFunction}>Search</Button>
             </InputGroup>
         <div>
-            <List ref={l => this.list = l}  items = {this.movies}/>
+            <ExpandableMovieList ref={l => this.list = l}  items = {this.movies}/>
         </div>
         </SearchFormLabel>
         );
