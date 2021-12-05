@@ -12,25 +12,8 @@ services:
       DEFAULT_GRAPH: "http://localhost:8890/netflix#"
     networks:
       - network-backend
-      
-  # Backend
-  backend:   
-    build:
-      context: './images/backend/'
-      dockerfile: 'Backend.API/Dockerfile'
-    ports:
-      - "80:80"
-      - "44357:44357"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
-    networks:
-      - network-backend
-      - network-frontend
-    depends_on:
-      - database
   
-  # Frontend (React.js)
+  # Frontend (Node.js)
   node:
     build: './images/frontend/'
     volumes:
@@ -48,7 +31,7 @@ services:
       - network-backend
       - network-frontend
     depends_on:
-      - backend
+      - database
 
 networks:
   network-backend:
