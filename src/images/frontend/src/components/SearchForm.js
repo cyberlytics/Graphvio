@@ -17,11 +17,13 @@ class SearchForm extends React.Component {
         this.movies = [];
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit = form => event  => {
+        event.preventDefault();
+        form.searchFunction();
+
     }
 
-    searchFunction = () => {
+    searchFunction() {
         console.log(this.textBox.state.value);
         //TODO Backend call
         this.movies = ["Lord of the Rings","The Matrix","Harry Potter"]
@@ -30,22 +32,24 @@ class SearchForm extends React.Component {
 
     render() {
         return (
-        <SearchFormLabel onSubmit={this.handleSubmit}>
+            <div>
+        <SearchFormLabel onSubmit={this.handleSubmit(this)}>
             <InputGroup>
             <TextBox
             ref={t => this.textBox = t } 
             label="Search"
             name="searchText"
             value={this.state.searchText}
-            onEnter = {this.searchFunction}
+            type = "submit"
             />
             {/* select button type from https://react-bootstrap.github.io/components/buttons/*/}
-            <Button text="submit" variant="primary" onClick={this.searchFunction}>Search</Button>
+            <Button type="submit" variant="primary" text="Search"/>
             </InputGroup>
+        </SearchFormLabel>
         <div>
             <ExpandableMovieList ref={l => this.list = l}  items = {this.movies}/>
         </div>
-        </SearchFormLabel>
+        </div>
         );
     }
 }
