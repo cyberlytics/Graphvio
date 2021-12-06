@@ -5,17 +5,21 @@ import {Button as BootstrapButton} from 'react-bootstrap';
 
 class Button extends React.Component 
 {   
-    handleClick = () => {
-        this.props.onClick()
+    handleClick = () => { 
+        if("onClick" in this.props)
+        {
+            this.props.onClick()
+        }
     }
     
     render() {
-        const { variant,text } = this.props
+        const { variant,text,type } = this.props
     
         return (
         <BootstrapButton 
         variant={variant}
         onClick={this.handleClick}
+        type={type}
         >
             {text}
         </BootstrapButton>
@@ -30,6 +34,7 @@ class Button extends React.Component
     propTypes = {
     text: PropTypes.string,
     variant: PropTypes.string,
+    type: PropTypes.string,
     onClick: PropTypes.func,
     }
 }
