@@ -38,7 +38,20 @@ router.route('/search-movies').get(async(req, res) => {
   result.forEach(element => {
     movies.push({
       "title": element.title.value,
-      "director": element.director?.value
+      "provider": "netflix", // Abhängig vom gewählten Datensatz in der DB
+      "metadata": {
+        "cast": element.cast?.value,
+        "country": element.country?.value,
+        "date_added": element.date_added?.value,
+        "description": element.description?.value,
+        "director": element.director?.value,
+        "duration": element.duration?.value,
+        "release_year": element.release_year?.value,
+        "type": element.type?.value, // "Movie" | "TV Show"
+        "rating": element.rating?.value,
+        "genre": element.listed_in?.value,
+        "imdb-rating": "42", // Nur in den Details?
+      }
     })
   });
 
