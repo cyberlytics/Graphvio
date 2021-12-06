@@ -21,14 +21,20 @@ router.route('/').get((req, res) => {
  * http://localhost:5000/db/search-movies?title=shark
  * - Der Titel muss shark beinhalten
  * - Beispiele: "Sharkdog", "Zig & Sharko"
+ *
+ * http://localhost:5000/db/search-movies?provider=disney
+ * - Sucht nur in der jeweiligen Provider-Datenbank
+ * - Standard: netflix
+ * - Möglich: netflix|disney|prime|hulu
  * 
  * @returns Liste der Filme als JSON
  */
 router.route('/search-movies').get(async(req, res) => {
   const reqUrl = url.parse(req.url, true)
   movie = reqUrl.query.title || "";
+  provider = reqUrl.query.provider || undefined;
 
-  sparql = SPARQL_STATEMENTS.SEARCH_MOVIE(movie)
+  sparql = SPARQL_STATEMENTS.SEARCH_MOVIE(movie, provider)
   console.log(sparql)
   
   result = await arrayifyStream(await fetcher.fetchBindings(endpoint, sparql))
