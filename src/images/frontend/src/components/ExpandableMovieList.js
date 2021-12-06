@@ -1,6 +1,7 @@
 import React from 'react';
 import ExpandableList from './Base/ExpandableList';
 import {Card} from 'react-bootstrap';
+import "./ExpandableMoveList.css"
 
 class MovieListItem extends React.Component {
 	constructor(props) {
@@ -15,9 +16,9 @@ class MovieListItem extends React.Component {
 
             <Card.Body>
                 {/* TODO Display Image <Card.Img src={this.state.movieData.image} />*/}
-                <Card.Title style = {{color: "black"}}>{this.state.movieData.title}</Card.Title>
-                <Card.Text style = {{color: "black"}}>{`Director: ${this.state.movieData.director}`} </Card.Text>
-                <Card.Text style = {{color: "black"}}>{`Rating: ${this.state.movieData.rating}`} </Card.Text>
+                <Card.Title >{this.state.movieData.title}</Card.Title>
+                <Card.Text >{`Director: ${this.state.movieData.director}`} </Card.Text>
+                <Card.Text >{`Rating: ${this.state.movieData.rating}`} </Card.Text>
                 {/* TODO Restliche Metadaten*/}
             </Card.Body>
             
