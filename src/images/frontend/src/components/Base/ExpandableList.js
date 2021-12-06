@@ -30,7 +30,7 @@ class ExpandableList extends React.Component
 
         for(let index in this.state.items){
             renderedListItems.push(
-            <Collapsible trigger={this.state.items[index]} lazyRender={true} transitionTime={300}>
+            <Collapsible trigger={this.state.items[index]}  transitionTime={300}>
                 {this.renderExpandedComponent(this.state.items[index])}
             </Collapsible>
             )
