@@ -6,18 +6,48 @@ router.route('/').get((req, res) => {
   res.json("Default Route")
 })
 
+/**
+ * Rückgabe der Ratings aus der IMDB
+ * @param {string} title - Titel des Films / der Serie möglichst genaue Angabe
+ * @param {string} type  - Typ des Sucheintrags ("movie" oder "tv show")
+ *                         alternativ wird "none" verwendet und in beidem gesucht
+ * 
+ * http://localhost:5000/imdb/search-rating?title=The%20Matrix&type=Movie
+ * - Suche nach dem Film "The Matrix"
+ * 
+ * @returns Liste verschiedenster Ratings die in der IMDB abgelegt sind
+ * 
+ * Beispiel-Responseobjekt: 
+ * {
+ *   "imDbId": "tt1436480",
+ *   "title": "Undefined",
+ *   "fullTitle": "Undefined (2006)",
+ *   "type": "Movie",
+ *   "year": "2006",
+ *   "imDb": "6.7",
+ *   "metacritic": "",
+ *   "theMovieDb": "",
+ *   "rottenTomatoes": "",
+ *   "tV_com": "",
+ *   "filmAffinity": "",
+ *   "errorMessage": ""
+ * }
+ */
+
 router.route('/search-rating').get(async(req, res) => {
   const reqUrl = url.parse(req.url, true)
   title = reqUrl.query.title;
   type = reqUrl.query.type || "none";
 
   let searchType = "";
-  switch(type){
-    case "Movie":
+  switch(type.toLowerCase()){
+    case "movie":
       searchType = "SearchMovie";
-    case "TV Show":
+      break;
+    case "tv show":
       searchType = "SearchSeries";
-    case "none":
+      break;
+    default:
       searchType = "SearchTitle";
   }
 
