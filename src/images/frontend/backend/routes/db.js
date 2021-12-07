@@ -22,29 +22,43 @@ router.route('/').get((req, res) => {
  * - Der Titel muss shark beinhalten
  * - Beispiele: "Sharkdog", "Zig & Sharko"
  *
- * http://localhost:5000/db/search-movies?provider=disney
+ * http://localhost:5000/db/search-movies?provider=disney_plus
  * - Sucht nur in der jeweiligen Provider-Datenbank
- * - Standard: netflix
- * - Möglich: netflix|disney|prime|hulu
+ * - Standard: netflix|disney_plus|amazon_prime|hulu
+ * - Möglich: Beliebige Kombination der Provider, getrennt mit |
+ *   - disney_plus
+ *   - disney_plus|hulu
+ *   - netflix|disney|amazon_prime|hulu
+ * 
+ * http://localhost:5000/db/search-movies?limit=1
+ * - Anzahl der Einträge, die maximal zurückgegeben werden.
+ * - Standard: 10
+ * 
+ * Beispiel:
+ * - http://localhost:5000/db/search-movies?title=shark&provider=netflix|disney_plus|amazon_prime
+ *   - Sucht in den Datenbanken von Netflix, Disney und Prime nach
+ *     einem Eintrag, der "shark" enthält.
  * 
  * @returns Liste der Filme als JSON
  */
 router.route('/search-movies').get(async(req, res) => {
   const reqUrl = url.parse(req.url, true)
   movie = reqUrl.query.title || "";
-  provider = reqUrl.query.provider || undefined;
+  provider = reqUrl.query.provider?.toLocaleLowerCase() || undefined;
+  limit = reqUrl.query.limit || undefined;
 
-  sparql = SPARQL_STATEMENTS.SEARCH_MOVIE(movie, provider)
+  sparql = SPARQL_STATEMENTS.SEARCH_MOVIE(movie, provider, limit)
   console.log(sparql)
   
   result = await arrayifyStream(await fetcher.fetchBindings(endpoint, sparql))
+  console.log(`Result found: ${result.length}`)
 
   movies = []
 
   result.forEach(element => {
     movies.push({
       "title": element.title.value,
-      "provider": "netflix", // Abhängig vom gewählten Datensatz in der DB
+      "provider": element.id.value.match("/movies/(.*)_titles_csv")[1], // Provider, der den Film zur Verfügung stellt
       "metadata": {
         "cast": element.cast?.value,
         "country": element.country?.value,

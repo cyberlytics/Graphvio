@@ -1,23 +1,26 @@
 var DB_PORT = process.env.DATABASE_PORT
+const ALL_PROVIDERS = 'netflix|disney_plus|amazon_prime|hulu'
 
-function SELECT_ALL_TITLES(provider="netflix", limit=10) {
+function SELECT_ALL_TITLES(providers = ALL_PROVIDERS, limit = 10) {
     sparql =         
-    getPrefix(provider) +
+    getPrefix() +
     `SELECT * ` +
-    getGraph(provider) +
+    getGraph() +
     `WHERE {?id netflix:title ?title ` +
+    filterProviders(providers) +
     getMetadata() +
     `} ` +
     `LIMIT ${limit}`
     return sparql
 }
 
-function SEARCH_MOVIE(movie, provider="netflix", limit=10) {
+function SEARCH_MOVIE(movie, providers = ALL_PROVIDERS, limit = 10) {
     sparql =         
-    getPrefix(provider) +
+    getPrefix() +
     'SELECT * ' +
-    getGraph(provider) +
+    getGraph() +
     `WHERE {?id movie:title ?title ` +
+    filterProviders(providers) +
     `FILTER regex(str(lcase(?title)), "${movie.toLowerCase()}"). ` +
     getMetadata() +
     `} ` +
@@ -25,12 +28,16 @@ function SEARCH_MOVIE(movie, provider="netflix", limit=10) {
     return sparql
 }
 
-function getPrefix(provider, prefix = 'movie') {
-    return `PREFIX ${prefix}: <http://localhost:${DB_PORT}/schemas/${provider}/> `
+function getPrefix(prefix = 'movie') {
+    return `PREFIX ${prefix}: <http://localhost:${DB_PORT}/schemas/movies/> `
 }
 
-function getGraph(provider) {
-    return `FROM <http://localhost:${DB_PORT}/${provider}#> `
+function getGraph() {
+    return `FROM <http://localhost:${DB_PORT}/movies#> `
+}
+
+function filterProviders(providers = ALL_PROVIDERS) {
+    return `FILTER regex(str(?id), "(${providers})") `
 }
 
 function getMetadata(prefix = 'movie') {

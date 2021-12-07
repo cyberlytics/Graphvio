@@ -17,19 +17,35 @@ Virtuoso Conductor
 SPARQL Endpoint
 - http://localhost:8890/sparql/
 
-Wie teste ich, ob die Daten in der Datenbank vorhanden sind?
+#### Wie teste ich, ob die Daten in der Datenbank vorhanden sind?
 1. Aufruf des SPARQL Endpoints (http://localhost:8890/sparql/)
-2. Default Data Set Name (Graph IRI): http://localhost:8890/netflix#
-3.
+2.
 ```
-prefix netflix: <http://localhost:8890/schemas/netflix/>
+prefix movie: <http://localhost:8890/schemas/movies/>
 
 SELECT *
+FROM <http://localhost:8890/movies#>
 WHERE
 {
-  ?id netflix:title ?title
+  ?id movie:title ?title
 }
 ```
+
+#### Suche nach einem bestimmten Film:
+prefix movie: <http://localhost:8890/schemas/movies/>
+
+SELECT ?id ?title
+FROM <http://localhost:8890/movies#>
+WHERE
+{
+  ?id movie:title ?title
+  FILTER regex(str(?id), "(netflix|hulu)")
+  FILTER regex(str(?title), "shark", "i").
+}
+LIMIT 100
+
+#### SPARQL REGEX
+https://en.wikibooks.org/wiki/SPARQL/Expressions_and_Functions#REGEX
 
 #### Kaggle
 - https://www.kaggle.com/shivamb/netflix-shows
