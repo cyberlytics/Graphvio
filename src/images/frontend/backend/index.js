@@ -3,7 +3,6 @@ const cors = require('cors');
 
 const dbRouter = require('./routes/db');
 const imdbRouter = require('./routes/imdb');
-console.log(imdbRouter);
 
 const app = express();
 const port = process.env.PORT || 5000;
