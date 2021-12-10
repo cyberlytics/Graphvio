@@ -17,13 +17,26 @@
 
 .App-header {
   background-color: #36465d;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header p
+{
+  margin: auto;
+}
+
+
+.App-body
+{
+  margin-top: 10px;
+  min-height: 90vh;
+  margin-left: 10px;
 }
 
 .App-link {
@@ -41,4 +54,17 @@ label{
   to {
     transform: rotate(360deg);
   }
+}
+
+/*for demo*/
+.background-blue {
+  background-color: rgb(31, 99, 237);
+  color: white;
+  display: inline;
+}
+
+.background-gray {
+  background-color: gray;
+  display: inline;
+  color: white;
 }

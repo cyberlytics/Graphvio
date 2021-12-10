@@ -43,7 +43,7 @@ class SearchForm extends React.Component {
             type = "submit"
             />
             {/* select button type from https://react-bootstrap.github.io/components/buttons/*/}
-            <Button type="submit" variant="primary" text="Search"/>
+            <Button type="submit" variant={this.props.color} text="Search"/>
             </InputGroup>
         </SearchFormLabel>
         <div>

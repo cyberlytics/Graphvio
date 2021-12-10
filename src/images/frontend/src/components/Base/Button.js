@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types'
-import {Button as BootstrapButton} from 'react-bootstrap';
+import React from 'react'
+import propTypes from 'prop-types'
+import {Button as BootstrapButton} from 'react-bootstrap'
 
 
 class Button extends React.Component 
@@ -27,15 +27,14 @@ class Button extends React.Component
     }
 
 
-    defaultProps = {
+    /*defaultProps = {
         onClick: ()=>{},
-    }
-
-    propTypes = {
-    text: PropTypes.string,
-    variant: PropTypes.string,
-    type: PropTypes.string,
-    onClick: PropTypes.func,
-    }
+    }*/
+}
+Button.propTypes = {
+    text: propTypes.string,
+    variant: propTypes.string,
+    type: propTypes.string,
+    onClick: propTypes.func
 }
 export default Button
