@@ -1,0 +1,37 @@
+
+
+.Collapsible{
+    font-size: 20pt;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.Collapsible__trigger {
+  display: block;
+  font-weight: 400;
+  text-decoration: none;
+  position: relative;
+  border: 1px solid white;
+  padding: 10px;
+}
+
+.Collapsible__trigger::after {
+  content: url('angle-down-solid.svg');
+  display: block;
+  position: absolute;
+  right: 5px;
+  top: 13px;
+  height: 18px;
+  width: 18px;
+  transition: transform 300ms;
+  transform-origin: bottom;
+}
+
+.fa-angle-down{
+  color:gray;
+}
+  
+.is-open::after {
+  transform: rotateZ(180deg);
+}

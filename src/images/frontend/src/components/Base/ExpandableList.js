@@ -1,6 +1,6 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
-
+import "./ExpandableList.css";
 class ExpandableList extends React.Component
 {
     constructor(props)
@@ -19,6 +19,10 @@ class ExpandableList extends React.Component
         return null
     }
 
+    returnTrigger(item){
+        return null
+    }
+
     render()
     {
         if(this.state.items.length === 0)
@@ -30,12 +34,12 @@ class ExpandableList extends React.Component
 
         for(let index in this.state.items){
             renderedListItems.push(
-            <Collapsible trigger={this.state.items[index]}  transitionTime={300}>
-                {this.renderExpandedComponent(this.state.items[index])}
+            <Collapsible trigger={this.returnTrigger(this.state.items[index])}  transitionTime={300}>
+                <div>{this.renderExpandedComponent(this.state.items[index])}</div>
             </Collapsible>
             )
         }
-        return <tbody>{renderedListItems}</tbody>;
+        return <div>{renderedListItems}</div>;
     }
 }
 

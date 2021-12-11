@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import SearchForm from "./components/SearchForm";
+import MovieSearchForm from "./components/Views/MovieSearch/MovieSearchForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "./components/Base/Dropdown";
 
@@ -33,6 +33,17 @@ class App extends React.Component {
     });
   };
 
+
+  renderAppBody(selectedSearchType){
+
+    if(selectedSearchType === 0){
+      return <MovieSearchForm color={this.state.colorscheme} />
+    }
+    else{
+      return <div>TODO Person Search</div>
+    }
+  }
+
   render() {
     let content = (
       <div className="App-content">
@@ -47,9 +58,7 @@ class App extends React.Component {
           <div>Version: 1.0</div>
         </div>
         <div className="App-body">
-          <SearchForm color={this.state.colorscheme} />
-          {this.state.selectedSearch === 0 ? <div className={'background-blue'}>movie search</div>: null}
-          {this.state.selectedSearch === 1 ? <div className={'background-gray'}>person search</div>: null}
+          {this.renderAppBody(this.state.selectedSearch)}
         </div>
       </div>
     );

@@ -34,9 +34,9 @@
 
 .App-body
 {
-  margin-top: 10px;
-  min-height: 90vh;
-  margin-left: 10px;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 70px;  
 }
 
 .App-link {

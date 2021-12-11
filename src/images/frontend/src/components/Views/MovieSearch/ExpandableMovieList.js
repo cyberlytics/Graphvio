@@ -1,9 +1,10 @@
 import React from 'react';
-import ExpandableList from './Base/ExpandableList';
+import ExpandableList from '../../Base/ExpandableList';
+import InfoCard from '../..//Base/Card';
 import {Card} from 'react-bootstrap';
 import "./ExpandableMoveList.css"
 
-class MovieListItem extends React.Component {
+class MovieListItem extends InfoCard {
 	constructor(props) {
 		super(props);
         this.state = {
@@ -11,18 +12,14 @@ class MovieListItem extends React.Component {
         }
 	}
 
-    render() {
-        return <Card style={{ width: '75%' }}>
-
-            <Card.Body>
+    renderCardBody(){
+            return <div>
                 {/* TODO Display Image <Card.Img src={this.state.movieData.image} />*/}
                 <Card.Title >{this.state.movieData.title}</Card.Title>
                 <Card.Text >{`Director: ${this.state.movieData.director}`} </Card.Text>
                 <Card.Text >{`Rating: ${this.state.movieData.rating}`} </Card.Text>
                 {/* TODO Restliche Metadaten*/}
-            </Card.Body>
-            
-        </Card>
+            </div>
     }
 }
 
@@ -32,10 +29,14 @@ class ExpandableMovieList extends ExpandableList {
 		return <MovieListItem movieData={this.RetrieveData(item)} />;
 	}
 
+    returnTrigger(item){
+        return item['title'];
+    }
+
     RetrieveData(item) {
         //TODO Backend Call
         return {
-            title: item,
+            title: item['title'],
             director: "Director",
             rating: "10/10",
             image: "https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie-768x1129.jpg"
