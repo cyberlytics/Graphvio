@@ -9,9 +9,11 @@ class InfoCard extends React.Component {
     }
 
     render() {
-        return <Card>
-            <Card.Body>{this.renderCardBody()}</Card.Body>
-        </Card>
+        return (
+            <Card>
+                <Card.Body>{this.renderCardBody()}</Card.Body>
+            </Card>
+        )
     }
 }
 export default InfoCard
