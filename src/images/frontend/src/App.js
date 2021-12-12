@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import MovieSearchForm from "./components/Views/MovieSearch/MovieSearchForm";
+import PersonSearchForm from "./components/Views/PersonSearch/PersonSearchForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "./components/Base/Dropdown";
 
@@ -40,7 +41,7 @@ class App extends React.Component {
       return <MovieSearchForm color={this.state.colorscheme} />
     }
     else{
-      return <div>TODO Person Search</div>
+      return <PersonSearchForm color={this.state.colorscheme} />
     }
   }
 
