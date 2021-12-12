@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Movie Search correctly 1`] = `
+<div>
+  <div
+    class="btn-group"
+    title="Movie Search"
+  >
+    <button
+      aria-expanded="false"
+      aria-haspopup="true"
+      class="btn btn-primary"
+      type="button"
+    >
+      Movie Search
+    </button>
+    <div
+      aria-hidden="true"
+      class="dropdown-menu"
+      role="menu"
+      tabindex="-1"
+    >
+      <button
+        class="dropdown-item"
+        role="menuitem"
+        tabindex="0"
+        type="button"
+      >
+        Movie Search
+      </button>
+      <button
+        class="dropdown-item"
+        role="menuitem"
+        tabindex="0"
+        type="button"
+      >
+        Person Search
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders changed selection correctly 1`] = `
+<div>
+  <div
+    class="btn-group show"
+    title="Person Search"
+  >
+    <button
+      aria-expanded="true"
+      aria-haspopup="true"
+      class="btn btn-primary"
+      type="button"
+    >
+      Person Search
+    </button>
+    <div
+      aria-hidden="false"
+      class="dropdown-menu show"
+      data-popper-placement="bottom-start"
+      role="menu"
+      style="position: absolute; left: 0px; top: 0px;"
+      tabindex="-1"
+    >
+      <button
+        class="dropdown-item"
+        role="menuitem"
+        tabindex="0"
+        type="button"
+      >
+        Movie Search
+      </button>
+      <button
+        class="dropdown-item"
+        role="menuitem"
+        tabindex="0"
+        type="button"
+      >
+        Person Search
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders toggled correctly 1`] = `
+<div>
+  <div
+    class="btn-group show"
+    title="Person Search"
+  >
+    <button
+      aria-expanded="true"
+      aria-haspopup="true"
+      class="btn btn-secondary"
+      type="button"
+    >
+      Person Search
+    </button>
+    <div
+      aria-hidden="false"
+      class="dropdown-menu show"
+      data-popper-placement="bottom-start"
+      role="menu"
+      style="position: absolute; left: 0px; top: 0px;"
+      tabindex="-1"
+    >
+      <button
+        class="dropdown-item"
+        role="menuitem"
+        tabindex="0"
+        type="button"
+      >
+        Movie Search
+      </button>
+      <button
+        class="dropdown-item"
+        role="menuitem"
+        tabindex="0"
+        type="button"
+      >
+        Person Search
+      </button>
+    </div>
+  </div>
+</div>
+`;
