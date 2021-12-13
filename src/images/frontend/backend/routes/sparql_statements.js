@@ -51,7 +51,7 @@ function getMetadata(prefix = 'movie') {
     `OPTIONAL {?id ${prefix}:release_year ?release_year} ` +
     `OPTIONAL {?id ${prefix}:type ?type} ` +
     `OPTIONAL {?id ${prefix}:rating ?rating} ` +
-    `OPTIONAL {?id ${prefix}:genre ?genre} `
+    `OPTIONAL {?id ${prefix}:listed_in ?listed_in} `
 
     return metadata
 }
