@@ -51,7 +51,7 @@ router.route('/search-movies').get(async(req, res) => {
   console.log(sparql)
   
   result = await arrayifyStream(await fetcher.fetchBindings(endpoint, sparql))
-  console.log(`Result found: ${result.length}`)
+  console.log(`Results found: ${result.length}`)
 
   movies = []
 
@@ -69,8 +69,7 @@ router.route('/search-movies').get(async(req, res) => {
         "release_year": element.release_year?.value,
         "type": element.type?.value, // "Movie" | "TV Show"
         "rating": element.rating?.value,
-        "genre": element.listed_in?.value,
-        "imdb-rating": "42", // Nur in den Details?
+        "genre": element.listed_in?.value
       }
     })
   });
