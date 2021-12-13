@@ -42,7 +42,7 @@ function SEARCH_PERSONS(movie, year, limit = 10) {
     `?film a dbo:Film; 
     dbp:name ?film_name.
     FILTER(lcase(str(?film_name)) = lcase(str('${movie}'@en))).
-    FILTER regex(lcase(str(?film)), "${year}").
+    FILTER (regex(str(?film), "\\\\(${year}_.*\\\\)") || !regex(str(?film), "\\\\(.*\\\\)"))
     OPTIONAL { 
         {
           ?film dbp:music ?person.
@@ -120,7 +120,9 @@ if(false) {
         var fetcher = new SparqlEndpointFetcher();
         const endpoint = `https://dbpedia.org/sparql/`
 
-        sparql = SEARCH_PERSONS("Always", 2011)
+        // sparql = SEARCH_PERSONS("Always", 2011)
+        // sparql = SEARCH_PERSONS("Always", 1989)
+        sparql = SEARCH_PERSONS("The Matrix")
         console.log("###########################")
         result = await arrayifyStream(await fetcher.fetchBindings(endpoint, sparql))
         console.log("###########################")
