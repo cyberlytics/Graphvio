@@ -28,8 +28,65 @@ function SEARCH_MOVIE(movie, providers = ALL_PROVIDERS, limit = 10) {
     return sparql
 }
 
+/**
+ * 
+ * 
+ *
+ */
+function SEARCH_PERSONS(movie, year, limit = 10) {
+    sparql =         
+    getPrefixDbpedia() +
+    `SELECT * ` +
+    `WHERE { ` +
+
+    `?film a dbo:Film; 
+    dbp:name ?film_name.
+    FILTER(lcase(str(?film_name)) = lcase(str('${movie}'@en))).
+    FILTER regex(lcase(str(?film)), "${year}").
+    OPTIONAL { 
+        {
+          ?film dbp:music ?person.
+          VALUES ?role {"music"}.
+        }
+        UNION
+        {
+          ?film dbp:director ?person.
+          VALUES ?role {"director"}.
+        }
+        UNION
+        {
+          ?film dbo:starring ?person.
+          VALUES ?role {"starring"}.
+        }
+        UNION
+        {
+          ?film dbp:cinematography ?person.
+          VALUES ?role {"cinematography"}.
+        }
+
+        ?person dbp:name ?name.
+        ?person dbo:birthDate ?birthDate.
+        ?person dbo:birthPlace ?birthPlaceEntity.
+        ?birthPlaceEntity rdfs:label ?birthPlaceLabel.
+        ?birthPlaceEntity a dbo:City.
+        FILTER (LANG(?birthPlaceLabel)='en') 
+    }
+}
+LIMIT ${limit}`
+
+    console.log(sparql)
+    return sparql
+}
+
 function getPrefix(prefix = 'movie') {
     return `PREFIX ${prefix}: <http://localhost:${DB_PORT}/schemas/movies/> `
+}
+
+function getPrefixDbpedia(prefixDbo = 'dbo', prefixDbp = 'dbp') {
+    prefixDbpedia = 
+`PREFIX ${prefixDbo}: <http://dbpedia.org/ontology/> 
+PREFIX ${prefixDbp}: <http://dbpedia.org/property/> `
+    return prefixDbpedia
 }
 
 function getGraph() {
@@ -56,7 +113,29 @@ function getMetadata(prefix = 'movie') {
     return metadata
 }
 
+if(false) {
+    (async() => {
+        const { SparqlEndpointFetcher } = require("fetch-sparql-endpoint");
+        const arrayifyStream = require('arrayify-stream');
+        var fetcher = new SparqlEndpointFetcher();
+        const endpoint = `https://dbpedia.org/sparql/`
+
+        sparql = SEARCH_PERSONS("Always", 2011)
+        console.log("###########################")
+        result = await arrayifyStream(await fetcher.fetchBindings(endpoint, sparql))
+        console.log("###########################")
+        console.log(`Results found: ${result.length}`)
+
+        result.forEach(element => {
+            console.log(element["name"].value)
+            console.log(element["role"].value)
+            console.log("---")
+        });  
+    })()
+}
+
 module.exports = {
     SELECT_ALL_TITLES: SELECT_ALL_TITLES,
-    SEARCH_MOVIE: SEARCH_MOVIE
+    SEARCH_MOVIE: SEARCH_MOVIE,
+    SEARCH_PERSONS: SEARCH_PERSONS
 }
