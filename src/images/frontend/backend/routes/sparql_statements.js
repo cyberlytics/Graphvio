@@ -28,11 +28,6 @@ function SEARCH_MOVIE(movie, providers = ALL_PROVIDERS, limit = 10) {
     return sparql
 }
 
-/**
- * 
- * 
- *
- */
 function SEARCH_PERSONS(movie, year, limit = 10) {
     sparql =         
     `
@@ -153,126 +148,6 @@ function getMetadata(prefix = 'movie') {
     `OPTIONAL {?id ${prefix}:listed_in ?listed_in} `
 
     return metadata
-}
-
-if(false) {
-    (async() => {
-        const { SparqlEndpointFetcher } = require("fetch-sparql-endpoint");
-        const arrayifyStream = require('arrayify-stream');
-        var fetcher = new SparqlEndpointFetcher();
-        const endpoint = `https://dbpedia.org/sparql/`
-
-        // Erste Versuche ...
-        // sparql = SEARCH_PERSONS("Always", 2011)
-        // sparql = SEARCH_PERSONS("Always", 1989)
-
-        // "The Wachowskis"@en
-        // Director ist aber vorhanden
-        // Joe_Pantoliano
-        // Birthplace doppelt ...
-        // http://dbpedia.org/resource/The_Wachowskis
-        // - dbo:director und dbp:director unterschiedlich belegt.
-        // - Director: Sind mehrere Personen!
-        // sparql = SEARCH_PERSONS("The Matrix")
-
-        // Special Character '
-        // sparql = SEARCH_PERSONS("You're Not You")
-
-        // "Issue?" : The Last Sharknado
-        // - https://dbpedia.org/page/The_Last_Sharknado:_It's_About_Time
-        // Achtung! Ist vom Typ: 
-        // - dbo:TelevisionShow
-        // und nicht wie alle anderen:
-        // - dbo:Film
-        // sparql = SEARCH_PERSONS("The Last Sharknado: It's About Time")
-
-        // Probleme mit BirthDates aus verschiedenen Ontologien
-        // - https://stackoverflow.com/questions/49477387/how-to-gracefully-handle-dbpedia-queries-of-birthdate-in-different-ontologies
-        // Probleme mit "schlecht" ausgefüllten Resourcen
-        // Viele Felder sind nicht ausgefüllt bzw. existieren nicht
-        // Oft werden Geburtstag / Ort nur im allgemeinen "Comment" erwähnt
-        // Problem mit element["name"].value
-        // element ist undefined
-        // Setzen eines Defaultnamen mit
-        // Bind Default (Resource)
-        // Optional PersonenName der Resource auslesen
-        // Bind von Default oder PersonenName
-        // - https://stackoverflow.com/questions/40454268/how-can-get-default-return-values-for-a-sparql-query-when-counting
-        // sparql = SEARCH_PERSONS("Under the Boardwalk: The Monopoly Story")
-
-        // Film "Avatar" gibt es nicht.
-        // Avatar braucht auch die Angabe des Jahres, alle Avatar-Filme heißen Avatar
-        // sparql = SEARCH_PERSONS("Avatar", 2009)
-
-        // Marvel <3
-        // Suche nach: "Infinity War" im Frontend bringt:
-        // - DisneyPlus:
-        //   - Avengers: Infinity War
-        // - Netflix:
-        //   - Marvel Studios' Avengers: Infinity War
-        // 
-        // Dbpedia:
-        // - Avengers: Infinity War
-        //
-        // http://dbpedia.org/resource/Russo_brothers
-        // birthDate sind nicht immer vom Typ Date ...
-        // dbp:birthDate
-        // - 1970-02-03 (xsd:date)
-        // - 1971-07-18 (xsd:date)
-        // - Anthony Russo (en)
-        // - Joseph Russo (en)
-        // - Cleveland, Ohio, U.S. (en)
-        //
-        // Außerdem sind dbp:name und rdfs:label unterschiedlich geschrieben
-        // Dadurch klappt DISTINCT natürlich nicht.
-        // dbp:name
-        // "Russo Brothers"@en
-        // rdfs:label
-        // "Russo brothers"@en
-        //
-        // https://dbpedia.org/page/Paul_Bettany
-        // dbp:name
-        // "Paul Bettany"@en
-        // "Paul Bettany biography and credits"@en
-        // rdfs:label
-        // "Paul Bettany"@en
-        //
-        // Fazit:
-        // Das ist alles suboptimal ...
-        // - Beispiele beim Ergebnis von "Avengers: Infinity War"
-        //   - rdf_person_name
-        //     - "Chris Evans (actor)"@en
-        //     - "Paul Bettany"@en
-        //   - dbp_person_name
-        //     - "Chris Evans"@en
-        //     - "Paul Bettany biography and credits"@en
-        sparql = SEARCH_PERSONS("Avengers: Infinity War", undefined, limit = 50)
-
-        // Serien
-        // Annahme, das Serien nach dem Namen "(TV_SHOW)" stehen haben.
-        // - Scrubs (TV_SHOW)
-        // sparql = SEARCH_PERSONS("Scrubs")
-        // sparql = SEARCH_PERSONS("Lucifer")
-
-        // # TODO:
-        // - Priorisierung Birthplace
-        //   Zuerst City, dann Settlement, dann erst Country verwenden
-       
-
-        
-        console.log("###########################")
-        result = await arrayifyStream(await fetcher.fetchBindings(endpoint, sparql))
-        console.log("###########################")
-        console.log(`Results found: ${result.length}`)
-
-        result.forEach(element => {
-            for (const [key, value] of Object.entries(element)) {
-                console.log(`> ${key}: ${value.value}`)    
-            };
-
-            console.log("-----")
-        });  
-    })()
 }
 
 module.exports = {
