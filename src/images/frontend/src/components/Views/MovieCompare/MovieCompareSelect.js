@@ -9,6 +9,9 @@ class MovieCompareSelect extends React.Component {
     {
         super(props);
         this.multiSelect=null;
+        this.state = {
+          isDisabled: false
+         };
     }
 
     /*method to request dropdown values from db after 
@@ -30,6 +33,27 @@ class MovieCompareSelect extends React.Component {
           /*const values = movieList.map(function (params) {
             return params.value
           })*/
+          /*later replace if metadata found for selected movies */
+        if(movieList.length > 2)
+        {
+          this.setState({isDisabled : true});
+        }
+        else
+        {
+          this.setState({isDisabled : false});
+        }
+      }
+
+      displayExtendedList()
+      {
+          if(this.state.isDisabled)
+          {
+              return <p>no metadata for different movies found</p>
+          }
+          else
+          {
+              return null
+          }
       }
 
   render() {
@@ -41,7 +65,9 @@ class MovieCompareSelect extends React.Component {
       getDropDownValuesForMultiSelect={this.getDropDownValuesForMultiSelect}
       SetValuesOfMultiSelect={this.SetValuesOfMultiSelect}
       isMulti={true}
+      isDisabled={this.state.isDisabled}
       ></MultiSelect>
+      {this.displayExtendedList()}
       </div>
     );
   }

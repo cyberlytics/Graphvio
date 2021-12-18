@@ -34,7 +34,7 @@ class MultiSelect extends React.Component
   /*method to send input value from select to parent component*/
   handleInputChange =(changeValues)=>{
     const{getDropDownValuesForMultiSelect} = this.props;
-    if(changeValues !== undefined && changeValues !== "" && changeValues.length > 1)
+    if(!this.props.isDisabled && changeValues !== undefined && changeValues !== "" && changeValues.length > 1)
     {
       getDropDownValuesForMultiSelect(changeValues)
     }
@@ -61,6 +61,7 @@ class MultiSelect extends React.Component
         isMulti={isMulti}
         isSearchable={true}
         closeMenuOnSelect={true}
+        isSearchable={!this.props.isDisabled}
       />
     );
 } 
