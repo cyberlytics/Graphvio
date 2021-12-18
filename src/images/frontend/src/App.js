@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import MovieSearchForm from "./components/Views/MovieSearch/MovieSearchForm";
 import PersonSearchForm from "./components/Views/PersonSearch/PersonSearchForm";
+import MovieCompareSelect from "./components/Views/MovieCompare/MovieCompareSelect";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "./components/Base/Dropdown";
 
@@ -15,7 +16,8 @@ class App extends React.Component {
     this.state = {
       modeObj: [
         { id: 0, title: "Movie Search", selected: true, key: 'modeObj', color:"primary" },
-        { id: 1, title: "Person Search", selected: false, key: 'modeObj', color:"secondary" }
+        { id: 1, title: "Person Search", selected: false, key: 'modeObj', color:"secondary" },
+        { id: 2, title: "Movie Compare", selected: false, key: 'modeObj', color:"success" }
       ],
       selectedSearch : 0,
       colorscheme : "primary"
@@ -40,8 +42,11 @@ class App extends React.Component {
     if(selectedSearchType === 0){
       return <MovieSearchForm color={this.state.colorscheme} />
     }
-    else{
+    else if(selectedSearchType === 1){
       return <PersonSearchForm color={this.state.colorscheme} />
+    }
+    else{
+      return <MovieCompareSelect color={this.state.colorscheme} />
     }
   }
 
