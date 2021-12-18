@@ -10,7 +10,7 @@ class InfoCard extends React.Component {
 
     render() {
         return (
-            <Card>
+            <Card class= '.shadow-5-strong'>
                 <Card.Body>{this.renderCardBody()}</Card.Body>
             </Card>
         )
