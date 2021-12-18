@@ -19,7 +19,11 @@ class ExpandableList extends React.Component
         return null
     }
 
-    returnTrigger(item){
+    returnDisplayName(item){
+        return null
+    }
+
+    handleItemOnOpen(index){
         return null
     }
 
@@ -30,12 +34,14 @@ class ExpandableList extends React.Component
             return null;
         }
 
-        let renderedListItems = []
+        var renderedListItems = []
 
-        for(let index in this.state.items){
+        for(var index in this.state.items){
+            var item = this.state.items[index];
+            var content = this.renderExpandedComponent(item);
             renderedListItems.push(
-            <Collapsible trigger={this.returnTrigger(this.state.items[index])}  transitionTime={300}>
-                <div>{this.renderExpandedComponent(this.state.items[index])}</div>
+            <Collapsible trigger={this.returnDisplayName(item)}  transitionTime={300} onOpening ={this.handleItemOnOpen.bind(this,index)}>
+                {content}
             </Collapsible>
             )
         }

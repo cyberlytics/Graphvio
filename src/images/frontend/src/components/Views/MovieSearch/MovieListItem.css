@@ -1,0 +1,18 @@
+.card-text{
+    font-size: 14pt;
+}
+
+.header { grid-area: header; }
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+      'header header'
+      'left right';
+    grid-gap: 5px;
+    padding: 5px;
+  }
+
+.hr {
+    margin-top: 3px;
+  }

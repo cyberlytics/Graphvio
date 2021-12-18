@@ -14,10 +14,21 @@ class MovieSearchForm extends SearchForm {
 			var xmlHttp = new XMLHttpRequest();
 			var url = `http://localhost:5000/db/search-movies?title=${this.textBox.state.value}&limit=${20}`;
 			xmlHttp.open( "GET", url, false ); 
-			xmlHttp.send( null );
-			if(xmlHttp.responseText.length > 0){
-				this.movies = JSON.parse(xmlHttp.responseText)
-				this.list.updateItems(this.movies);
+			//WTF is this in this context?
+			xmlHttp.onload = () => this.parseMovies(xmlHttp,this);
+			xmlHttp.send(null);
+		}
+	}
+
+	parseMovies(xmlHttp,movieSearchForm){
+		if (xmlHttp.readyState === 4) {
+			if (xmlHttp.status === 200) {
+			  if(xmlHttp.responseText.length > 0){
+				movieSearchForm.movies = JSON.parse(xmlHttp.responseText);
+				movieSearchForm.list.updateItems(this.movies);
+			  }
+			} else {
+			  console.error(xmlHttp.statusText);
 			}
 		}
 	}

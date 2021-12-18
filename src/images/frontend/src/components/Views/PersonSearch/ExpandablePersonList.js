@@ -28,7 +28,7 @@ class ExpandablePersonList extends ExpandableList {
 		return <PersonListItem personData={this.RetrieveData(item)} />;
 	}
 
-    returnTrigger(item){
+    returnDisplayName(item){
         return item['title'];
     }
 
