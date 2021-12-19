@@ -12,14 +12,37 @@ class PersonListItem extends InfoCard {
         }
 	}
 
-    renderCardBody(){
-            return <div>
-                <Card.Title >{this.state.personData.name}</Card.Title>
-                <Card.Text >{`Geschlecht: ${this.state.personData.sex}`} </Card.Text>
-                <Card.Text >{`Alter: ${this.state.personData.age}`} </Card.Text>
-                <Card.Text >{`Nationalität: ${this.state.personData.nationality}`} </Card.Text>
-            </div>
-    }
+    renderCardBody() {
+		return (
+			<div>
+				<div class="grid-container">
+					<div class="header">
+                        <b>Summary : </b>
+						<Card.Text>
+							{`${this.state.personData.summary}`}
+						</Card.Text>
+						<hr />
+					</div>
+					<div class="left">
+						<Card.Text>
+                            <b>Name : </b>{`${this.state.personData.name}`}
+						</Card.Text>
+                        <Card.Text>
+                            <b>Age : </b>{`${this.state.personData.age}`}
+						</Card.Text>
+					</div>
+					<div class="right">
+						<Card.Text>
+                            <b>Sex : </b>{`${this.state.personData.sex}`}
+						</Card.Text>
+						<Card.Text>
+                            <b>Nationality : </b>{this.state.personData.nationality}
+						</Card.Text>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 class ExpandablePersonList extends ExpandableList {
@@ -29,12 +52,13 @@ class ExpandablePersonList extends ExpandableList {
 	}
 
     returnDisplayName(item){
-        return item['title'];
+        return item['name'];
     }
 
     RetrieveData(item) {
         //TODO Backend Call
         return {
+            summary: "Story of my Life",
             name: "Someone",
             sex: "non binary",
             age: "40",
