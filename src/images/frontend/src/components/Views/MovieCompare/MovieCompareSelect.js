@@ -20,12 +20,21 @@ class MovieCompareSelect extends React.Component {
         var xmlHttp = new XMLHttpRequest();
         var url = `http://localhost:5000/db/search-movies?title=${inputValue}&limit=${20}`;
         xmlHttp.open( "GET", url, false ); 
+        xmlHttp.onload = () => this.parseMovieTitles(xmlHttp, this);
         xmlHttp.send( null );
-        if(xmlHttp.responseText.length > 0)
-        {
-          this.multiSelect.updateOptions(JSON.parse(xmlHttp.responseText))
-        }
 	    }
+
+      parseMovieTitles(xmlHttp, movieCompare){
+        if (xmlHttp.readyState === 4) {
+          if (xmlHttp.status === 200) {
+            if(xmlHttp.responseText.length > 0){
+            movieCompare.multiSelect.updateOptions(JSON.parse(xmlHttp.responseText));
+            }
+          } else {
+            console.error(xmlHttp.statusText);
+          }
+        }
+      }
 
       /*method to request database after movies selected in multi select*/
       SetValuesOfMultiSelect = (movieList) =>{
