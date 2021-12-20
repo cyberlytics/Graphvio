@@ -7,15 +7,16 @@ class ExpandableList extends React.Component
     {
         super(props);
         this.state = {
-            items: this.props.items
+            items: this.props.items,
         }
+        this.renderedItemsRef = [];
     }
 
     updateItems(items){
         this.setState({items: items});
     }
 
-    renderExpandedComponent(item){
+    renderExpandedComponent(index){
         return null
     }
 
@@ -23,29 +24,33 @@ class ExpandableList extends React.Component
         return null
     }
 
-    handleItemOnOpen(index){
+    async handleItemOnOpen(index){
         return null
     }
 
     render()
     {
+        //Clear the rendered items
+        this.renderedItemsRef.length = 0;
+
         if(this.state.items.length === 0)
         {
             return null;
         }
 
-        var renderedListItems = []
-
+        let renderedCollapsibleItems = [];
+        
         for(var index in this.state.items){
             var item = this.state.items[index];
-            var content = this.renderExpandedComponent(item);
-            renderedListItems.push(
-            <Collapsible trigger={this.returnDisplayName(item)}  transitionTime={300} onOpening ={this.handleItemOnOpen.bind(this,index)}>
+            var content = this.renderExpandedComponent(index);
+
+            renderedCollapsibleItems.push(
+            <Collapsible trigger={this.returnDisplayName(item)}  transitionTime={300} onOpening = {this.handleItemOnOpen.bind(this,index)} key={`Collapsible_${this.returnDisplayName(item)}`}>
                 {content}
             </Collapsible>
             )
         }
-        return <div>{renderedListItems}</div>;
+        return <div>{renderedCollapsibleItems}</div>;
     }
 }
 

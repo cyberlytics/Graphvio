@@ -3,12 +3,15 @@
 }
 
 .header { grid-area: header; }
+.headerposter { grid-area: headerposter; }
+.left { grid-area: left; }
+.right { grid-area: right; }
 
 .grid-container {
     display: grid;
     grid-template-areas:
-      'header header'
-      'left right';
+      'headerposter header header header'
+      'left left right right';
     grid-gap: 5px;
     padding: 5px;
   }
