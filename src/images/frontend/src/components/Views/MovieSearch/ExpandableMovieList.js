@@ -1,15 +1,19 @@
 import React from "react";
 import ExpandableList from "../../Base/ExpandableList";
 import InfoCard from "../..//Base/Card";
-import { Card, Grid } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "./MovieListItem.css";
-
 class MovieListItem extends InfoCard {
 	constructor(props) {
 		super(props);
 		this.state = {
 			movieData: this.props.movieData,
 		};
+	}
+
+
+	Update(newMovieData){
+		this.setState({movieData: newMovieData})
 	}
 
     renderProvider(providers){
@@ -30,12 +34,15 @@ class MovieListItem extends InfoCard {
         return mappedProviders.join(", ");
     }
     renderCast(cast){
+		if(typeof cast === 'undefined')
+			return '-';
+
         let renderedCast = [];
         var members = cast.split(",");
         for(var i in members){
-            renderedCast.push(<li>{members[i].trim()}</li>)
+            renderedCast.push(<li key={members[i].trim()}> {members[i].trim()} </li>)
         }
-        return <div><ul>{renderedCast}</ul></div>;
+        return <ul>{renderedCast}</ul>;
     }
 
     renderDate(date){
@@ -49,10 +56,15 @@ class MovieListItem extends InfoCard {
 			<div>
 				<div class="grid-container">
 					<div class="header">
-                        <b>Description : </b>
-						<Card.Text>
-							{`${this.state.movieData.metadata.description}`}
-						</Card.Text>
+						<div>
+						<img src={this.state.movieData.metadata.image} alt={'No_Image_Available.jpg'} width="200"/>
+						<hr />
+							<b>Description : </b>
+							<Card.Text>
+								{`${this.state.movieData.metadata.description}`}
+							</Card.Text>
+	
+						</div>
 						<hr />
 					</div>
 					<div class="left">
@@ -99,30 +111,32 @@ class MovieListItem extends InfoCard {
 }
 
 class ExpandableMovieList extends ExpandableList {
-	renderExpandedComponent(item) {
-		if (!item.metadata.hasOwnProperty("imdb")) {
-			item.metadata["imdb"] = "-";
+	renderExpandedComponent(index) {
+		if (!this.state.items[index].metadata.hasOwnProperty("imdb")) {
+			this.state.items[index].metadata["imdb"] = "-";
+			this.state.items[index].metadata["image"] = ".\\No_Image_Available.jpg";
 		}
-		return <MovieListItem movieData={item} />;
+		return <MovieListItem movieData={this.state.items[index]} ref={(ref) => this.renderedItemsRef.push(ref)} key={this.state.items[index].title}/>;
 	}
 
 	returnDisplayName(item) {
 		return item["title"];
 	}
 
-	handleItemOnOpen(index) {
-		this.retrieveIMDBData(index);
+	async handleItemOnOpen(index) {
+		if (this.state.items[index]["metadata"]["imdb"] === "-") {
+			await this.retrieveIMDBData(index);
+		}
 	}
 
-	retrieveIMDBData(index) {
-		//TODO Fix Get Request
-		return;
-
-		var xmlHttp = new XMLHttpRequest();
-		var url = `http://localhost:5000/imdb/search-imdbdata?title=${this.state.items[index]["title"]}&type=${this.state.items[index]["metadata"]["type"]}`;
-		xmlHttp.open("GET", url, false);
-		xmlHttp.onload = () => this.parseMovies(xmlHttp, index, this);
-		xmlHttp.send(null);
+	async retrieveIMDBData(index) {
+		return new Promise((resolve) => {
+			let xmlHttp = new XMLHttpRequest();
+			var url = `http://localhost:5000/imdb/search-imdbdata?title=${this.state.items[index]["title"]}&type=${this.state.items[index]["metadata"]["type"]}`;
+			xmlHttp.open("GET", url, false);
+			xmlHttp.onload = () => this.parseIMDBData(xmlHttp, index, this);
+			xmlHttp.send(null);
+		});
 	}
 
 	parseIMDBData(xmlHttp, index, expandableMovieList) {
@@ -130,9 +144,14 @@ class ExpandableMovieList extends ExpandableList {
 			if (xmlHttp.status === 200) {
 				if (xmlHttp.responseText.length > 0) {
 					var response = JSON.parse(xmlHttp.responseText);
-					expandableMovieList.state.items[index]["metadata"]["imdb"] =
-						response;
-					//TODO Rerender needed?
+					if (xmlHttp.responseText.includes('Maximum usage')) 
+					{
+						console.warn("Reached Maximum usage of IMDB API!");
+						return;
+					}
+					expandableMovieList.state.items[index]["metadata"]["imdb"] = response["imDb"];
+					expandableMovieList.state.items[index]["metadata"]["image"] = response["image"];	
+					expandableMovieList.renderedItemsRef[index].Update(expandableMovieList.state.items[index])
 				}
 			} else {
 				console.error(xmlHttp.statusText);
