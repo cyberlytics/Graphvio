@@ -1,7 +1,7 @@
 
 import React from 'react';
 import MultiSelect from '../../Base/MultiSelect';
-
+import ExpandableMovieCompareResultList from './ExpandableMovieCompareResultList';
 
 
 class MovieCompareSelect extends React.Component {
@@ -9,8 +9,11 @@ class MovieCompareSelect extends React.Component {
     {
         super(props);
         this.multiSelect=null;
+        this.list = null;
         this.state = {
-          isDisabled: false
+          isDisabled: false,
+          jsonResult : [],
+          MovieCompareValues : "not enough values set, to show movie compare"
          };
     }
 
@@ -43,40 +46,70 @@ class MovieCompareSelect extends React.Component {
             return params.value
           })*/
           /*later replace if metadata found for selected movies */
-        if(movieList.length > 2)
+          const test = {
+            cast: [
+              {'Robert Downey Jr.': [
+                "Marvel Studios' The Avengers",
+                "Marvel Studios' Iron Man",
+                "Marvel Studios' Avengers: Infinity War"
+              ]},
+              {'Chris Hemsworth': [
+                "Marvel Studios' The Avengers",
+                "Marvel Studios' Avengers: Infinity War"
+              ]},
+              {'Mark Ruffalo': [
+                "Marvel Studios' The Avengers",
+                "Marvel Studios' Avengers: Infinity War"
+              ]},
+              {'Chris Evans': [
+                "Marvel Studios' The Avengers",
+                "Marvel Studios' Avengers: Infinity War"
+              ]},
+              {'Scarlett Johansson': [
+                "Marvel Studios' The Avengers",
+                "Marvel Studios' Avengers: Infinity War"
+              ]}
+            ],
+            country: [
+              {'United States': [
+                "Marvel Studios' The Avengers",
+                "Marvel Studios' Avengers: Infinity War"
+              ]}
+            ]
+          };
+        if(movieList.length < 2)
         {
-          this.setState({isDisabled : true});
+          this.setState(
+            {
+              isDisabled : false,
+            }
+            );
+            this.list.updateItems([])
         }
         else
         {
-          this.setState({isDisabled : false});
+          this.setState(
+            {
+              isDisabled : true,
+              MovieCompareValues: "following values found by compare:"
+            }
+            );
+            this.list.updateItems(test)
         }
-      }
-
-      displayExtendedList()
-      {
-          if(this.state.isDisabled)
-          {
-              return <p>no metadata for different movies found</p>
-          }
-          else
-          {
-              return null
-          }
       }
 
   render() {
     return (
       <div>
-      <p>type in more than one character</p>
+      <p>type in more than one character to get search options</p>
       <MultiSelect 
       ref={(t) => this.multiSelect = t}
       getDropDownValuesForMultiSelect={this.getDropDownValuesForMultiSelect}
       SetValuesOfMultiSelect={this.SetValuesOfMultiSelect}
       isMulti={true}
-      isDisabled={this.state.isDisabled}
-      ></MultiSelect>
-      {this.displayExtendedList()}
+      isDisabled={this.state.isDisabled}/>
+      <p >{this.state.MovieCompareValues}</p>
+      <ExpandableMovieCompareResultList ref={(l) => (this.list = l)} items={this.state.jsonResult}/>
       </div>
     );
   }
