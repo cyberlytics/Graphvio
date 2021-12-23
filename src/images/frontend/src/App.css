@@ -68,3 +68,8 @@ label{
   display: inline;
   color: white;
 }
+
+p
+{
+  margin-top: 10px!important;
+}

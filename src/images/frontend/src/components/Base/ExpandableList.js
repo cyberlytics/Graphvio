@@ -7,7 +7,7 @@ class ExpandableList extends React.Component
     {
         super(props);
         this.state = {
-            items: this.props.items,
+            items: props.items,
         }
         this.renderedItemsRef = [];
     }

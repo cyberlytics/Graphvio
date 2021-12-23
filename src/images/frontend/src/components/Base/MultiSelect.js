@@ -59,7 +59,6 @@ class MultiSelect extends React.Component
         onChange={e=>this.handleValueSelect(e)}
         options={this.state.selectOption}
         isMulti={isMulti}
-        isSearchable={true}
         closeMenuOnSelect={true}
         isSearchable={!this.props.isDisabled}
       />
