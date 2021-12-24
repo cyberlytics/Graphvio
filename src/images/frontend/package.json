@@ -19,6 +19,7 @@
     "react-scripts": "^4.0.3",
     "react-test-renderer": "^17.0.2",
     "reactstrap": "^9.0.1",
+	  "react-select": "^5.2.1",
     "sparqljs": "^3.5.1"
   },
   "scripts": {

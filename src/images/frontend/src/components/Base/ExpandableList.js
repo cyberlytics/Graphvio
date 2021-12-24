@@ -7,39 +7,50 @@ class ExpandableList extends React.Component
     {
         super(props);
         this.state = {
-            items: this.props.items
+            items: props.items,
         }
+        this.renderedItemsRef = [];
     }
 
     updateItems(items){
         this.setState({items: items});
     }
 
-    renderExpandedComponent(item){
+    renderExpandedComponent(index){
         return null
     }
 
-    returnTrigger(item){
+    returnDisplayName(item){
+        return null
+    }
+
+    async handleItemOnOpen(index){
         return null
     }
 
     render()
     {
+        //Clear the rendered items
+        this.renderedItemsRef.length = 0;
+
         if(this.state.items.length === 0)
         {
             return null;
         }
 
-        let renderedListItems = []
+        let renderedCollapsibleItems = [];
+        
+        for(var index in this.state.items){
+            var item = this.state.items[index];
+            var content = this.renderExpandedComponent(index);
 
-        for(let index in this.state.items){
-            renderedListItems.push(
-            <Collapsible trigger={this.returnTrigger(this.state.items[index])}  transitionTime={300}>
-                <div>{this.renderExpandedComponent(this.state.items[index])}</div>
+            renderedCollapsibleItems.push(
+            <Collapsible trigger={this.returnDisplayName(item)}  transitionTime={300} onOpening = {this.handleItemOnOpen.bind(this,index)} key={`Collapsible_${this.returnDisplayName(item)}`}>
+                {content}
             </Collapsible>
             )
         }
-        return <div>{renderedListItems}</div>;
+        return <div>{renderedCollapsibleItems}</div>;
     }
 }
 
