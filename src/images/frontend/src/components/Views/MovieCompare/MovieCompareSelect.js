@@ -19,19 +19,46 @@ class MovieCompareSelect extends React.Component {
 
     /*method to request dropdown values from db after 
     input of movie sub string*/
-    getDropDownValuesForMultiSelect = (inputValue) => {
+    getDropDownValuesForMultiSelect = (inputValue) => 
+    {
         var xmlHttp = new XMLHttpRequest();
         var url = `http://localhost:5000/db/search-movies?title=${inputValue}&limit=${20}`;
         xmlHttp.open( "GET", url, false ); 
         xmlHttp.onload = () => this.parseMovieTitles(xmlHttp, this);
         xmlHttp.send( null );
-	    }
+	  }
 
-      parseMovieTitles(xmlHttp, movieCompare){
+    
+    parseMovieTitles(xmlHttp, movieCompare){
+      if (xmlHttp.readyState === 4) {
+        if (xmlHttp.status === 200) {
+          if(xmlHttp.responseText.length > 0){
+          movieCompare.multiSelect.updateOptions(JSON.parse(xmlHttp.responseText));
+          }
+        } else {
+          console.error(xmlHttp.statusText);
+        }
+      }
+    }
+
+        /*method to request compare values from db after 
+    movie select via dropdown*/
+    getCompareValuesAfterMovieSelect = (inputValue) => 
+    {
+        var xmlHttp = new XMLHttpRequest();
+        const strings = inputValue.map(x => `title=${x.value}`);
+        const parameter= strings.join("&");
+        var url = `http://localhost:5000/db/compare-movies?${parameter}`;
+        xmlHttp.open( "GET", url, false ); 
+        xmlHttp.onload = () => this.parseMovieMetaData(xmlHttp, this);
+        xmlHttp.send( null );
+	  }
+
+      parseMovieMetaData(xmlHttp, movieCompare){
         if (xmlHttp.readyState === 4) {
           if (xmlHttp.status === 200) {
             if(xmlHttp.responseText.length > 0){
-            movieCompare.multiSelect.updateOptions(JSON.parse(xmlHttp.responseText));
+              this.list.updateItems(JSON.parse(xmlHttp.responseText));
             }
           } else {
             console.error(xmlHttp.statusText);
@@ -46,37 +73,6 @@ class MovieCompareSelect extends React.Component {
             return params.value
           })*/
           /*later replace if metadata found for selected movies */
-          const test = {
-            cast: [
-              {'Robert Downey Jr.': [
-                "Marvel Studios' The Avengers",
-                "Marvel Studios' Iron Man",
-                "Marvel Studios' Avengers: Infinity War"
-              ]},
-              {'Chris Hemsworth': [
-                "Marvel Studios' The Avengers",
-                "Marvel Studios' Avengers: Infinity War"
-              ]},
-              {'Mark Ruffalo': [
-                "Marvel Studios' The Avengers",
-                "Marvel Studios' Avengers: Infinity War"
-              ]},
-              {'Chris Evans': [
-                "Marvel Studios' The Avengers",
-                "Marvel Studios' Avengers: Infinity War"
-              ]},
-              {'Scarlett Johansson': [
-                "Marvel Studios' The Avengers",
-                "Marvel Studios' Avengers: Infinity War"
-              ]}
-            ],
-            country: [
-              {'United States': [
-                "Marvel Studios' The Avengers",
-                "Marvel Studios' Avengers: Infinity War"
-              ]}
-            ]
-          };
         if(movieList.length < 2)
         {
           this.setState(
@@ -94,7 +90,7 @@ class MovieCompareSelect extends React.Component {
               MovieCompareValues: "following values found by compare:"
             }
             );
-            this.list.updateItems(test)
+            this.getCompareValuesAfterMovieSelect(movieList)
         }
       }
 
