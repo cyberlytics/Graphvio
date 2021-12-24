@@ -3,6 +3,9 @@ import ExpandableList from "../../Base/ExpandableList";
 import InfoCard from "../..//Base/Card";
 import { Card } from "react-bootstrap";
 import "./MovieListItem.css";
+import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import CastList from "../../Views/CastList/CastList"
+
 class MovieListItem extends InfoCard {
 	constructor(props) {
 		super(props);
@@ -63,7 +66,6 @@ class MovieListItem extends InfoCard {
 							<Card.Text>
 								{`${this.state.movieData.metadata.description}`}
 							</Card.Text>
-	
 						</div>
 						<hr />
 					</div>
@@ -101,7 +103,7 @@ class MovieListItem extends InfoCard {
                             <b>Director : </b>{`${this.state.movieData.metadata.director}`}
 						</Card.Text>
 						<Card.Text>
-                            <b>Cast : </b>{this.renderCast(this.state.movieData.metadata.cast)}
+                            <b><Link classname="castLink" to={{pathname:"/CastList", state: [`${this.state.movieData.title}`,`${this.state.movieData.metadata.release_year}`]}}>Cast</Link> : </b>{this.renderCast(this.state.movieData.metadata.cast)}
 						</Card.Text>
 					</div>
 				</div>

@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
 import MovieSearchForm from "./components/Views/MovieSearch/MovieSearchForm";
-import PersonSearchForm from "./components/Views/PersonSearch/PersonSearchForm";
 import MovieCompareSelect from "./components/Views/MovieCompare/MovieCompareSelect";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "./components/Base/Dropdown";
 
+import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import CastList from "components/Views/CastList/CastList"
 
 class App extends React.Component {
   constructor()
@@ -16,8 +17,7 @@ class App extends React.Component {
     this.state = {
       modeObj: [
         { id: 0, title: "Movie Search", selected: true, key: 'modeObj', color:"primary" },
-        { id: 1, title: "Person Search", selected: false, key: 'modeObj', color:"secondary" },
-        { id: 2, title: "Movie Compare", selected: false, key: 'modeObj', color:"success" }
+        { id: 1, title: "Movie Compare", selected: false, key: 'modeObj', color:"primary" }
       ],
       selectedSearch : 0,
       colorscheme : "primary"
@@ -40,13 +40,10 @@ class App extends React.Component {
   renderAppBody(selectedSearchType){
 
     if(selectedSearchType === 0){
-      return <MovieSearchForm color={this.state.colorscheme} />
-    }
-    else if(selectedSearchType === 1){
-      return <PersonSearchForm color={this.state.colorscheme} />
+      return MovieSearchForm
     }
     else{
-      return <MovieCompareSelect color={this.state.colorscheme} />
+      return MovieCompareSelect
     }
   }
 
@@ -63,12 +60,18 @@ class App extends React.Component {
           <div>Graphvio</div>
           <div>Version: 1.0</div>
         </div>
-        <div className="App-body">
-          {this.renderAppBody(this.state.selectedSearch)}
-        </div>
+        <div className = "App-body">
+          <Router>
+            <Switch>
+              <Route path = "/CastList" component = {CastList} />
+              <Route path = "/" component = {this.renderAppBody(this.state.selectedSearch)}/>
+            </Switch>
+          </Router>
+		    </div>
       </div>
     );
     return content;
   }
 }
 export default App;
+
