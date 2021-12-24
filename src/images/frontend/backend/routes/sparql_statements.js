@@ -28,6 +28,19 @@ function SEARCH_MOVIE(movie, providers = ALL_PROVIDERS, limit = 10) {
     return sparql
 }
 
+function SEARCH_EXACT_MOVIE(movie, providers = ALL_PROVIDERS) {
+    sparql =         
+    getPrefix() +
+    'SELECT * ' +
+    getGraph() +
+    `WHERE {?id movie:title ?title ` +
+    filterProviders(providers) +
+    `FILTER (str(lcase(?title)) = "${movie.toLowerCase()}"). ` +
+    getMetadata() +
+    `} `
+    return sparql
+}
+
 function getPrefix(prefix = 'movie') {
     return `PREFIX ${prefix}: <http://localhost:${DB_PORT}/schemas/movies/> `
 }
@@ -58,5 +71,6 @@ function getMetadata(prefix = 'movie') {
 
 module.exports = {
     SELECT_ALL_TITLES: SELECT_ALL_TITLES,
-    SEARCH_MOVIE: SEARCH_MOVIE
+    SEARCH_MOVIE: SEARCH_MOVIE,
+    SEARCH_EXACT_MOVIE: SEARCH_EXACT_MOVIE
 }
