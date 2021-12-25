@@ -46,8 +46,8 @@ class MovieCompareSelect extends React.Component {
     getCompareValuesAfterMovieSelect = (inputValue) => 
     {
         var xmlHttp = new XMLHttpRequest();
-        const strings = inputValue.map(x => `title=${x.value}`);
-        const parameter= strings.join("&");
+        var strings = inputValue.map(x => `title=${x.value}`);
+        var parameter= strings.join("&");
         var url = `http://localhost:5000/db/compare-movies?${parameter}`;
         xmlHttp.open( "GET", url, false ); 
         xmlHttp.onload = () => this.parseMovieMetaData(xmlHttp, this);
@@ -57,8 +57,21 @@ class MovieCompareSelect extends React.Component {
       parseMovieMetaData(xmlHttp, movieCompare){
         if (xmlHttp.readyState === 4) {
           if (xmlHttp.status === 200) {
-            if(xmlHttp.responseText.length > 0){
+            if(xmlHttp.responseText.length > 0)
+            {
               this.list.updateItems(JSON.parse(xmlHttp.responseText));
+              this.setState(
+                {
+                  isDisabled : false
+                })
+            }
+            else
+            {
+              this.list.updateItems([]);
+              this.setState(
+                {
+                  isDisabled : true,
+                })
             }
           } else {
             console.error(xmlHttp.statusText);
@@ -86,7 +99,6 @@ class MovieCompareSelect extends React.Component {
         {
           this.setState(
             {
-              isDisabled : true,
               MovieCompareValues: "following values found by compare:"
             }
             );
