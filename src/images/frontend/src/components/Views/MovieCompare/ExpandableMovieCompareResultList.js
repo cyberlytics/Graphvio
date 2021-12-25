@@ -7,8 +7,7 @@ class ExpandableMovieCompareResultList extends ExpandableList
 {
     renderExpandedComponent(index) 
     {
-        const objectToDisplay = this.state.items[index];
-       return <MovieComparePropsList items={objectToDisplay}/>;
+       return <MovieComparePropsList items={this.state.items[index]}/>;
 	}
 
     returnDisplayName(item) {

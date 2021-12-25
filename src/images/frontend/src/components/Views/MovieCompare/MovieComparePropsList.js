@@ -6,8 +6,7 @@ class MovieComparePropsList extends ExpandableList
 {
     renderExpandedComponent(index) 
     {
-        const objToDisplay = this.state.items[index];
-        const listItems = objToDisplay[this.getNameOfObject(objToDisplay)].map((name) => <li key={name}>{name}</li>);
+        var listItems = this.state.items[index].map((name) => <li key={name}>{name}</li>);
         return (<ul>{listItems}</ul>);
 	}
 
@@ -18,8 +17,12 @@ class MovieComparePropsList extends ExpandableList
 
     getNameOfObject(item)
     {
-        const name = Object.keys(item).map(key => {return key});
-        return name[0];
+		for(var index in this.state.items)
+        {
+            var tempItem = this.state.items[index];
+            if(tempItem === item)
+            return index;
+        }
     }
 	
 }
