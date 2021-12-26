@@ -63,7 +63,7 @@ class App extends React.Component {
         <div className = "App-body">
           <Router>
             <Switch>
-              <Route path = "/CastList" component = {CastList} />
+              <Route path = "/CastList" component = {CastList}/>
               <Route path = "/" component = {this.renderAppBody(this.state.selectedSearch)}/>
             </Switch>
           </Router>

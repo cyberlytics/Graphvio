@@ -19,68 +19,43 @@ class MovieCompareSelect extends React.Component {
 
     /*method to request dropdown values from db after 
     input of movie sub string*/
-    getDropDownValuesForMultiSelect = (inputValue) => 
+    async getDropDownValuesForMultiSelect(inputValue)
     {
-        var xmlHttp = new XMLHttpRequest();
-        var url = `http://localhost:5000/db/search-movies?title=${inputValue}&limit=${20}`;
-        xmlHttp.open( "GET", url, false ); 
-        xmlHttp.onload = () => this.parseMovieTitles(xmlHttp, this);
-        xmlHttp.send( null );
+      const axios = require('axios');
+      var url = `http://localhost:5000/db/search-movies?title=${inputValue}&limit=${20}`;
+      try {
+        const response = await axios.get(url);
+        this.multiSelect.updateOptions(response.data);   
+      } catch (error) {
+        console.error(error);
+      }
 	  }
 
-    
-    parseMovieTitles(xmlHttp, movieCompare){
-      if (xmlHttp.readyState === 4) {
-        if (xmlHttp.status === 200) {
-          if(xmlHttp.responseText.length > 0){
-          movieCompare.multiSelect.updateOptions(JSON.parse(xmlHttp.responseText));
-          }
-        } else {
-          console.error(xmlHttp.statusText);
-        }
-      }
-    }
-
-        /*method to request compare values from db after 
+    /*method to request compare values from db after 
     movie select via dropdown*/
-    getCompareValuesAfterMovieSelect = (inputValue) => 
+    async getCompareValuesAfterMovieSelect(inputValue)
     {
-        var xmlHttp = new XMLHttpRequest();
+        const axios = require('axios');
         var strings = inputValue.map(x => `title=${x.value}`);
         var parameter= strings.join("&");
         var url = `http://localhost:5000/db/compare-movies?${parameter}`;
-        xmlHttp.open( "GET", url, false ); 
-        xmlHttp.onload = () => this.parseMovieMetaData(xmlHttp, this);
-        xmlHttp.send( null );
+
+        try {
+          const response = await axios.get(url);
+
+          this.list.updateItems(response.data);
+          this.setState(
+          {
+            isDisabled : false
+          });
+        } catch (error) {
+          console.error(error);
+        }
 	  }
 
-      parseMovieMetaData(xmlHttp, movieCompare){
-        if (xmlHttp.readyState === 4) {
-          if (xmlHttp.status === 200) {
-            if(xmlHttp.responseText.length > 0)
-            {
-              this.list.updateItems(JSON.parse(xmlHttp.responseText));
-              this.setState(
-                {
-                  isDisabled : false
-                })
-            }
-            else
-            {
-              this.list.updateItems([]);
-              this.setState(
-                {
-                  isDisabled : true,
-                })
-            }
-          } else {
-            console.error(xmlHttp.statusText);
-          }
-        }
-      }
-
       /*method to request database after movies selected in multi select*/
-      SetValuesOfMultiSelect = (movieList) =>{
+      SetValuesOfMultiSelect(movieList)
+      {
           /* request for movie list, currently unused value for db call*/
           /*const values = movieList.map(function (params) {
             return params.value
@@ -100,8 +75,7 @@ class MovieCompareSelect extends React.Component {
           this.setState(
             {
               MovieCompareValues: "following values found by compare:"
-            }
-            );
+            });
             this.getCompareValuesAfterMovieSelect(movieList)
         }
       }
@@ -112,8 +86,8 @@ class MovieCompareSelect extends React.Component {
       <p>type in more than one character to get search options</p>
       <MultiSelect 
       ref={(t) => this.multiSelect = t}
-      getDropDownValuesForMultiSelect={this.getDropDownValuesForMultiSelect}
-      SetValuesOfMultiSelect={this.SetValuesOfMultiSelect}
+      getDropDownValuesForMultiSelect={this.getDropDownValuesForMultiSelect.bind(this)}
+      SetValuesOfMultiSelect={this.SetValuesOfMultiSelect.bind(this)}
       isMulti={true}
       isDisabled={this.state.isDisabled}/>
       <p >{this.state.MovieCompareValues}</p>

@@ -1,12 +1,12 @@
 
 import ExpandableList from "../../Base/ExpandableList";
-
+import "./MovieComparePropsList.css"
 
 class MovieComparePropsList extends ExpandableList 
 {
     renderExpandedComponent(index) 
     {
-        var listItems = this.state.items[index].map((name) => <li key={name}>{name}</li>);
+        var listItems = this.state.items[index].map((name) => <li key={name} class="matchedmovie">{name}</li>);
         return (<ul>{listItems}</ul>);
 	}
 
