@@ -3,8 +3,8 @@ import ExpandableList from "../../Base/ExpandableList";
 import InfoCard from "../..//Base/Card";
 import { Card } from "react-bootstrap";
 import "./MovieListItem.css";
-import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
-import CastList from "../../Views/CastList/CastList"
+import {Link} from "react-router-dom";
+
 
 class MovieListItem extends InfoCard {
 	constructor(props) {
@@ -132,13 +132,23 @@ class ExpandableMovieList extends ExpandableList {
 	}
 
 	async retrieveIMDBData(index) {
-		return new Promise((resolve) => {
-			let xmlHttp = new XMLHttpRequest();
-			var url = `http://localhost:5000/imdb/search-imdbdata?title=${this.state.items[index]["title"]}&type=${this.state.items[index]["metadata"]["type"]}`;
-			xmlHttp.open("GET", url, false);
-			xmlHttp.onload = () => this.parseIMDBData(xmlHttp, index, this);
-			xmlHttp.send(null);
-		});
+
+		const axios = require('axios');
+		var url = `http://localhost:5000/imdb/search-imdbdata?title=${this.state.items[index]["title"]}&type=${this.state.items[index]["metadata"]["type"]}`;
+		try {
+			const response = await axios.get(url);
+			if (response.status != 200)
+			{
+				console.warn("Reached Maximum usage of IMDB API!");
+				return;
+			}
+			this.state.items[index]["metadata"]["imdb"] = response.data["imDb"];
+			this.state.items[index]["metadata"]["image"] = response.data["image"];	
+			this.renderedItemsRef[index].Update(this.state.items[index])
+
+		  } catch (error) {
+			console.error(error);
+		  }
 	}
 
 	parseIMDBData(xmlHttp, index, expandableMovieList) {
