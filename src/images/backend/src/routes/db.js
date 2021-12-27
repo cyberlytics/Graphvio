@@ -4,7 +4,7 @@ const router = require('express').Router()
 const url = require('url')
 const SPARQL_STATEMENTS = require('./sparql_statements')
 
-const endpoint_local = `http://${process.env.DATABASE_URI}:${process.env.DATABASE_PORT}/sparql`
+const endpoint_local = `http://${process.env.DATABASE_URI || "localhost"}:${process.env.DATABASE_PORT || "8890"}/sparql`
 const endpoint_dbpedia = `https://dbpedia.org/sparql/`
 
 var fetcher = new SparqlEndpointFetcher();
@@ -60,7 +60,8 @@ var fetcher = new SparqlEndpointFetcher();
  *   },
  *   ...
  */
-router.route('/search-movies').get(async(req, res) => {
+
+async function searchMovies(req, res){
   const reqUrl = url.parse(req.url, true)
   movie = reqUrl.query.title || "";
   provider = reqUrl.query.provider?.toLocaleLowerCase() || undefined;
@@ -94,7 +95,7 @@ router.route('/search-movies').get(async(req, res) => {
   });
 
   res.json(movies) 
-})
+}
 
 /**
  * Rückgabe der Filmmitwirkenden zu einem Film
@@ -158,7 +159,7 @@ router.route('/search-movies').get(async(req, res) => {
  *        },
  *        ...
  */
- router.route('/search-persons').get(async(req, res) => {
+async function searchPersons(req, res){
   const reqUrl = url.parse(req.url, true)
   movie = reqUrl.query.title || "";
   year = reqUrl.query.year || undefined;
@@ -211,7 +212,7 @@ router.route('/search-movies').get(async(req, res) => {
   }
 
   res.json(resultWrapper) 
-})
+}
 
 
 /**
@@ -228,7 +229,7 @@ router.route('/search-movies').get(async(req, res) => {
  * 
  * @returns Liste der Merkmale als JSON
  */
-router.route('/compare-movies').get(async(req, res) => {
+async function compareMovies(req, res){
   const reqUrl = url.parse(req.url, true)
   movies = reqUrl.query.title || [];
 
@@ -263,12 +264,12 @@ router.route('/compare-movies').get(async(req, res) => {
     })
   });
 
-  result = compareMovies(movies_data);
+  result = compareMoviedata(movies_data);
 
   res.json(result) 
-})
+}
 
-function compareMovies(movie_data){
+function compareMoviedata(movie_data){
   result = {
     cast: {},
     country: {},
@@ -322,6 +323,34 @@ function compare(input1, input2, result, key){
   return result;
 }
 
+/* Routes */
+router.route('/search-movies').get(async(req, res) => {
+  searchMovies(req, res)
+})
+
+router.route('/search-persons').get(async(req, res) => {
+  searchPersons(req, res)
+})
+
+router.route('/compare-movies').get(async(req, res) => {
+  compareMovies(req, res);
+})
+
+router.route('/search-similar-movies').get(async(req, res) => {
+  const reqUrl = url.parse(req.url, true)
+  movies = reqUrl.query.title || [];
+
+  // res.json(result)
+})
+
 module.exports = {
-  router: router
+  router: router,
+  tests: {
+    searchMovies: searchMovies,
+    searchPersons: searchPersons,
+    compareMovies: compareMovies,
+    compareMoviedata: compareMoviedata,
+    compare: compare
+  }
 }
+
