@@ -6,7 +6,8 @@ class MovieComparePropsList extends ExpandableList
 {
     renderExpandedComponent(index) 
     {
-        var listItems = this.state.items[index].map((name) => <li key={name} class="matchedmovie">{name}</li>);
+        var indexItems = this.state.items[index];
+        var listItems = indexItems.map((name) => <li key={name} className="matchedMovie">{name}</li>);
         return (<ul>{listItems}</ul>);
 	}
 
