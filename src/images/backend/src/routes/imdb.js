@@ -59,12 +59,17 @@ router.route('/search-imdbdata').get(async(req, res) => {
     console.log("IMDB ID Search Response:")
     console.log(response.data)
 
-    if(response.data.errorMessage != ""){
+    if(response.data.errorMessage != ''){
       res.json(response.data);
       return
     }
     else{
-      let img = response.data.results[0].image;
+      if(response.data.results[0].image != undefined){
+        var img = response.data.results[0].image;
+      }
+      else{
+        var img = undefined;
+      }
 
       /* Get IMDB-Rating for first entry of response via IMDB-ID */
       axios.get(`https://imdb-api.com/en/API/Ratings/k_xog7cg14/${response.data.results[0].id}`)
@@ -87,6 +92,7 @@ router.route('/search-imdbdata').get(async(req, res) => {
     /* Error-Handling for ID-Request */
     console.log("Error on IMDB-ID Request")
     console.log(error);
+    res.json({});
   }); 
 })
 
