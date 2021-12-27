@@ -3,8 +3,7 @@ import ExpandableList from "../../Base/ExpandableList";
 import InfoCard from "../..//Base/Card";
 import { Card } from "react-bootstrap";
 import "./MovieListItem.css";
-import {Link} from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 class MovieListItem extends InfoCard {
 	constructor(props) {
@@ -14,96 +13,126 @@ class MovieListItem extends InfoCard {
 		};
 	}
 
-
-	Update(newMovieData){
-		this.setState({movieData: newMovieData})
+	Update(newMovieData) {
+		this.setState({ movieData: newMovieData });
 	}
 
-    renderProvider(providers){
-        let mappedProviders = [];
-        if(providers.includes('netflix')){
-            mappedProviders.push("Netflix");
-        }
-        if(providers.includes('disney_plus')){
-            mappedProviders.push("Disney+");
-        }
-        if(providers.includes('amazon_prime')){
-            mappedProviders.push("Amazon Prime");
-        }
-        if(providers.includes('hulu')){
-            mappedProviders.push("Hulu");
-        }
+	renderProvider(providers) {
+		let mappedProviders = [];
+		if (providers.includes("netflix")) {
+			mappedProviders.push("Netflix");
+		}
+		if (providers.includes("disney_plus")) {
+			mappedProviders.push("Disney+");
+		}
+		if (providers.includes("amazon_prime")) {
+			mappedProviders.push("Amazon Prime");
+		}
+		if (providers.includes("hulu")) {
+			mappedProviders.push("Hulu");
+		}
 
-        return mappedProviders.join(", ");
-    }
-    renderCast(cast){
-		if(typeof cast === 'undefined')
-			return '-';
+		return mappedProviders.join(", ");
+	}
+	renderCast(cast) {
+		if (typeof cast === "undefined") return "-";
 
-        let renderedCast = [];
-        var members = cast.split(",");
-        for(var i in members){
-            renderedCast.push(<li key={members[i].trim()}> {members[i].trim()} </li>)
-        }
-        return <ul>{renderedCast}</ul>;
-    }
+		let renderedCast = [];
+		var members = cast.split(",");
+		for (var i in members) {
+			renderedCast.push(
+				<li key={members[i].trim()}> {members[i].trim()} </li>
+			);
+		}
+		return <ul>{renderedCast}</ul>;
+	}
 
-    renderDate(date){
-        if(typeof date === 'undefined')
-            return '-';
-        return date;
-    }
+	renderDate(date) {
+		if (typeof date === "undefined") return "-";
+		return date;
+	}
 
 	renderCardBody() {
 		return (
 			<div>
+				<div>
+					<img
+						src={this.state.movieData.metadata.image}
+						alt={"No_Image_Available.jpg"}
+						width="200"
+					/>
+					<hr />
+					<b>Description : </b>
+					<Card.Text>
+						{`${this.state.movieData.metadata.description}`}
+					</Card.Text>
+				</div>
+				<hr />
 				<div class="grid-container">
-					<div class="header">
-						<div>
-						<img src={this.state.movieData.metadata.image} alt={'No_Image_Available.jpg'} width="200"/>
-						<hr />
-							<b>Description : </b>
-							<Card.Text>
-								{`${this.state.movieData.metadata.description}`}
-							</Card.Text>
-						</div>
-						<hr />
-					</div>
 					<div class="left">
 						<Card.Text>
-                            <b>Rating : </b>{`${this.state.movieData.metadata.imdb}`}
+							<b>Rating : </b>
+							{`${this.state.movieData.metadata.imdb}`}
 						</Card.Text>
-                        <Card.Text>
-                            <b>Genre : </b>{`${this.state.movieData.metadata.genre}`}
+						<Card.Text>
+							<b>Genre : </b>
+							{`${this.state.movieData.metadata.genre}`}
 						</Card.Text>
-                        <Card.Text>
-                            <b>Type : </b>{`${this.state.movieData.metadata.type}`}
+						<Card.Text>
+							<b>Type : </b>
+							{`${this.state.movieData.metadata.type}`}
 						</Card.Text>
-                        <Card.Text>
-                            <b>Release Year : </b>{`${this.state.movieData.metadata.release_year}`}
+						<Card.Text>
+							<b>Release Year : </b>
+							{`${this.state.movieData.metadata.release_year}`}
 						</Card.Text>
-                        <Card.Text>
-                            <b>FSK : </b>{`${this.state.movieData.metadata.rating}`}
+						<Card.Text>
+							<b>FSK : </b>
+							{`${this.state.movieData.metadata.rating}`}
 						</Card.Text>
-                        <Card.Text>
-                            <b>Duration : </b>{`${this.state.movieData.metadata.duration}`}
+						<Card.Text>
+							<b>Duration : </b>
+							{`${this.state.movieData.metadata.duration}`}
 						</Card.Text>
-                        <Card.Text>
-                            <b>Country : </b>{`${this.state.movieData.metadata.country}`}
+						<Card.Text>
+							<b>Country : </b>
+							{`${this.state.movieData.metadata.country}`}
 						</Card.Text>
-                        <Card.Text>
-                            <b>Provider: </b>{this.renderProvider(this.state.movieData.provider)}
+						<Card.Text>
+							<b>Provider: </b>
+							{this.renderProvider(this.state.movieData.provider)}
 						</Card.Text>
-                        <Card.Text>
-                        <b>Added : </b>{this.renderDate(this.state.movieData.metadata.date_added)}
+						<Card.Text>
+							<b>Added : </b>
+							{this.renderDate(
+								this.state.movieData.metadata.date_added
+							)}
 						</Card.Text>
 					</div>
 					<div class="right">
 						<Card.Text>
-                            <b>Director : </b>{`${this.state.movieData.metadata.director}`}
+							<b>Director : </b>
+							{`${this.state.movieData.metadata.director}`}
 						</Card.Text>
 						<Card.Text>
-                            <b><Link classname="castLink" to={{pathname:"/CastList", state: [`${this.state.movieData.title}`,`${this.state.movieData.metadata.release_year}`]}}>Cast</Link> : </b>{this.renderCast(this.state.movieData.metadata.cast)}
+							<b>
+								<Link
+									classname="castLink"
+									to={{
+										pathname: "/CastList",
+										state: [
+											`${this.state.movieData.title}`,
+											`${this.state.movieData.metadata.release_year}`,
+										],
+									}}
+								>
+									Cast
+								</Link>{" "}
+								:{" "}
+							</b>
+							{this.renderCast(
+								this.state.movieData.metadata.cast
+							)}
 						</Card.Text>
 					</div>
 				</div>
@@ -116,9 +145,16 @@ class ExpandableMovieList extends ExpandableList {
 	renderExpandedComponent(index) {
 		if (!this.state.items[index].metadata.hasOwnProperty("imdb")) {
 			this.state.items[index].metadata["imdb"] = "-";
-			this.state.items[index].metadata["image"] = ".\\No_Image_Available.jpg";
+			this.state.items[index].metadata["image"] =
+				".\\No_Image_Available.jpg";
 		}
-		return <MovieListItem movieData={this.state.items[index]} ref={(ref) => this.renderedItemsRef.push(ref)} key={this.state.items[index].title}/>;
+		return (
+			<MovieListItem
+				movieData={this.state.items[index]}
+				ref={(ref) => this.renderedItemsRef.push(ref)}
+				key={this.state.items[index].title}
+			/>
+		);
 	}
 
 	returnDisplayName(item) {
@@ -132,23 +168,21 @@ class ExpandableMovieList extends ExpandableList {
 	}
 
 	async retrieveIMDBData(index) {
-
-		const axios = require('axios');
+		const axios = require("axios");
 		var url = `http://localhost:5000/imdb/search-imdbdata?title=${this.state.items[index]["title"]}&type=${this.state.items[index]["metadata"]["type"]}`;
 		try {
 			const response = await axios.get(url);
-			if (response.status != 200)
-			{
+			if (response.status !== 200) {
 				console.warn("Reached Maximum usage of IMDB API!");
 				return;
 			}
 			this.state.items[index]["metadata"]["imdb"] = response.data["imDb"];
-			this.state.items[index]["metadata"]["image"] = response.data["image"];	
-			this.renderedItemsRef[index].Update(this.state.items[index])
-
-		  } catch (error) {
+			this.state.items[index]["metadata"]["image"] =
+				response.data["image"];
+			this.renderedItemsRef[index].Update(this.state.items[index]);
+		} catch (error) {
 			console.error(error);
-		  }
+		}
 	}
 
 	parseIMDBData(xmlHttp, index, expandableMovieList) {
@@ -156,14 +190,18 @@ class ExpandableMovieList extends ExpandableList {
 			if (xmlHttp.status === 200) {
 				if (xmlHttp.responseText.length > 0) {
 					var response = JSON.parse(xmlHttp.responseText);
-					if (xmlHttp.responseText.includes('Maximum usage')) 
-					{
+					if (xmlHttp.responseText.includes("Maximum usage")) {
 						console.warn("Reached Maximum usage of IMDB API!");
 						return;
 					}
-					expandableMovieList.state.items[index]["metadata"]["imdb"] = response["imDb"];
-					expandableMovieList.state.items[index]["metadata"]["image"] = response["image"];	
-					expandableMovieList.renderedItemsRef[index].Update(expandableMovieList.state.items[index])
+					expandableMovieList.state.items[index]["metadata"]["imdb"] =
+						response["imDb"];
+					expandableMovieList.state.items[index]["metadata"][
+						"image"
+					] = response["image"];
+					expandableMovieList.renderedItemsRef[index].Update(
+						expandableMovieList.state.items[index]
+					);
 				}
 			} else {
 				console.error(xmlHttp.statusText);
