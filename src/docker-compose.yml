@@ -27,7 +27,7 @@ services:
     networks:
       - network-frontend
     depends_on:
-      - backend
+      - node-backend
 
   # Backend (Node.js)
   node-backend:
