@@ -1,18 +1,5 @@
-var DB_PORT = process.env.DATABASE_PORT
+var DB_PORT = process.env.DATABASE_PORT || 8890
 const ALL_PROVIDERS = 'netflix|disney_plus|amazon_prime|hulu'
-
-function SELECT_ALL_TITLES(providers = ALL_PROVIDERS, limit = 10) {
-    sparql =         
-    getPrefix() +
-    `SELECT * ` +
-    getGraph() +
-    `WHERE {?id netflix:title ?title ` +
-    filterProviders(providers) +
-    getMetadata() +
-    `} ` +
-    `LIMIT ${limit}`
-    return sparql
-}
 
 function SEARCH_MOVIE(movie, providers = ALL_PROVIDERS, limit = 10) {
     sparql =         
@@ -165,7 +152,6 @@ function getMetadata(prefix = 'movie') {
 }
 
 module.exports = {
-    SELECT_ALL_TITLES: SELECT_ALL_TITLES,
     SEARCH_MOVIE: SEARCH_MOVIE,
     SEARCH_EXACT_MOVIE: SEARCH_EXACT_MOVIE,
     SEARCH_PERSONS: SEARCH_PERSONS

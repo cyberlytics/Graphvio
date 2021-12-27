@@ -13,7 +13,9 @@
     "sparqljs": "^3.5.1"
   },
   "scripts": {
-    "start": "nodemon src/index.js --ignore node_modules/"
+    "start": "nodemon src/index.js --ignore node_modules/",
+    "test": "jest --coverage",
+    "test-t": "jest --coverage -t 'CompareMoviedata'"
   },
   "browserslist": {
     "production": [
@@ -26,5 +28,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^27.4.5"
   }
 }
