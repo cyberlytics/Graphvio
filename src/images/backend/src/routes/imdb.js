@@ -63,6 +63,13 @@ router.route('/search-imdbdata').get(async(req, res) => {
       res.json(response.data);
       return
     }
+    else if(response.data.results.length == 0){
+      res.json({
+        errorMessage: "Movie not found",
+        results: []
+      });
+      return
+    }
     else{
       if(response.data.results[0].image != undefined){
         var img = response.data.results[0].image;
