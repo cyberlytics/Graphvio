@@ -276,86 +276,50 @@ function compareMovies(movie_data){
     genre: {}
   }
 
+  /* iterate over every movies */
   for (let current_movie_index = 0; current_movie_index < movie_data.length - 1; current_movie_index++) {
-    /* setup cast of current movie */
-    current_movie_cast = movie_data[current_movie_index].metadata.cast.split(", ")
-    current_move_countries = movie_data[current_movie_index].metadata.country.split(", ")
-    current_move_directors = movie_data[current_movie_index].metadata.director.split(", ")
-    current_move_genres = movie_data[current_movie_index].metadata.genre.split(", ")
-
+    /* iterate over every movie after the current one */
     for (let compare_with_index = current_movie_index + 1; compare_with_index < movie_data.length; compare_with_index++) {
-      /* setup cast of movie to compare with */
-      compare_with_cast = movie_data[compare_with_index].metadata.cast.split(", ")
-      compare_with_countries = movie_data[compare_with_index].metadata.country.split(", ");
-      compare_with_directors = movie_data[compare_with_index].metadata.director.split(", ");
-      compare_with_genres = movie_data[compare_with_index].metadata.genre.split(", ");
-      
-      /* compare casts */
-      compare_with_cast.forEach(castmember => {
-        /* if actor is in both casts */
-        if(current_movie_cast.includes(castmember)){
-          /* if no entry for actor exists add entry with both movie titles */
-          if(result.cast[castmember] == undefined){
-            result.cast[castmember] = [
-              movie_data[current_movie_index].title,
-              movie_data[compare_with_index].title
-            ]
-          }
-          /* if entry for actor exists append current movie title */
-          else if(!result.cast[castmember].includes(movie_data[compare_with_index].title)){
-            result.cast[castmember].push(movie_data[compare_with_index].title)
-          }
-        }
-      });
-
-      /* compare countries */
-      compare_with_countries.forEach(country => {
-        if(current_move_countries.includes(country)){
-          if(result.country[country] == undefined){
-            result.country[country] = [
-              movie_data[current_movie_index].title,
-              movie_data[compare_with_index].title
-            ]
-          }
-          else if (!result.country[country].includes(movie_data[compare_with_index].title)){
-            result.country[country].push(movie_data[compare_with_index].title)
-          }
-        }
-      });
-
-      /* compare directors */
-      compare_with_directors.forEach(director => {
-        if(current_move_directors.includes(director)){
-          if(result.director[director] == undefined){
-            result.director[director] = [
-              movie_data[current_movie_index].title,
-              movie_data[compare_with_index].title
-            ]
-          }
-          else if (!result.director[director].includes(movie_data[compare_with_index].title)){
-            result.director[director].push(movie_data[compare_with_index].title)
-          }
-        }
-      });
-
-      /* compare genre */
-      compare_with_genres.forEach(genre => {
-        if(current_move_genres.includes(genre)){
-          if(result.genre[genre] == undefined){
-            result.genre[genre] = [
-              movie_data[current_movie_index].title,
-              movie_data[compare_with_index].title
-            ]
-          }
-          else if (!result.genre[genre].includes(movie_data[compare_with_index].title)){
-            result.genre[genre].push(movie_data[compare_with_index].title)
-          }
-        }
-      });
+      /* compare metadata */
+      result = compare(movie_data[current_movie_index], movie_data[compare_with_index], result, "cast")
+      result = compare(movie_data[current_movie_index], movie_data[compare_with_index], result, "country")
+      result = compare(movie_data[current_movie_index], movie_data[compare_with_index], result, "director")
+      result = compare(movie_data[current_movie_index], movie_data[compare_with_index], result, "genre")
     }
   }
 
   return result
+}
+
+function compare(input1, input2, result, key){
+  /* dont compare if one input has no entries */
+  if(input1.metadata[key] == undefined || input2.metadata[key] == undefined){
+    return result;
+  }
+
+  /* split strings */
+  current_movie = input1.metadata[key].split(", ");
+  compare_with_movie = input2.metadata[key].split(", ");
+
+  /* compare */
+  compare_with_movie.forEach(element => {
+    /* if element is in both movies */
+    if(current_movie.includes(element)){
+      /* if no entry for element exists add entry with both movie titles */
+      if(result[key][element] == undefined){
+        result[key][element] = [
+          input1.title,
+          input2.title
+        ]
+      }
+      /* if entry for element exists append only input2's movietitle */
+      else if(!result[key][element].includes(input2.title)){
+        result[key][element].push(input2.title)
+      }
+    }
+  });
+
+  return result;
 }
 
 module.exports = {
