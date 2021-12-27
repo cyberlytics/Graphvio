@@ -8,6 +8,7 @@ class ExpandableMovieCompareResultList extends React.Component
     constructor(props)
     {
         super(props);
+        this.propsList = [];
         this.state = {
             items: props.items,
         }
@@ -15,6 +16,18 @@ class ExpandableMovieCompareResultList extends React.Component
 
     updateItems(items){
         this.setState({items: items});
+        if(items !== null)
+        {
+            Object.keys(this.state.items).forEach(xName=> 
+                {
+                    var updateItem = this.propsList[xName];
+                    if(updateItem !== undefined)
+                    {
+                    updateItem.updateItems(this.state.items[xName]);
+                    }
+                }
+                )
+        }
     }
 
     renderSubGroup(subgroup,displayname){
@@ -24,7 +37,7 @@ class ExpandableMovieCompareResultList extends React.Component
         return <div>
                 <p class="GroupTitle">{displayname}</p>
                 <hr />
-                <MovieComparePropsList items={this.state.items[subgroup]}/>
+                <MovieComparePropsList ref={(l) => (this.propsList[subgroup] = l)} items={this.state.items[subgroup]}/>
             </div>
     }
 
