@@ -1,11 +1,6 @@
 const router = require('express').Router();
 const url = require('url');
 const axios = require('axios');
-const { ifError } = require('assert');
-
-router.route('/').get((req, res) => {
-  res.json("Default Route")
-})
 
 /**
  * Rückgabe der Ratings aus der IMDB
@@ -34,9 +29,16 @@ router.route('/').get((req, res) => {
  *   "errorMessage": ""
  * }
  */
-
-router.route('/search-imdbdata').get(async(req, res) => {
+async function searchImdbdata(req, res) 
+{
   const reqUrl = url.parse(req.url, true)
+
+  if (reqUrl.query.title == undefined) {
+    console.log("Error on reading title")
+    res.json({});
+    return
+  }
+
   title = reqUrl.query.title;
   type = reqUrl.query.type || "none";
 
@@ -53,7 +55,7 @@ router.route('/search-imdbdata').get(async(req, res) => {
   }
 
   /* GET IMDB-ID of Movie/Series */
-  axios.get(`https://imdb-api.com/en/API/${searchType}/k_xog7cg14/${encodeURIComponent(title)}`)
+  return axios.get(`https://imdb-api.com/en/API/${searchType}/k_xog7cg14/${encodeURIComponent(title)}`)
   .then(function (response){
     /* Response of ID-Request */
     console.log("IMDB ID Search Response:")
@@ -74,12 +76,9 @@ router.route('/search-imdbdata').get(async(req, res) => {
       if(response.data.results[0].image != undefined){
         var img = response.data.results[0].image;
       }
-      else{
-        var img = undefined;
-      }
 
       /* Get IMDB-Rating for first entry of response via IMDB-ID */
-      axios.get(`https://imdb-api.com/en/API/Ratings/k_xog7cg14/${response.data.results[0].id}`)
+      return axios.get(`https://imdb-api.com/en/API/Ratings/k_xog7cg14/${response.data.results[0].id}`)
       .then(function(response){
         /* Response of Rating-Request */
         console.log("IMDB Rating Search Response:")
@@ -93,6 +92,7 @@ router.route('/search-imdbdata').get(async(req, res) => {
         /* Error-Handling for Rating-Request */
         console.log("Error on IMDB-Rating Request")
         console.log(error)
+        res.json({});
       })
     }
   }).catch(function (error){
@@ -101,8 +101,15 @@ router.route('/search-imdbdata').get(async(req, res) => {
     console.log(error);
     res.json({});
   }); 
-})
+}
 
+router.route('/search-imdbdata').get(async(req, res) => { 
+  searchImdbdata(req, res)
+})
+  
 module.exports = {
-  router: router
+  router: router,
+  tests: {
+    searchImdbdata: searchImdbdata
+  }
 }

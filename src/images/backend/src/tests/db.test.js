@@ -1,5 +1,4 @@
-const dbRouterTests = require('./routes/db').tests
-
+const dbRouterTests = require('../routes/db').tests
 
 describe('SearchMovies Test', function () {
   test('Anzahl der Resultergebnisse', async () => { 
@@ -106,6 +105,9 @@ describe('SearchMovies Test', function () {
 })
 
 describe('SearchPersons Test', function () {
+  // Timeout für DBpedia höher, da die Anfragen durchaus mal länger brauchen können
+  jest.setTimeout(60000)
+
   test('Suche mit Filmtitel und spezifischem Jahr', async () => { 
     // Arrange
     const req = { url: '?title=Always&year=2011' };

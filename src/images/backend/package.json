@@ -15,7 +15,7 @@
   "scripts": {
     "start": "nodemon src/index.js --ignore node_modules/",
     "test": "jest --coverage",
-    "test-t": "jest --coverage -t 'CompareMoviedata'"
+    "test-t": "jest --coverage -t 'SearchPersons'"
   },
   "browserslist": {
     "production": [
