@@ -1,7 +1,7 @@
 var DB_PORT = process.env.DATABASE_PORT || 8890
 const ALL_PROVIDERS = 'netflix|disney_plus|amazon_prime|hulu'
 
-function SEARCH_MOVIE(movie, providers = ALL_PROVIDERS, limit = 10) {
+function SEARCH_MOVIE(movie, providers, limit = 10) {
     sparql =         
     getPrefix() +
     'SELECT * ' +
@@ -15,7 +15,7 @@ function SEARCH_MOVIE(movie, providers = ALL_PROVIDERS, limit = 10) {
     return sparql
 }
 
-function SEARCH_EXACT_MOVIE(movie, providers = ALL_PROVIDERS) {
+function SEARCH_EXACT_MOVIE(movie, providers) {
     sparql =         
     getPrefix() +
     'SELECT * ' +
