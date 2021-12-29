@@ -1,6 +1,48 @@
 var DB_PORT = process.env.DATABASE_PORT || 8890
 const ALL_PROVIDERS = 'netflix|disney_plus|amazon_prime|hulu'
 
+// filterByMetadata("title", ["Sharknado 4: The 4th Awakens", "My Boss's Daughter"], exclude=true) + 
+// filterByMetadata("director", ["Anthony C. Ferrante"], exclude=false) +
+// filterByMetadata("country", ["United States"], exclude=false) +
+// filterByMetadata("cast", ["Tara Reid"], exclude=false) +
+// filterByMetadata("listed_in", ["Action"], exclude=false) +
+function SEARCH_SIMILAR_MOVIES(excludeTitles, director, country, cast, genre, providers, limit = 10) {
+    sparql = 
+    getPrefix() +
+    `SELECT * ` + 
+    getGraph() +
+    `WHERE {	
+    ?id movie:title ?title ` + 
+    filterProviders(providers) +
+    filterByMetadata("title", excludeTitles, exclude=true) + 
+    getMetadata() +
+    filterByMetadata("director", director, exclude=false) +
+    filterByMetadata("country", country, exclude=false) +
+    filterByMetadata("cast", cast, exclude=false) +
+    filterByMetadata("listed_in", genre, exclude=false) +
+    `} ` +
+    `LIMIT ${limit}`
+    return sparql
+}
+
+// PREFIX movie: <http://localhost:8890/schemas/movies/> 
+// SELECT * FROM <http://localhost:8890/movies#> 
+// WHERE {
+// ?id movie:title ?title 
+// FILTER regex(str(?id), "(netflix|disney_plus|amazon_prime|hulu)") 
+// FILTER regex(str(lcase(?title)), "sharknado"). 
+// OPTIONAL {?id movie:cast ?cast} 
+// OPTIONAL {?id movie:country ?country} 
+// OPTIONAL {?id movie:date_added ?date_added} 
+// OPTIONAL {?id movie:description ?description} 
+// OPTIONAL {?id movie:director ?director} 
+// OPTIONAL {?id movie:duration ?duration} 
+// OPTIONAL {?id movie:release_year ?release_year} 
+// OPTIONAL {?id movie:type ?type} 
+// OPTIONAL {?id movie:rating ?rating} 
+// OPTIONAL {?id movie:listed_in ?listed_in} 
+// }
+// LIMIT 20
 function SEARCH_MOVIE(movie, providers, limit = 10) {
     sparql =         
     getPrefix() +
@@ -151,8 +193,43 @@ function getMetadata(prefix = 'movie') {
     return metadata
 }
 
+function filterByMetadata(column, values, exclude=false) {
+    if (values == undefined || values.length == 0) {
+        return ''
+    }
+
+    sparql = `FILTER (`
+
+    values.forEach((value, index, array) => {
+        if (exclude) {
+            sparql += `!`
+        }
+
+        // Filtern
+        sparql += `regex(str(lcase(?${column})), "${value.toLowerCase()}")`
+
+        if (index === array.length - 1) {
+            // Letztes Element erreicht,
+            // es muss kein && oder || angefügt werden
+        } else {
+            if (exclude) {
+                sparql += ` && `
+            } else {
+                sparql += ` || `
+            }
+        }
+    });
+
+    sparql += `) `
+
+    return sparql
+}
+
 module.exports = {
     SEARCH_MOVIE: SEARCH_MOVIE,
     SEARCH_EXACT_MOVIE: SEARCH_EXACT_MOVIE,
-    SEARCH_PERSONS: SEARCH_PERSONS
+    SEARCH_PERSONS: SEARCH_PERSONS,
+    SEARCH_SIMILAR_MOVIES: SEARCH_SIMILAR_MOVIES
 }
+
+SEARCH_SIMILAR_MOVIES()
