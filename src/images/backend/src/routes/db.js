@@ -232,17 +232,24 @@ async function searchPersons(req, res){
 async function compareMovies(req, res){
   const reqUrl = url.parse(req.url, true)
   movies = reqUrl.query.title || [];
+  movies = movies.filter(e=>e);
+  
+  movies_data = await getMovieData(movies)
 
-  result = []
+  result = compareMoviedata(movies_data);
 
+  res.json(result) 
+}
+
+async function getMovieData(movies){
+  var result = []
   for(const i in movies){
     const sparql = SPARQL_STATEMENTS.SEARCH_EXACT_MOVIE(movies[i], undefined)
-    console.log(sparql)
     let res = await arrayifyStream(await fetcher.fetchBindings(endpoint_local, sparql))
-
-    result.push(res[0])
+    
+    if(res[0] != undefined) result.push(res[0])
   }
-
+  
   movies_data = []
 
   result.forEach(element => {
@@ -264,11 +271,23 @@ async function compareMovies(req, res){
     })
   });
 
-  result = compareMoviedata(movies_data);
-
-  res.json(result) 
+  return movies_data;
 }
 
+/**
+ * Rückgabe von Filmen die Merkmale der Eingabefilme besitzen
+ * 
+ * - Für jeden Film der verglichen werden soll muss ein "title=movietitle" als GET-Parameter geliefert werden
+ * - Der Titel des Films muss exakt der Titel aus der Datenbank sein
+ * 
+ * http://localhost:5000/db/search-similar-movies?title=Marvel%20Studios%27%20Avengers:%20Infinity%20War&title=Marvel%20Studios%27%20Avengers:%20Age%20of%20Ultron&title=Marvel%20Studios%27%20Iron%20Man%202
+ * - Suche nach ähnlichen Filmen wie:
+ *      "Marvel Studios' Avengers: Infinity War",
+ *      "Marvel Studios' Avengers: Age of Ultron",
+ *      "Marvel Studios' Iron Man 2"
+ * 
+ * @returns Liste von Filmen als JSON
+ */
 function compareMoviedata(movie_data){
   result = {
     cast: {},
@@ -323,6 +342,89 @@ function compare(input1, input2, result, key){
   return result;
 }
 
+async function searchSimilarMovies(req, res){
+  const reqUrl = url.parse(req.url, true)
+  movies = reqUrl.query.title || []
+  limit = reqUrl.query.limit || 10
+  // filter out empty strings
+  movies = movies.filter(e=>e);
+
+  // get moviedata
+  movies_data = await getMovieData(movies)
+
+  // find similarities
+  results = compareMoviedata(movies_data)
+  // we dont want to find similar movies by country
+  delete results.country
+
+  // if no similary found stop
+  if(
+    Object.keys(results.cast).length == 0 && 
+    Object.keys(results.director).length == 0 && 
+    Object.keys(results.genre).length == 0
+  ){
+    res.json({})
+    return
+  }
+
+  bestMatches = {
+    cast: [],
+    director: [],
+    genre: []
+  }
+
+  // find similarities with most matches
+  for(const [metadataType, matches] of Object.entries(results)){
+    for(const [match, movietitles] of Object.entries(matches)){
+      if(bestMatches[metadataType].length == 0){
+        bestMatches[metadataType].push(match)
+      }
+      else if(movietitles.length == matches[bestMatches[metadataType][0]].length){
+        bestMatches[metadataType].push(match)
+      }
+      else if(movietitles.length > matches[bestMatches[metadataType][0]].length){
+        bestMatches[metadataType] = [match]
+      }
+    }
+  }  
+
+  var result = []
+  
+  // find similar movies
+  // stop if limit movies are found (default 10)
+  // by all similarities
+  if(result.length < limit) result = result.concat(await getSimilarMovies(bestMatches.cast, bestMatches.director, bestMatches.genre, limit-result.length))
+  // by cast and director
+  if(result.length < limit) result = result.concat(await getSimilarMovies(bestMatches.cast, bestMatches.director, undefined, limit-result.length))
+  // by cast and genre
+  if(result.length < limit) result = result.concat(await getSimilarMovies(bestMatches.cast, undefined, bestMatches.genre, limit-result.length))
+  // by director and genre
+  if(result.length < limit) result = result.concat(await getSimilarMovies(undefined, bestMatches.director, bestMatches.genre, limit-result.length))
+  // by cast
+  if(result.length < limit) result = result.concat(await getSimilarMovies(bestMatches.cast, undefined, undefined, limit-result.length))
+  // by director
+  if(result.length < limit) result = result.concat(await getSimilarMovies(undefined, bestMatches.director, undefined, limit-result.length))
+  // by genre
+  if(result.length < limit) result = result.concat(await getSimilarMovies(undefined, undefined, bestMatches.genre, limit-result.length))
+
+  res.json(result)
+}
+
+async function getSimilarMovies(cast, director, genre, limit) {
+  const sparql = SPARQL_STATEMENTS.SEARCH_SIMILAR_MOVIES(
+    movies,
+    director,
+    undefined,
+    cast,
+    genre,
+    undefined,
+    limit
+  )
+    
+  var db_res = await arrayifyStream(await fetcher.fetchBindings(endpoint_local, sparql))
+  return db_res
+}
+
 /* Routes */
 router.route('/search-movies').get(async(req, res) => {
   searchMovies(req, res)
@@ -337,10 +439,7 @@ router.route('/compare-movies').get(async(req, res) => {
 })
 
 router.route('/search-similar-movies').get(async(req, res) => {
-  const reqUrl = url.parse(req.url, true)
-  movies = reqUrl.query.title || [];
-
-  // res.json(result)
+  searchSimilarMovies(req, res);
 })
 
 module.exports = {
@@ -350,7 +449,8 @@ module.exports = {
     searchPersons: searchPersons,
     compareMovies: compareMovies,
     compareMoviedata: compareMoviedata,
-    compare: compare
+    compare: compare,
+    searchSimilarMovies: searchSimilarMovies
   }
 }
 
