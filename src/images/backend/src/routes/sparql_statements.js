@@ -193,7 +193,7 @@ function getMetadata(prefix = 'movie') {
     return metadata
 }
 
-function filterByMetadata(column, values, exclude=false) {
+function filterByMetadata(column, values, exclude) {
     if (values == undefined || values.length == 0) {
         return ''
     }
