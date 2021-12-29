@@ -5,6 +5,8 @@ const axios = require('axios');
 
 // http://localhost:5000/imdb/search-imdbdata?title=The%20Matrix&type=Movie
 describe('SearchImdbdata Test', function () {
+  // Timeout für IMDB höher, da die Anfragen durchaus mal länger brauchen können
+  jest.setTimeout(60000)
   test('Suche nach Filminformationen', async () => { 
     // Arrange
     const req = { url: '?title=The%20Matrix&type=Movie' };
