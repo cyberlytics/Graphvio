@@ -413,3 +413,35 @@ describe('CompareMoviedata Test', function () {
     expect(res.genre).toEqual({});
   });
 })
+
+describe('GetSimilarMovies Test', function () {
+  test('Filmeingabe mit Matches', async () => { 
+    // Arrange
+    const req = { url: '?title=Marvel%20Studios%27%20Avengers:%20Infinity%20War&title=Marvel%20Studios%27%20Avengers:%20Age%20of%20Ultron&title=Marvel%20Studios%27%20Thor&title=Marvel%20Studios%27%20Captain%20America:%20the%20first%20avenger' };
+    const res = { 
+      object: '',
+      json: function(input) { this.object = input } 
+    };
+    
+    // Act
+    await dbRouterTests.searchSimilarMovies(req, res);
+
+    // Assert
+    expect(res.object.length).toEqual(10);
+  });
+
+  test('Filmeingabe ohne Matches', async () => { 
+    // Arrange
+    const req = { url: '?title=Marvel%20Studios%27%20Avengers:%20Infinity%20War&title=lover' };
+    const res = { 
+      object: '',
+      json: function(input) { this.object = input } 
+    };
+    
+    // Act
+    await dbRouterTests.searchSimilarMovies(req, res);
+
+    // Assert
+    expect(res.object).toMatchObject({})
+  });
+})
