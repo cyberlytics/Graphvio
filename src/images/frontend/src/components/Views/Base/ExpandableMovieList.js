@@ -117,14 +117,9 @@ class MovieListItem extends InfoCard {
 						<Card.Text>
 							<b>
 								<Link
-									classname="castLink"
-									to={{
-										pathname: "/CastList",
-										state: [
-											`${this.state.movieData.title}`,
-											`${this.state.movieData.metadata.release_year}`,
-										],
-									}}
+									to="/CastList"
+									state = {{ title: this.state.movieData.title,
+										release_year: this.state.movieData.metadata.release_year,}}
 								>
 									Cast
 								</Link>{" "}
