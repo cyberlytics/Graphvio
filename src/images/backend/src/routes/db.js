@@ -73,9 +73,14 @@ async function searchMovies(req, res){
   result = await arrayifyStream(await fetcher.fetchBindings(endpoint_local, sparql))
   console.log(`Results found: ${result.length}`)
 
+  movies = formatMovieResults(result)
+  res.json(movies) 
+}
+
+function formatMovieResults(results){
   movies = []
 
-  result.forEach(element => {
+  results.forEach(element => {
     movies.push({
       "title": element.title.value,
       "provider": element.id.value.match("/movies/(.*)_titles_csv")[1], // Provider, der den Film zur Verfügung stellt
@@ -93,10 +98,8 @@ async function searchMovies(req, res){
       }
     })
   });
-
-  res.json(movies) 
+  return movies;
 }
-
 /**
  * Rückgabe der Filmmitwirkenden zu einem Film
  * 
@@ -407,7 +410,8 @@ async function searchSimilarMovies(req, res){
   // by genre
   if(result.length < limit) result = result.concat(await getSimilarMovies(undefined, undefined, bestMatches.genre, limit-result.length))
 
-  res.json(result)
+  movies = formatMovieResults(result)
+  res.json(movies) 
 }
 
 async function getSimilarMovies(cast, director, genre, limit) {

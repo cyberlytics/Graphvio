@@ -2,10 +2,11 @@ import React from "react";
 import "./App.css";
 import MovieSearchForm from "./components/Views/MovieSearch/MovieSearchForm";
 import MovieCompareSelect from "./components/Views/MovieCompare/MovieCompareSelect";
+import MovieRecommendForm from "./components/Views/MovieRecommend/MovieRecommendForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "./components/Base/Dropdown";
 
-import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import CastList from "components/Views/CastList/CastList"
 
 class App extends React.Component {
@@ -17,7 +18,8 @@ class App extends React.Component {
     this.state = {
       modeObj: [
         { id: 0, title: "Movie Search", selected: true, key: 'modeObj', color:"primary" },
-        { id: 1, title: "Movie Compare", selected: false, key: 'modeObj', color:"primary" }
+        { id: 1, title: "Movie Compare", selected: false, key: 'modeObj', color:"primary" },
+        { id: 2, title: "Movie Recommend", selected: false, key: 'modeObj', color:"primary" }
       ],
       selectedSearch : 0,
       colorscheme : "primary"
@@ -40,10 +42,12 @@ class App extends React.Component {
   renderAppBody(selectedSearchType){
 
     if(selectedSearchType === 0){
-      return MovieSearchForm
+      return MovieSearchForm;
     }
-    else{
-      return MovieCompareSelect
+    else if (selectedSearchType === 1){
+      return MovieCompareSelect;
+    }else{
+      return MovieRecommendForm;
     }
   }
 
