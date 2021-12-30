@@ -4,9 +4,15 @@ import MovieSearchForm from "./components/Views/MovieSearch/MovieSearchForm";
 import MovieCompareSelect from "./components/Views/MovieCompare/MovieCompareSelect";
 import MovieRecommendForm from "./components/Views/MovieRecommend/MovieRecommendForm";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Dropdown from "./components/Base/Dropdown";
+import Header from "./components/Views/Header/Header";
+import AboutUs from "./components/Views/AboutUs/AboutUs";
+import Index from "./components/Views/Index/Index";
 
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import CastList from "components/Views/CastList/CastList"
 
 class App extends React.Component {
@@ -16,65 +22,28 @@ class App extends React.Component {
     this.backendUrl = process.env.BACKEND_SERVER;
     this.form = React.createRef();
     this.state = {
-      modeObj: [
-        { id: 0, title: "Movie Search", selected: true, key: 'modeObj', color:"primary" },
-        { id: 1, title: "Movie Compare", selected: false, key: 'modeObj', color:"primary" },
-        { id: 2, title: "Movie Recommend", selected: false, key: 'modeObj', color:"primary" }
-      ],
-      selectedSearch : 0,
-      colorscheme : "primary"
     };
   }
 
-  resetThenSet = (id, key) => {
-    const temp = [...this.state[key]];
-
-    temp.forEach((item) => item.selected = false);
-    temp[id].selected = true;
-    this.setState({
-      [key]: temp,
-      selectedSearch: id,
-      colorscheme: temp[id].color
-    });
-  };
-
-
-  renderAppBody(selectedSearchType){
-
-    if(selectedSearchType === 0){
-      return MovieSearchForm;
-    }
-    else if (selectedSearchType === 1){
-      return MovieCompareSelect;
-    }else{
-      return MovieRecommendForm;
-    }
-  }
-
   render() {
-    let content = (
+    return (
       <div className="App-content">
-        <div className="App-header">
-          <Dropdown
-            title={this.state.modeObj[0].title}
-            color={this.state.colorscheme}
-            listElements={this.state.modeObj}
-            resetThenSet={this.resetThenSet}
-          ></Dropdown>
-          <div>Graphvio</div>
-          <div>Version: 1.0</div>
-        </div>
+        <Header />
         <div className = "App-body">
-          <Router>
-            <Switch>
-              <Route path = "/CastList" component = {CastList}/>
-              <Route path = "/" component = {this.renderAppBody(this.state.selectedSearch)}/>
-            </Switch>
-          </Router>
-		    </div>
+        <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/CastList" element={<CastList />} />
+              <Route path="/MovieSearchForm" element={<MovieSearchForm />} />
+              <Route path="/MovieCompareSelect" element={<MovieCompareSelect />} />
+              <Route path="/MovieRecommendForm" element={<MovieRecommendForm />} />
+              <Route path="/about-us" element={<AboutUs />} />
+          </Routes>
+        </BrowserRouter>
+        </div>
       </div>
+      
     );
-    return content;
   }
 }
 export default App;

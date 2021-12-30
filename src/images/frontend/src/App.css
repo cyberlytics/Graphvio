@@ -1,5 +1,3 @@
-
-
 .App {
   text-align: center;
 }
@@ -15,7 +13,7 @@
   }
 }
 
-.App-header {
+#root > div > div.App-header > nav {
   background-color: #36465d;
   min-height: 10vh;
   display: flex;
@@ -26,24 +24,21 @@
   color: white;
 }
 
-.App-header p
-{
+.App-header p {
   margin: auto;
 }
 
-
-.App-body
-{
+.App-body {
   width: 80%;
   margin: 0 auto;
-  padding-top: 70px;  
+  padding-top: 70px;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-label{
+label {
   display: block;
 }
 
@@ -69,7 +64,16 @@ label{
   color: white;
 }
 
-p
-{
-  margin-top: 10px!important;
+p {
+  margin-top: 10px !important;
+}
+
+#root > div > div.App-header > nav > span > a {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 200%;
+}
+
+.Index {
+  margin: 0 auto;
+  text-align: center;
 }

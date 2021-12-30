@@ -1,46 +1,54 @@
-import React from "react";
+import { useLocation } from 'react-router-dom'
 import ExpandablePersonList from "./ExpandablePersonList";
 
-class CastList extends React.Component {
-    constructor(props) {
-		super(props);
-        this.state = {
-            name: `${props.location.state[0]}`,
-            year: `${props.location.state[1]}`,
-        }
-        this.cast = [];
-        this.searchFunction()
+function CastList () {
+	const location = useLocation()
+	var cast = [];
+	console.log(location.state)
+	
+	var xmlHttp = new XMLHttpRequest();
+    var url = `http://localhost:5000/db/search-persons?title=${location.state["title"]}&year=${location.state["release_year"]}`
+	xmlHttp.open( "GET", url, false ); 
+	xmlHttp.onload = () => (cast = parseCast(xmlHttp,this));
+	xmlHttp.send(null);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	let content = <div></div>
+	if(!location.state["title"]){
+		content = <div>
+			<h1>
+				No Film! :(
+			</h1>
+		</div>
 	}
-
-    searchFunction() {
-		var xmlHttp = new XMLHttpRequest();
-        var url = `http://localhost:5000/db/search-persons?title=${this.state.name}&year=${this.state.year}`
-		xmlHttp.open( "GET", url, false ); 
-		//WTF is this in this context?
-		xmlHttp.onload = () => this.parseCast(xmlHttp,this);
-		xmlHttp.send(null);
+	else{
+		content = (<div className = "App-body">
+		<ExpandablePersonList
+			
+			items={cast}
+		/>
+		</div>)
 	}
-
-    parseCast(xmlHttp,castList){
-		if (xmlHttp.readyState === 4) {
-			if (xmlHttp.status === 200) {
-			  if(xmlHttp.responseText.length > 0){
-				castList.cast = JSON.parse(xmlHttp.responseText);
-			  }
-			} else {
-			  console.error(xmlHttp.statusText);
-			}
-		}
-	}
-
-    render() {
-        return (
-			<ExpandablePersonList
-				ref={(l) => (this.list = l)}
-				items={this.cast}
-			/>
-		);
-    }
+    return content;
 }
 
+function parseCast(xmlHttp,castList){
+	if (xmlHttp.readyState === 4) {
+		if (xmlHttp.status === 200) {
+		  if(xmlHttp.responseText.length > 0){
+			return JSON.parse(xmlHttp.responseText);
+		  }
+		} else {
+		  console.error(xmlHttp.statusText);
+		}
+	}
+}
 export default CastList;

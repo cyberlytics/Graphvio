@@ -50,7 +50,7 @@ class ExpandablePersonList extends React.Component {
     }
 
     updateItems(items){
-        this.state.items= items;
+        this.setState({items: items})
     }
 
 	renderExpandedComponent(index) {
@@ -78,7 +78,7 @@ class ExpandablePersonList extends React.Component {
             var content = this.renderExpandedComponent(index);
 
             renderedCollapsibleItems.push(
-            <Collapsible trigger={this.returnDisplayName(item)}  transitionTime={300} key={`Collapsible_${this.returnDisplayName(item)}`}>
+            <Collapsible trigger={this.returnDisplayName(item)}  transitionTime={300} key={`Collapsible_${index}_${this.returnDisplayName(item)}`}>
                 {content}
             </Collapsible>
             )
