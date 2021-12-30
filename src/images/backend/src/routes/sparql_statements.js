@@ -1,18 +1,30 @@
 var DB_PORT = process.env.DATABASE_PORT || 8890
 const ALL_PROVIDERS = 'netflix|disney_plus|amazon_prime|hulu'
 
-// filterByMetadata("title", ["Sharknado 4: The 4th Awakens", "My Boss's Daughter"], exclude=true) + 
-// filterByMetadata("director", ["Anthony C. Ferrante"], exclude=false) +
-// filterByMetadata("country", ["United States"], exclude=false) +
-// filterByMetadata("cast", ["Tara Reid"], exclude=false) +
-// filterByMetadata("listed_in", ["Action"], exclude=false) +
+/**
+ * Mithilfe der übergebenen Merkmale kann eine SPARQL-Statement erstellt werden,
+ * mit dem eine Suche durchgeführt werden kann.
+ * 
+ * @param {string} excludeTitles Filme, die nicht in das Ergebnis inkludiert werden sollen. Im Normalfall sind das 
+ * die Ursprungsfilme, die für den Vergleich der Merkmale 
+ * herangezogen wurden.
+ * @param {string} director Regisseure, nach denen gefiltert werden soll.
+ * @param {string} country Länder, nach denen gefiltert werden soll.
+ * @param {string} cast Schauspieler, die in den Filmen mitwirken sollen.
+ * @param {string} genre Genre, als das der Film gelistet sein soll.
+ * @param {string} providers Provider, die für die Suche durchsucht werden sollen.
+ * Provider können mit dem Zeichen | miteinander kombiniert werden.
+ * Beispiel: netflix|disney_plus oder nur amazon_prime oder hulu
+ * @param {int} limit Anzahl der Einträge, die maximal zurückgegeben werden sollen.
+ * 
+ * @returns SPARQL-Statement, Suche nach Filmen, die mit den übergebenen Merkmalen übereinstimmen.
+ */
 function SEARCH_SIMILAR_MOVIES(excludeTitles, director, country, cast, genre, providers, limit = 10) {
     sparql = 
     getPrefix() +
     `SELECT * ` + 
     getGraph() +
-    `WHERE {	
-    ?id movie:title ?title ` + 
+    `WHERE {?id movie:title ?title ` + 
     filterProviders(providers) +
     filterByMetadata("title", excludeTitles, exclude=true) + 
     getMetadata() +
@@ -25,24 +37,15 @@ function SEARCH_SIMILAR_MOVIES(excludeTitles, director, country, cast, genre, pr
     return sparql
 }
 
-// PREFIX movie: <http://localhost:8890/schemas/movies/> 
-// SELECT * FROM <http://localhost:8890/movies#> 
-// WHERE {
-// ?id movie:title ?title 
-// FILTER regex(str(?id), "(netflix|disney_plus|amazon_prime|hulu)") 
-// FILTER regex(str(lcase(?title)), "sharknado"). 
-// OPTIONAL {?id movie:cast ?cast} 
-// OPTIONAL {?id movie:country ?country} 
-// OPTIONAL {?id movie:date_added ?date_added} 
-// OPTIONAL {?id movie:description ?description} 
-// OPTIONAL {?id movie:director ?director} 
-// OPTIONAL {?id movie:duration ?duration} 
-// OPTIONAL {?id movie:release_year ?release_year} 
-// OPTIONAL {?id movie:type ?type} 
-// OPTIONAL {?id movie:rating ?rating} 
-// OPTIONAL {?id movie:listed_in ?listed_in} 
-// }
-// LIMIT 20
+/**
+ * Durchsuche die Datenbank nach einem Film, der den movie im Titel hat.
+ * 
+ * @param {string} movie Film, nach dem gesucht wird.
+ * @param {string} providers Provider, die für die Suche durchsucht werden sollen.
+ * @param {int} limit Anzahl der Einträge, die maximal zurückgegeben werden sollen.
+ * 
+ * @returns SPARQL-Statement, suche nach einen Film.
+ */
 function SEARCH_MOVIE(movie, providers, limit = 10) {
     sparql =         
     getPrefix() +
@@ -57,20 +60,43 @@ function SEARCH_MOVIE(movie, providers, limit = 10) {
     return sparql
 }
 
-function SEARCH_EXACT_MOVIE(movie, providers) {
+/**
+ * Durchsuche die Datenbank nach einem Film, der exakt so heißt.
+ * 
+ * @param {string} preciseMovietitle Exakter Filmtitel, der gesucht wird.
+ * @param {string} providers Provider, die für die Suche durchsucht werden sollen.
+ * Provider können mit dem Zeichen | miteinander kombiniert werden.
+ * Beispiel: netflix|disney_plus oder nur amazon_prime oder hulu
+ * 
+ * @returns SPARQL-Statement, suche nach einen Film mit diesem Titel.
+ */
+function SEARCH_EXACT_MOVIE(preciseMovietitle, providers) {
     sparql =         
     getPrefix() +
     'SELECT * ' +
     getGraph() +
     `WHERE {?id movie:title ?title ` +
     filterProviders(providers) +
-    `FILTER (str(lcase(?title)) = "${movie.toLowerCase()}"). ` +
+    `FILTER (str(lcase(?title)) = "${preciseMovietitle.toLowerCase()}"). ` +
     getMetadata() +
     `} `
 
     return sparql
 }
 
+/**
+ * Durchsuche die DBpedia mithilfe des SPARQL-Statements nach Filmmitwirkenden
+ * des übergebenen Filmes.
+ * 
+ * Zu den Filmmitwirkenden werden Detailinformationen der jeweiligen
+ * Person ausgelesen.
+ * 
+ * @param {string} movie Film, nach dem gesucht wird.
+ * @param {string} year Erscheinungsjahr des Filmes.
+ * @param {int} limit Anzahl der Einträge, die maximal zurückgegeben werden sollen.
+ * 
+ * @returns SPARQL-Statement, mit dem die DBpedia durchsucht werden kann.
+ */
 function SEARCH_PERSONS(movie, year, limit = 10) {
     sparql =         
     `
@@ -165,18 +191,50 @@ LIMIT ${limit}
     return sparql
 }
 
+/**
+ * Erstellt den Prefix für die Filmontologie.
+ * 
+ * @param {string} prefix Prefix, der für die Filme aus der Virtuoso
+ * Datenbank verwendet werden soll.
+ * 
+ * @returns Teil eines SPARQL-Statements.
+ */
 function getPrefix(prefix = 'movie') {
     return `PREFIX ${prefix}: <http://localhost:${DB_PORT}/schemas/movies/> `
 }
 
+/**
+ * Erstellt den Import des Graphen der Filmontologie.
+ * 
+ * @returns Teil eines SPARQL-Statements.
+ */
 function getGraph() {
     return `FROM <http://localhost:${DB_PORT}/movies#> `
 }
 
+/**
+ * Erstellt den Filter für die Filterung der Filme nach
+ * den Providern, auf denen diese gehostet werden.
+ * 
+ * @param {string} providers Provider, die für die Suche durchsucht werden sollen.
+ * Provider können mit dem Zeichen | miteinander kombiniert werden.
+ * Beispiel: netflix|disney_plus oder nur amazon_prime oder hulu
+ * 
+ * @returns Teil eines SPARQL-Statements.
+ */
 function filterProviders(providers = ALL_PROVIDERS) {
     return `FILTER regex(str(?id), "(${providers})") `
 }
 
+/**
+ * Fügt die Parameter, die bei einem Film in der Virtuoso
+ * Datenbank ausgelesen werden sollen.
+ * 
+ * @param {string} prefix Prefix, der für die Filme aus der Virtuoso
+ * Datenbank verwendet werden soll.
+ * 
+ * @returns Teil eines SPARQL-Statements.
+ */
 function getMetadata(prefix = 'movie') {
     metadata = 
     `OPTIONAL {?id ${prefix}:cast ?cast} ` +
@@ -193,6 +251,16 @@ function getMetadata(prefix = 'movie') {
     return metadata
 }
 
+/**
+ * Filtert die Suche nach einer Spalte und dessen Werten,
+ * die dann verwendet werden sollen.
+ * 
+ * @param {string} column Spalte, nach der gefiltert werden soll.
+ * @param {string} values Werte, die gefiltert werden.
+ * @param {boolean} exclude Invertiert die Filterung.
+ * 
+ * @returns Teil eines SPARQL-Statements.
+ */
 function filterByMetadata(column, values, exclude) {
     if (values == undefined || values.length == 0) {
         return ''
@@ -205,7 +273,7 @@ function filterByMetadata(column, values, exclude) {
             sparql += `!`
         }
 
-        // Filtern
+        // Filtern nach einem Wert der Spalte
         sparql += `regex(str(lcase(?${column})), "${value.toLowerCase()}")`
 
         if (index === array.length - 1) {
@@ -231,5 +299,3 @@ module.exports = {
     SEARCH_PERSONS: SEARCH_PERSONS,
     SEARCH_SIMILAR_MOVIES: SEARCH_SIMILAR_MOVIES
 }
-
-SEARCH_SIMILAR_MOVIES()
