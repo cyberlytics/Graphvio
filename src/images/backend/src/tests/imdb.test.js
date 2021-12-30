@@ -1,8 +1,5 @@
 const imdbRouterTests = require('../routes/imdb').tests
 
-const url = require('url');
-const axios = require('axios');
-
 // http://localhost:5000/imdb/search-imdbdata?title=The%20Matrix&type=Movie
 describe('SearchImdbdata Test', function () {
   // Timeout für IMDB höher, da die Anfragen durchaus mal länger brauchen können
