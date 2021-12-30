@@ -1,5 +1,10 @@
 import React from "react";
 import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import MovieSearchForm from "./components/Views/MovieSearch/MovieSearchForm";
 import MovieCompareSelect from "./components/Views/MovieCompare/MovieCompareSelect";
 import MovieRecommendForm from "./components/Views/MovieRecommend/MovieRecommendForm";
@@ -7,12 +12,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Views/Header/Header";
 import AboutUs from "./components/Views/AboutUs/AboutUs";
 import Index from "./components/Views/Index/Index";
-
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
 import CastList from "components/Views/CastList/CastList"
 
 class App extends React.Component {
