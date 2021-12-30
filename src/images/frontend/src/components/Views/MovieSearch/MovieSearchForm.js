@@ -1,5 +1,6 @@
 import SearchForm from "../Base/SearchForm";
-import ExpandableMovieList from "./ExpandableMovieList";
+import ExpandableMovieList from "../Base/ExpandableMovieList";
+const Constants = require("Constants");
 
 class MovieSearchForm extends SearchForm {
 	constructor(props) {
@@ -9,30 +10,23 @@ class MovieSearchForm extends SearchForm {
 		this.movies = [];
 	}
 
-	searchFunction() {
+	async searchFunction() {
+		
 		if(this.textBox.state.value.length > 0){
-			var xmlHttp = new XMLHttpRequest();
-			var url = `http://localhost:5000/db/search-movies?title=${this.textBox.state.value}&limit=${20}`;
-			xmlHttp.open( "GET", url, false ); 
-			//WTF is this in this context?
-			xmlHttp.onload = () => this.parseMovies(xmlHttp,this);
-			xmlHttp.send(null);
-		}
-	}
+			const axios = require('axios');
+			var url = `http://${Constants.BACKEND_URL}:${Constants.BACKEND_PORT}/db/search-movies?title=${this.textBox.state.value}&limit=${20}`;
+			try {
+				const response = await axios.get(url);
+				
+				this.movies = response.data;
+				this.list.updateItems(this.movies);
 
-	parseMovies(xmlHttp,movieSearchForm){
-		if (xmlHttp.readyState === 4) {
-			if (xmlHttp.status === 200) {
-			  if(xmlHttp.responseText.length > 0){
-				movieSearchForm.movies = JSON.parse(xmlHttp.responseText);
-				movieSearchForm.list.updateItems(this.movies);
+			  } catch (error) {
+				console.error(error);
 			  }
-			} else {
-			  console.error(xmlHttp.statusText);
-			}
 		}
 	}
-
+	
 	renderResults() {
 		return (
 			<ExpandableMovieList

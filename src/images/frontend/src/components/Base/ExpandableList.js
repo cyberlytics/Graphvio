@@ -42,7 +42,7 @@ class ExpandableList extends React.Component
         
         for(var index in this.state.items){
             var item = this.state.items[index];
-            var content = this.renderExpandedComponent(index);
+            var content = this.renderExpandedComponent.bind(this)(index);
 
             renderedCollapsibleItems.push(
             <Collapsible trigger={this.returnDisplayName(item)}  transitionTime={300} onOpening = {this.handleItemOnOpen.bind(this,index)} key={`Collapsible_${this.returnDisplayName(item)}`}>
