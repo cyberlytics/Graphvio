@@ -36,6 +36,9 @@ var fetcher = new SparqlEndpointFetcher();
  *   - Sucht in den Datenbanken von Netflix, Disney und Prime nach
  *     einem Eintrag, der "shark" enthält.
  * 
+ * @param {Object} req Requestinformationen
+ * @param {Object} res Responeinformationen
+ * 
  * @returns Liste der Filme als JSON
  * 
  * Beispiel:
@@ -60,7 +63,6 @@ var fetcher = new SparqlEndpointFetcher();
  *   },
  *   ...
  */
-
 async function searchMovies(req, res){
   const reqUrl = url.parse(req.url, true)
   movie = reqUrl.query.title || "";
@@ -132,6 +134,9 @@ function formatMovieResults(results){
  * http://localhost:5000/db/search-persons?title=Avengers: Infinity War&limit=50
  * - Anzahl der Einträge, die maximal zurückgegeben werden.
  * - Standard: 10
+ * 
+ * @param {Object} req Requestinformationen
+ * @param {Object} res Responeinformationen
  * 
  * @returns Liste der Filmmitwirkenden als JSON
  * 
@@ -229,6 +234,9 @@ async function searchPersons(req, res){
  *      "Marvel Studios' Avengers: Infinity War",
  *      "Marvel Studios' Avengers: Age of Ultron",
  *      "Marvel Studios' Iron Man 2"
+ * 
+ * @param {Object} req Requestinformationen
+ * @param {Object} res Responeinformationen
  * 
  * @returns Liste der Merkmale als JSON
  */
