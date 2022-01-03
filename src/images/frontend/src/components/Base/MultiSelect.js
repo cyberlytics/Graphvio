@@ -13,9 +13,8 @@ class MultiSelect extends React.Component
 
 /*method called from parent to set new options*/
     updateOptions = (options) =>
-    {
-      
-      const optionsFormat = this.updateValues(arr);
+    {  
+      const optionsFormat = this.updateValues(options);
       this.setState({selectOption: optionsFormat});
   }
 
