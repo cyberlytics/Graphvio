@@ -5,7 +5,6 @@ const Constants = require("Constants");
 function CastList () {
 	const location = useLocation()
 	var cast = [];
-	console.log(location.state)
 	
 	var xmlHttp = new XMLHttpRequest();
     var url = `http://${Constants.BACKEND_URL}:${Constants.BACKEND_PORT}/db/search-persons?title=${location.state["title"]}&year=${location.state["release_year"]}`
@@ -17,18 +16,29 @@ function CastList () {
 	if(!location.state["title"]){
 		content = <div>
 			<h1>
-				No Film! :(
+				No film found! :(
 			</h1>
 		</div>
 	}
 	else{
-		content = (<div className = "App-body">
-		<ExpandablePersonList
-			
-			items={cast}
-		/>
-		</div>)
+		if(cast.response.persons.length===0){
+			content = <div>
+			<h1>
+				No cast found! :(
+			</h1>
+			</div>
+		}
+		else{
+			content = (<div className = "App-body">
+				<h1>Castlist for {location.state["title"]}({location.state["release_year"]})</h1>
+			<ExpandablePersonList
+				
+				items={cast}
+			/>
+			</div>)
+		}
 	}
+	
     return content;
 }
 
