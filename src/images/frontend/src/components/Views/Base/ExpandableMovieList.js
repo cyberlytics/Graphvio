@@ -4,8 +4,9 @@ import InfoCard from "../..//Base/Card";
 import { Card } from "react-bootstrap";
 import "./MovieListItem.css";
 import { Link } from "react-router-dom";
+const Constants = require("Constants");
 
-class MovieListItem extends InfoCard {
+export class MovieListItem extends InfoCard {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -58,7 +59,7 @@ class MovieListItem extends InfoCard {
 				<div>
 					<img
 						src={this.state.movieData.metadata.image}
-						alt={"No_Image_Available.jpg"}
+						alt={".\\No_Image_Available.jpg"}
 						width="200"
 					/>
 					<hr />
@@ -136,7 +137,7 @@ class MovieListItem extends InfoCard {
 	}
 }
 
-class ExpandableMovieList extends ExpandableList {
+export class ExpandableMovieList extends ExpandableList {
 	renderExpandedComponent(index) {
 		if (!this.state.items[index].metadata.hasOwnProperty("imdb")) {
 			this.state.items[index].metadata["imdb"] = "-";
@@ -164,11 +165,14 @@ class ExpandableMovieList extends ExpandableList {
 
 	async retrieveIMDBData(index) {
 		const axios = require("axios");
-		var url = `http://localhost:5000/imdb/search-imdbdata?title=${this.state.items[index]["title"]}&type=${this.state.items[index]["metadata"]["type"]}`;
+		var url = `http://${Constants.BACKEND_URL}:${Constants.BACKEND_PORT}/imdb/search-imdbdata?title=${this.state.items[index]["title"]}&type=${this.state.items[index]["metadata"]["type"]}`;
 		try {
 			const response = await axios.get(url);
 			if (response.status !== 200) {
 				console.warn("Reached Maximum usage of IMDB API!");
+				this.state.items[index].metadata["imdb"] = "-";
+				this.state.items[index].metadata["image"] =
+				".\\No_Image_Available.jpg";
 				return;
 			}
 			this.state.items[index]["metadata"]["imdb"] = response.data["imDb"];
@@ -177,30 +181,6 @@ class ExpandableMovieList extends ExpandableList {
 			this.renderedItemsRef[index].Update(this.state.items[index]);
 		} catch (error) {
 			console.error(error);
-		}
-	}
-
-	parseIMDBData(xmlHttp, index, expandableMovieList) {
-		if (xmlHttp.readyState === 4) {
-			if (xmlHttp.status === 200) {
-				if (xmlHttp.responseText.length > 0) {
-					var response = JSON.parse(xmlHttp.responseText);
-					if (xmlHttp.responseText.includes("Maximum usage")) {
-						console.warn("Reached Maximum usage of IMDB API!");
-						return;
-					}
-					expandableMovieList.state.items[index]["metadata"]["imdb"] =
-						response["imDb"];
-					expandableMovieList.state.items[index]["metadata"][
-						"image"
-					] = response["image"];
-					expandableMovieList.renderedItemsRef[index].Update(
-						expandableMovieList.state.items[index]
-					);
-				}
-			} else {
-				console.error(xmlHttp.statusText);
-			}
 		}
 	}
 }
