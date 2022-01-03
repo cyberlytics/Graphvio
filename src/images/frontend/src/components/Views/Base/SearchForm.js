@@ -9,7 +9,6 @@ class SearchForm extends React.Component {
         super(props);
         this.state = {
             searchText: '',
-            provider: "amazon_prime",
         };
 
         this.textBox = null;
@@ -31,11 +30,12 @@ class SearchForm extends React.Component {
     renderTitle(){
         return "Search";
     }
-    onValueChange = event  => {
-        this.setState({
-            provider: event.target.value
-        });
-      }
+
+    renderAdditionalContent(){
+        return null;
+    }
+
+
 
     render() {
         return (
@@ -54,21 +54,7 @@ class SearchForm extends React.Component {
                         <Button type="submit" variant={this.props.color} text="Search"/>
                     </InputGroup>
                 </SearchFormLabel>
-                <div  id="provider_form" onChange={this.onValueChange}>
-                    <div id="provider_button">
-                    <input type="radio" value="amazon_prime" name="provider" defaultChecked/> Amazon Prime
-                    </div>
-                    <div id="provider_button">
-                    <input type="radio" value="disney_plus" name="provider" /> Disney+
-                    </div>
-                    <div id="provider_button">
-                    <input type="radio" value="netflix" name="provider" /> Netflix
-                    </div>
-                    <div id="provider_button"> 
-                    <input type="radio" value="hulu" name="provider" /> Hulu
-                    </div>
-                </div>
-
+                {this.renderAdditionalContent.bind(this)()}
                 <div>
                     {this.renderResults()}
                 </div>
