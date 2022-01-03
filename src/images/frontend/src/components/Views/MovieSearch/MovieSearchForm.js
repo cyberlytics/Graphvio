@@ -27,6 +27,12 @@ class MovieSearchForm extends SearchForm {
 		}
 	}
 	
+
+	
+    renderTitle(){
+        return "Movie Search";
+    }
+
 	renderResults() {
 		return (
 			<ExpandableMovieList

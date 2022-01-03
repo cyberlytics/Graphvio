@@ -68,8 +68,8 @@ class MovieListItem extends InfoCard {
 					</Card.Text>
 				</div>
 				<hr />
-				<div class="grid-container">
-					<div class="left">
+				<div className ="grid-container">
+					<div className ="left">
 						<Card.Text>
 							<b>Rating : </b>
 							{`${this.state.movieData.metadata.imdb}`}
@@ -109,12 +109,12 @@ class MovieListItem extends InfoCard {
 							)}
 						</Card.Text>
 					</div>
-					<div class="right">
+					<div className ="right">
 						<Card.Text>
 							<b>Director : </b>
 							{`${this.state.movieData.metadata.director}`}
 						</Card.Text>
-						<Card.Text>
+						<div>
 							<b>
 								<Link
 									to="/CastList"
@@ -128,7 +128,7 @@ class MovieListItem extends InfoCard {
 							{this.renderCast(
 								this.state.movieData.metadata.cast
 							)}
-						</Card.Text>
+						</div>
 					</div>
 				</div>
 			</div>

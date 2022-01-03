@@ -9,11 +9,13 @@ class MultiMovieSelect extends React.Component {
         this.multiSelect=null;
         this.state = {
           isDisabled: false,
-          MovieCompareValues : "not enough values set, to show movie compare"
+          MovieCompareValues : this.getEmptyHint() 
          };
     }
 
-
+    getEmptyHint(){
+      return "not enough values set"
+    }
         /*method to request dropdown values from db after 
     input of movie sub string*/
     async getDropDownValuesForMultiSelect(inputValue)

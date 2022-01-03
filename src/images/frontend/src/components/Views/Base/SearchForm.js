@@ -27,9 +27,14 @@ class SearchForm extends React.Component {
 
     }
 
+    renderTitle(){
+        return "Search";
+    }
+
     render() {
         return (
             <div>
+                <h2 style={{textAlign: 'center',marginBottom : 30}}>{this.renderTitle()}</h2>
                 <SearchFormLabel onSubmit={this.handleSubmit(this)}>
                     <InputGroup>
                         <TextBox
