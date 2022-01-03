@@ -10,6 +10,11 @@ class MovieCompareSelect extends MultiMovieSelect {
         this.list = null;
     }
 
+    getEmptyHint(){
+      return "select 2 or more values to show similarities between movies ..."
+    }
+
+
     /*method to request compare values from db after 
     movie select via dropdown*/
     async getCompareValuesAfterMovieSelect(inputValue)
@@ -40,7 +45,8 @@ class MovieCompareSelect extends MultiMovieSelect {
         {
           this.setState(
             {
-              isDisabled : false
+              isDisabled : false,
+              MovieCompareValues : this.getEmptyHint()
             }
             );
             this.list.updateItems([]);

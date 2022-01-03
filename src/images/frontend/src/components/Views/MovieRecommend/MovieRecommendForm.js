@@ -13,6 +13,11 @@ class MovieRecommendForm extends MultiMovieSelect {
         this.list = null;
     }
 
+
+getEmptyHint(){
+  return "select 2 or more values to get recommendations ..."
+}
+
 async getRecommendationsAfterMovieSelect(inputValue)
 {
     const axios = require('axios');
@@ -45,7 +50,8 @@ async getRecommendationsAfterMovieSelect(inputValue)
     this.movieData = [];
      this.setState(
        {
-         isDisabled : false
+         isDisabled : false,
+        MovieCompareValues : this.getEmptyHint()
        }
        );
        this.list.updateItems(this.movieData);

@@ -16,8 +16,8 @@ class MovieListItem extends InfoCard {
 	renderCardBody() {
 		return (
 			<div>
-				<div class="grid-container">
-					<div class="left">
+				<div className="grid-container">
+					<div className="left">
 						<Card.Text>
                             <b>Birthdate : </b>{`${this.state.personData.birthDate}`}
 						</Card.Text>
@@ -25,7 +25,7 @@ class MovieListItem extends InfoCard {
                             <b>Birthplace : </b>{`${this.state.personData.birthPlace}`}
 						</Card.Text>
 					</div>
-					<div class="right">
+					<div className="right">
 						<Card.Text>
                             <b>Name : </b>{`${this.state.personData.name}`}
 						</Card.Text>

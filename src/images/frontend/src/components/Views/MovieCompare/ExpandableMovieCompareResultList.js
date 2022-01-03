@@ -35,7 +35,7 @@ class ExpandableMovieCompareResultList extends React.Component
         if(Object.keys( this.state.items[subgroup]).length === 0)
             return null;
         return <div>
-                <p class="GroupTitle">{displayname}</p>
+                <p className="GroupTitle">{displayname}</p>
                 <hr />
                 <MovieComparePropsList ref={(l) => (this.propsList[subgroup] = l)} items={this.state.items[subgroup]}/>
             </div>

@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom'
 import ExpandablePersonList from "./ExpandablePersonList";
+const Constants = require("Constants");
 
 function CastList () {
 	const location = useLocation()
@@ -7,20 +8,11 @@ function CastList () {
 	console.log(location.state)
 	
 	var xmlHttp = new XMLHttpRequest();
-    var url = `http://localhost:5000/db/search-persons?title=${location.state["title"]}&year=${location.state["release_year"]}`
+    var url = `http://${Constants.BACKEND_URL}:${Constants.BACKEND_PORT}/db/search-persons?title=${location.state["title"]}&year=${location.state["release_year"]}`
 	xmlHttp.open( "GET", url, false ); 
 	xmlHttp.onload = () => (cast = parseCast(xmlHttp,this));
 	xmlHttp.send(null);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	let content = <div></div>
 	if(!location.state["title"]){
 		content = <div>

@@ -17,7 +17,7 @@ class Header extends React.Component {
                 <NavDropdown title="Navigation">
                   <NavDropdown.Item href="/MovieSearchForm">Movie Search</NavDropdown.Item>
                   <NavDropdown.Item href="/MovieCompareSelect">Movie Compare</NavDropdown.Item>
-                  <NavDropdown.Item href="/MovieRecommendForm">Movie Recomend</NavDropdown.Item>
+                  <NavDropdown.Item href="/MovieRecommendForm">Movie Recommend</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href="/about-us">About Us</Nav.Link>
               </Nav>
