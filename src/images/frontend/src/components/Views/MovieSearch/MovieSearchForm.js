@@ -2,7 +2,7 @@ import SearchForm from "../Base/SearchForm";
 import ExpandableMovieList from "../Base/ExpandableMovieList";
 const Constants = require("Constants");
 
-class MovieSearchForm extends SearchForm {
+class MovieSearchFormbar extends SearchForm {
 	constructor(props) {
 		super(props);
 
@@ -14,7 +14,7 @@ class MovieSearchForm extends SearchForm {
 		
 		if(this.textBox.state.value.length > 0){
 			const axios = require('axios');
-			var url = `http://${Constants.BACKEND_URL}:${Constants.BACKEND_PORT}/db/search-movies?title=${this.textBox.state.value}&limit=${20}`;
+			var url = `http://${Constants.BACKEND_URL}:${Constants.BACKEND_PORT}/db/search-movies?title=${this.textBox.state.value}&limit=${20}&provider=${this.state.provider}`;
 			try {
 				const response = await axios.get(url);
 				
@@ -42,4 +42,12 @@ class MovieSearchForm extends SearchForm {
 		);
 	}
 }
-export default MovieSearchForm;
+export default function MovieSearchForm(){
+	return(
+		<div>
+			<h1>Moviesearch</h1>
+			<MovieSearchFormbar/>
+		</div>
+		
+	)
+}
