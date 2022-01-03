@@ -81,3 +81,12 @@ p {
 #index_btn {
   margin: 20px;
 }
+
+td {
+  padding-right: 20px;
+}
+
+#root > div > div.App-body > div > h1 {
+  text-align: center;
+  padding-bottom: 50px;
+}

@@ -4,7 +4,7 @@ export default function Index() {
     return (
         <div className="Index">
             <h1>
-                Hallo bei Graphvio
+                Welcome to Graphvio
             </h1>
             <Link to="/MovieSearchForm">
                 <button id="index_btn" type="button">

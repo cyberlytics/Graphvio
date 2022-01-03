@@ -1,10 +1,10 @@
-
-
-
-
-.input-group > *
-{
-margin-right: 5px;
-margin-bottom: 5px;
+.input-group > * {
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
+#provider_form {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
