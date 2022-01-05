@@ -86,6 +86,50 @@ Die Interaktion der Logikkomponenten erfolgt über Schnittstellen (REST), die im
 Dazu werden modulare Reactkomponenten erzeugt, die über Texteingaben und weitere Suchmaskenelemente Parameter der REST-Anfrage setzen.
 Die zurückgelieferte Anwort der Anfrage im JSON-Format wird wiederum über modulare Reactkomponenten auf der Webapplikation dargestellt.
 
+\section{Frontend}
+\subsection{Funktionalitäten Frontend}
+Das Frontend wird über eine Single-Page Applikation (SPA) mit dem Webframework React realisiert.
+In der Kopfzeile der Basisdatei App.js wird ein Dropdown angeboten, 
+über das einzelne Suchmöglichkeiten zu den Graphdaten angewählt werden können.
+Es stehen folgende Optionen zur Auswahl
+\begin{itemize}
+    \item \textbf{Movie Search:}
+    Angabe eines Textinhalts, der als Bestandteil in allen Filmtiteln gesucht wird
+    \item \textbf{Movie Compare:}
+    Angabe von mehreren Filmtiteln über eine Mehrfachauswahl, die nach übereinstimmenden Metadaten durchsucht werden
+    \item \textbf{Movie Recommend:}
+    Angabe von mehreren Filmtiteln über eine Mehrfachauswahl, die ähnliche Filme zu der Auswahl auflistet 
+\end{itemize}
+
+    Zusätzlich kann bei der Anzeige von Filmen auf die Filmbesetzung geklickt werden, 
+    um weitere Informationen zu den Mitwirkenden zu erhalten.
+
+    \subsection{Aufbau Frontend}
+
+    Die einzelnen Seiteninhalte (Views) werden im Body der Seite gerendert 
+    und sind als modulare Elemente im Ordner View abgelegt. 
+    Die Ein- und Ausgabeelemente der einzelnen Views sind wiederum aus modularen Reactklassen aufgebaut.
+    Diese Klassen sind im Ordner Base abgelegt. Für die Umsetzung wurden sowohl reactspezifische als auch 
+    allgemeine HTML-Elemente verwendet.
+    Die formatspezifischen Eigenschaften dieser Elemente wurden in eigenen CSS-Dateien festgelegt.
+    Für die REST-Abfragen werden eigene Klassenfunktionen in den Views angelegt.
+    %https://www.digitalocean.com/community/tutorials/react-axios-react-de
+    Die Aufrufe erfolgen dabei über das Package Axios. 
+    Das Package beinhaltet einen HTTP-Client, 
+    der asynchrone Aufrufe unterstützt und so das Rendering der Seite nicht negativ beeinflusst.
+
+    \section{Testing}
+
+    \subsection{Testen des Backend}
+
+    \subsection{Testen des Frontend}
+
+    Das Frontend wird durch Unittests auf Fehler untersucht. 
+    Dazu wird zu jeder Komponenten im Base-Ordner eine Testdatei mit 
+    Funktionalitäten aus der React Testing Library geschrieben.
+    Die Tests werden über das Kommando "npm test" ausgeführt 
+    und erzeugen Klassenobjekte aus den Basiskomponenten mit spezifischen Parametern.
+    Anschließend wird das aktuelle Abbild (Snapshot) mit dem Abbild des vorherigen Test verglichen.
 
 \section{Ease of Use}
 
