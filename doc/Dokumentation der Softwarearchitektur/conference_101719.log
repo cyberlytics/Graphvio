@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.11.28)  5 JAN 2022 10:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.11.28)  5 JAN 2022 11:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -293,95 +293,100 @@ Underfull \hbox (badness 1406) in paragraph at lines 80--88
 \OT1/ptm/m/n/10 den mod-u-lare Re-ac-tkom-po-nen-ten erzeugt, die []uber Tex-
  []
 
-
-LaTeX Warning: Reference `AA' on page 1 undefined on input line 105.
-
-
-LaTeX Warning: Reference `SCM' on page 1 undefined on input line 105.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 109.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 96.
 (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 109.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 96.
  (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-LaTeX Warning: Reference `eq' on page 1 undefined on input line 139.
-
-
-LaTeX Warning: Reference `eq' on page 1 undefined on input line 139.
+Underfull \hbox (badness 2096) in paragraph at lines 98--100
+[]\OT1/ptm/b/n/10 Movie Com-pare: \OT1/ptm/m/n/10 Angabe von mehreren Filmtiteln
+ []
 
 
-LaTeX Warning: Reference `eq' on page 1 undefined on input line 139.
+LaTeX Warning: Reference `AA' on page 1 undefined on input line 149.
 
 
-LaTeX Warning: Reference `eq' on page 1 undefined on input line 140.
+LaTeX Warning: Reference `SCM' on page 1 undefined on input line 149.
 
 [1{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 144.
- (c:/texlive/2021/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+
+LaTeX Warning: Reference `eq' on page 2 undefined on input line 183.
+
+
+LaTeX Warning: Reference `eq' on page 2 undefined on input line 183.
+
+
+LaTeX Warning: Reference `eq' on page 2 undefined on input line 183.
+
+
+LaTeX Warning: Reference `eq' on page 2 undefined on input line 184.
+
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 188.
+(c:/texlive/2021/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
+) [2]
 
-LaTeX Warning: Citation `b7' on page 2 undefined on input line 193.
-
-
-LaTeX Warning: Reference `fig' on page 2 undefined on input line 229.
+LaTeX Warning: Citation `b7' on page 3 undefined on input line 237.
 
 
-LaTeX Warning: File `fig1.png' not found on input line 249.
+LaTeX Warning: Reference `fig' on page 3 undefined on input line 273.
 
 
-./conference_101719.tex:249: Package pdftex.def Error: File `fig1.png' not found: using draft setting.
+LaTeX Warning: File `fig1.png' not found on input line 293.
+
+
+./conference_101719.tex:293: Package pdftex.def Error: File `fig1.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.249 \centerline{\includegraphics{fig1.png}}
+l.293 \centerline{\includegraphics{fig1.png}}
                                              
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 260.
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 304.
 (c:/texlive/2021/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 260.
- [2]
-
-LaTeX Warning: Citation `b1' on page 3 undefined on input line 273.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 304.
 
 
-LaTeX Warning: Citation `b2' on page 3 undefined on input line 274.
+LaTeX Warning: Citation `b1' on page 3 undefined on input line 317.
 
 
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 275.
+LaTeX Warning: Citation `b2' on page 3 undefined on input line 318.
 
 
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 275.
+LaTeX Warning: Citation `b3' on page 3 undefined on input line 319.
 
 
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 275.
+LaTeX Warning: Citation `b3' on page 3 undefined on input line 319.
 
 
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 276.
+LaTeX Warning: Citation `b3' on page 3 undefined on input line 319.
 
 
-LaTeX Warning: Citation `b4' on page 3 undefined on input line 284.
+LaTeX Warning: Citation `b3' on page 3 undefined on input line 320.
 
 
-LaTeX Warning: Citation `b5' on page 3 undefined on input line 285.
+LaTeX Warning: Citation `b4' on page 3 undefined on input line 328.
 
 
-LaTeX Warning: Citation `b6' on page 3 undefined on input line 290.
+LaTeX Warning: Citation `b5' on page 3 undefined on input line 329.
 
+
+LaTeX Warning: Citation `b6' on page 3 undefined on input line 334.
+
+[3]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -393,7 +398,9 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3] (./conference_101719.aux)
+[4
+
+] (./conference_101719.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -404,16 +411,16 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Here is how much of TeX's memory you used:
  4244 strings out of 478353
  65409 string characters out of 5852100
- 382465 words of memory out of 5000000
+ 380465 words of memory out of 5000000
  22320 multiletter control sequences out of 15000+600000
  444281 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,11n,62p,588b,301s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on conference_101719.pdf (3 pages, 133708 bytes).
+Output written on conference_101719.pdf (4 pages, 136493 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 73 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
