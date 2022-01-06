@@ -404,25 +404,25 @@ async function searchSimilarMovies(req, res){
   // find similar movies
   // stop if limit movies are found (default 10)
   // by all similarities
-  if(result.length < limit) result = result.concat(await getSimilarMovies(bestMatches.cast, bestMatches.director, bestMatches.genre, limit-result.length))
+  if(result.length < limit) result = result.concat(await getSimilarMovies(movies, bestMatches.cast, bestMatches.director, bestMatches.genre, limit-result.length))  
   // by cast and director
-  if(result.length < limit) result = result.concat(await getSimilarMovies(bestMatches.cast, bestMatches.director, undefined, limit-result.length))
+  if(result.length < limit) result = filterDuplicates(result.concat(await getSimilarMovies(movies, bestMatches.cast, bestMatches.director, undefined, limit-result.length)))
   // by cast and genre
-  if(result.length < limit) result = result.concat(await getSimilarMovies(bestMatches.cast, undefined, bestMatches.genre, limit-result.length))
+  if(result.length < limit) result = filterDuplicates(result.concat(await getSimilarMovies(movies, bestMatches.cast, undefined, bestMatches.genre, limit-result.length)))
   // by director and genre
-  if(result.length < limit) result = result.concat(await getSimilarMovies(undefined, bestMatches.director, bestMatches.genre, limit-result.length))
+  if(result.length < limit) result = filterDuplicates(result.concat(await getSimilarMovies(movies, undefined, bestMatches.director, bestMatches.genre, limit-result.length)))
   // by cast
-  if(result.length < limit) result = result.concat(await getSimilarMovies(bestMatches.cast, undefined, undefined, limit-result.length))
+  if(result.length < limit) result = filterDuplicates(result.concat(await getSimilarMovies(movies, bestMatches.cast, undefined, undefined, limit-result.length)))
   // by director
-  if(result.length < limit) result = result.concat(await getSimilarMovies(undefined, bestMatches.director, undefined, limit-result.length))
+  if(result.length < limit) result = filterDuplicates(result.concat(await getSimilarMovies(movies, undefined, bestMatches.director, undefined, limit-result.length)))
   // by genre
-  if(result.length < limit) result = result.concat(await getSimilarMovies(undefined, undefined, bestMatches.genre, limit-result.length))
+  if(result.length < limit) result = filterDuplicates(result.concat(await getSimilarMovies(movies, undefined, undefined, bestMatches.genre, limit-result.length)))
 
   movies = formatMovieResults(result)
   res.json(movies) 
 }
 
-async function getSimilarMovies(cast, director, genre, limit) {
+async function getSimilarMovies(movies, cast, director, genre, limit) {
   const sparql = SPARQL_STATEMENTS.SEARCH_SIMILAR_MOVIES(
     movies,
     director,
@@ -435,6 +435,16 @@ async function getSimilarMovies(cast, director, genre, limit) {
     
   var db_res = await arrayifyStream(await fetcher.fetchBindings(endpoint_local, sparql))
   return db_res
+}
+
+function filterDuplicates(input){
+  seen = new Set();
+  input.filter(el => {
+    const duplicate = seen.has(el['title']['value'])
+    seen.add(el['title']['value'])
+    return !duplicate;
+  })
+  return input;
 }
 
 /* Routes */
