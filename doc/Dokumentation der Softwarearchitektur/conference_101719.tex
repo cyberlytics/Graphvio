@@ -76,15 +76,125 @@ im JSON-Format liefern. Die Interaktion des Anwenders mit der Applikation erfolg
 Webframework React.
 
 \section{Architektur Allgemein}
+% TODO:
+% Schönes Bild einfügen
 
 Als Architektur wird ein Ansatz verfolgt, der sich stark an Microservices orientiert.
 Dadurch wird eine abgeschlossene Logik von Front- und Backendkomponenten erreicht, die jeweils
-von einem Subteam entwickelt wird. Diese gekapselten Einheiten können jeweils als insolierte Applikation im Containervisualisierer
-Docker betrieben werden.
-Backend ...
-Die Interaktion der Logikkomponenten erfolgt über Schnittstellen (REST), die im Frontend aufgerufen werden.
+von einem Subteam entwickelt wird. Diese gekapselten Einheiten können jeweils als isolierte Applikation der Containervisualisierung
+Docker betrieben werden. Durch eine zentrale Konfigurationsdatei des Containers können diese einfach zwischen den Teammitgliedern
+ausgetauscht und ausgeführt werden. Damit wird eine hohe Portabilität gewährleistet.
+Die Kommunikation der Teilsysteme wird durch eine sprachunabhängige REST-Schnittstelle angeboten. 
+Dadurch wird es möglich einzelne Komponenten des Gesamtsystems auszutauschen, ohne größere Veränderungen an den anderen 
+Microservices vornehmen zu müssen.
 Dazu werden modulare Reactkomponenten erzeugt, die über Texteingaben und weitere Suchmaskenelemente Parameter der REST-Anfrage setzen.
 Die zurückgelieferte Anwort der Anfrage im JSON-Format wird wiederum über modulare Reactkomponenten auf der Webapplikation dargestellt.
+
+\section{Filmverwaltung}
+% TODO:
+Mithilfe des Web-Frameworks Express ist es möglich, Endpunkte für eine leistungsfähige API zu erstellen. Dabei
+werden Client-Anfragen an passende Endpunkte des Node-Servers übergeben. Nach Bearbeitung dieser erfolgt eine Antwort
+mit den Daten im JSON-Format. JSON ist ein programmiersprachen unabhängiges Format, welches leicht lesbar, wenig Code erfordert
+und zusätzlich schnell verarbeitet werden kann. Zusätzlich wird dabei wieder eine Austauschbarkeit einzelner Komponenten 
+gefördert, da keine proprietären Datentypen verwendet werden müssen.
+\\
+\\
+Die Funktionalität der Filmverwaltung umfasst folgende API-Zugriffe:
+\smallskip
+
+\textbf{Filmsuche (/db/search-movies)}
+\begin{itemize}
+\item Beschreibung:
+    Bei der Filmsuche werden in der Datenbank passende Filme gesucht.
+\item Parameter:
+\begin{itemize}
+    \item Teiltitel
+    \item Provider
+\end{itemize}
+\item Rückgabe:
+    Liste mit Filmen und deren Metadaten
+\end{itemize}
+
+\smallskip
+
+\textbf{Personensuche (/db/search-persons)}
+\begin{itemize}
+\item Beschreibung:
+    Bei der Personensuche werden in der DBpedia Daten zu Filmmitwirkenden eines Filmes gesucht.
+\item Parameter:
+    \begin{itemize}
+    \item Filmtitel
+    \item Erscheinungsjahr
+    \end{itemize}
+\item Rückgabe:
+    Liste der Filmmitwirkenden und dazugehörigen Metadaten
+\end{itemize}
+
+\smallskip
+
+\textbf{Gemeinsamkeitensuche (/db/compare-movies)}
+\begin{itemize}
+\item Beschreibung:
+    Bei der Gemeinsamkeitensuche werden gemeinsame Merkmale einzelner Filme gesucht.
+\item Parameter:
+    Liste mit Filmtiteln
+\item Rückgabe:
+    Liste der Gemeinsamkeiten der Filme
+\end{itemize}
+
+\smallskip
+
+\textbf{Suche nach ähnlichen Filmen (/db/search-similar-movies)}
+\begin{itemize}
+\item Beschreibung:
+    Bei der Suche nach ähnlichen Filmen werden Filme gesucht, die Gemeinsamkeiten mit den angebegeben Filmen aufweisen.
+\item Parameter:
+    \begin{itemize}
+    \item Liste mit Filmtiteln
+    \item Streamingdienstanbieter der zu vergleichenden Filme
+    \end{itemize}
+\item Rückgabe:
+    Liste mit Filmen
+\end{itemize}
+
+\smallskip
+
+\textbf{Suche nach IMDB Daten eines Filmes (/imdb/search-imdbdata)}
+\begin{itemize}
+\item Beschreibung:
+    Bei der Suche nach einem Film werden die Bewertungen und ein hinterlegtes Bild des Filmes in der IMDB gesucht.
+\item Parameter:
+    Titel des Filmes
+\item Rückgabe:
+    \begin{itemize}
+    \item Liste mit Bewertungen des Filmes
+    \item URL eines in der IMDB hinterlegten Bildes
+    \end{itemize}
+\end{itemize}
+\\
+\\
+Die Verwaltung der Daten erfolgt mittels einer Virtuoso-Datenbank. Diese enthält Filmdaten der Streamingdienstanbieter
+Netflix, Amazon-Prime, Disney+ und Hulu, welche aus Kaggle bezogen wurden.
+Die Datensätze enthalten Filmtitel der jeweiligen Provider, sowie dessen Metainformationen wie 
+Filmmitwirkende, Genre und Erscheinungsjahr. Mithilfe einer in Virtuoso angelegten View ist es möglich
+mit SparQl-Statements auf die importierten Daten zu zugreifen.
+\\
+\\
+Das Modul "Fetch SPARQL Endpoint" ermöglicht es innerhalb der Filmverwaltung eine Verbindung zwischen dem Node-Server
+und der Virtuoso-Datenbank sowie der DBpedia aufzubauen. Anschließend können SPARQL-Statements abgesetzt und die Ergebnisse
+asynchron Verarbeitet werden.
+\\
+\\
+Die IMDB ist eine Datenbank zu Filmen, Fernsehserien, Videoproduktionen und Computerspielen sowie über Personen,
+die daran mitgewirkt haben. Sie bietet eine API zum Zugriff auf diese Daten. Dafür wird ein API-Schlüssel benötigt, 
+mit diesem sind täglich 100 Anfragen kostenfrei verfügbar. Nach überschreiten dieser Begrenzung sind keine weiteren Anfragen
+an diesem Tag möglich, die Anfragenbegrenzung kann jedoch kostenpflichtig erhöht werden. 
+\\
+\\
+Um die vorgesehene Funktionalität gewährleisten zu können, wurden mithilfe von Jest, einem JavaScript Testframework, 
+Unit- und Integrationstests entworfen. Dadurch kann die interne Integrität, sowie die Anbindung an externe Systeme,
+sichergestellt werden. Die Tests wurden dabei mit dem Arrange-Act-Assert-Pattern entworfen. Dieses soll eine 
+übersichtliche Struktur und Einheitlichkeit garantieren.
 
 \section{Frontend}
 \subsection{Funktionalitäten Frontend}
