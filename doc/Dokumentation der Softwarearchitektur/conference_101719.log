@@ -1,24 +1,24 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.11.28)  5 JAN 2022 11:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.10.26)  6 JAN 2022 13:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**conference_101719
-(./conference_101719.tex
-LaTeX2e <2021-11-15>
-L3 programming layer <2021-11-22> (./IEEEtran.cls
+**"d:/Dokumente/MKI/SWT/Modularbeit/swt-projekt-modularbeit/doc/Dokumentation der Softwarearchitektur/conference_101719.tex"
+(d:/Dokumente/MKI/SWT/Modularbeit/swt-projekt-modularbeit/doc/Dokumentation der Softwarearchitektur/conference_101719.tex
+LaTeX2e <2020-10-01> patch level 1
+L3 programming layer <2020-10-05> xparse <2020-03-03> (d:/Dokumente/MKI/SWT/Modularbeit/swt-projekt-modularbeit/doc/Dokumentation der Softwarearchitektur/IEEEtran.cls
 Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
 -- http://www.michaelshell.org/tex/ieeetran/
 \@IEEEtrantmpdimenA=\dimen138
 \@IEEEtrantmpdimenB=\dimen139
 \@IEEEtrantmpdimenC=\dimen140
-\@IEEEtrantmpcountA=\count183
-\@IEEEtrantmpcountB=\count184
-\@IEEEtrantmpcountC=\count185
-\@IEEEtrantmptoksA=\toks16
+\@IEEEtrantmpcountA=\count175
+\@IEEEtrantmpcountB=\count176
+\@IEEEtrantmpcountC=\count177
+\@IEEEtrantmptoksA=\toks15
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 503.
-(c:/texlive/2021/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+(e:/Programme/texlive/2020/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 -- Using 8.5in x 11in (letter) paper.
@@ -80,149 +80,148 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \IEEEiednormlabelsep=\dimen154
 \IEEEiedmathlabelsep=\dimen155
 \IEEEiedtopsep=\skip47
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@IEEEsubequation=\count190
+\c@section=\count178
+\c@subsection=\count179
+\c@subsubsection=\count180
+\c@paragraph=\count181
+\c@IEEEsubequation=\count182
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
-\c@figure=\count191
-\c@table=\count192
-\@IEEEeqnnumcols=\count193
-\@IEEEeqncolcnt=\count194
-\@IEEEsubeqnnumrollback=\count195
+\c@figure=\count183
+\c@table=\count184
+\@IEEEeqnnumcols=\count185
+\@IEEEeqncolcnt=\count186
+\@IEEEsubeqnnumrollback=\count187
 \@IEEEquantizeheightA=\dimen156
 \@IEEEquantizeheightB=\dimen157
 \@IEEEquantizeheightC=\dimen158
 \@IEEEquantizeprevdepth=\dimen159
-\@IEEEquantizemultiple=\count196
-\@IEEEquantizeboxA=\box50
+\@IEEEquantizemultiple=\count188
+\@IEEEquantizeboxA=\box47
 \@IEEEtmpitemindent=\dimen160
 \IEEEPARstartletwidth=\dimen161
-\c@IEEEbiography=\count197
-\@IEEEtranrubishbin=\box51
+\c@IEEEbiography=\count189
+\@IEEEtranrubishbin=\box48
 )
 ** ATTENTION: Overriding command lockouts (line 2).
-(c:/texlive/2021/texmf-dist/tex/latex/cite/cite.sty
+(e:/Programme/texlive/2020/texmf-dist/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
 Package: cite 2015/02/27  v 5.5
-) (c:/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2021/10/15 v2.17l AMS math features
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip50
 
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2021/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2021/08/26 v2.01 AMS text
- (c:/texlive/2021/texmf-dist/tex/latex/amsmath/amsgen.sty
+(e:/Programme/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+ (e:/Programme/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks17
+\@emptytoks=\toks16
 \ex@=\dimen162
-)) (c:/texlive/2021/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (e:/Programme/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen163
-) (c:/texlive/2021/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 2021/08/26 v2.02 operator names
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count198
+\inf@bad=\count190
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count199
-\leftroot@=\count266
+\uproot@=\count191
+\leftroot@=\count192
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count267
-\DOTSCASE@=\count268
+\classnum@=\count193
+\DOTSCASE@=\count194
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box52
-\strutbox@=\box53
+\Mathstrutbox@=\box49
+\strutbox@=\box50
 \big@size=\dimen164
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count269
-\c@MaxMatrixCols=\count270
+\macc@depth=\count195
+\c@MaxMatrixCols=\count196
 \dotsspace@=\muskip16
-\c@parentequation=\count271
-\dspbrk@lvl=\count272
-\tag@help=\toks18
-\row@=\count273
-\column@=\count274
-\maxfields@=\count275
-\andhelp@=\toks19
+\c@parentequation=\count197
+\dspbrk@lvl=\count198
+\tag@help=\toks17
+\row@=\count199
+\column@=\count266
+\maxfields@=\count267
+\andhelp@=\toks18
 \eqnshift@=\dimen165
 \alignsep@=\dimen166
 \tagshift@=\dimen167
 \tagwidth@=\dimen168
 \totwidth@=\dimen169
 \lineht@=\dimen170
-\@envbody=\toks20
+\@envbody=\toks19
 \multlinegap=\skip51
 \multlinetaggap=\skip52
-\mathdisplay@stack=\toks21
-LaTeX Info: Redefining \[ on input line 2938.
-LaTeX Info: Redefining \] on input line 2939.
-) (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/amssymb.sty
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
- (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+ (e:/Programme/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (c:/texlive/2021/texmf-dist/tex/latex/algorithms/algorithmic.sty
+)) (e:/Programme/texlive/2020/texmf-dist/tex/latex/algorithms/algorithmic.sty
 Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
- (c:/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
-) (c:/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty
+ (e:/Programme/texlive/2020/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks22
+\KV@toks@=\toks21
 )
-\c@ALC@unique=\count276
-\c@ALC@line=\count277
-\c@ALC@rem=\count278
-\c@ALC@depth=\count279
+\c@ALC@unique=\count268
+\c@ALC@line=\count269
+\c@ALC@rem=\count270
+\c@ALC@depth=\count271
 \ALC@tlm=\skip53
 \algorithmicindent=\skip54
-) (c:/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
- (c:/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
- (c:/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-) (c:/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+ (e:/Programme/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+ (e:/Programme/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 107.
- (c:/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def
+Package graphics Info: Driver file: pdftex.def on input line 105.
+ (e:/Programme/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen171
 \Gin@req@width=\dimen172
-) (c:/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-) (c:/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
- (c:/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+ (e:/Programme/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: pdftex.def on input line 227.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
-Package xcolor Info: Model `RGB' extended on input line 1368.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
-) (c:/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count280
-\l__pdf_internal_box=\box54
-)
-No file conference_101719.aux.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count272
+\l__pdf_internal_box=\box51
+) (d:/Dokumente/MKI/SWT/Modularbeit/swt-projekt-modularbeit/doc/Dokumentation der Softwarearchitektur/conference_101719.aux)
 \openout1 = `conference_101719.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
@@ -239,24 +238,25 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
+
 -- Lines per column: 56 (exact).
-(c:/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(e:/Programme/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count281
+\scratchcounter=\count273
 \scratchdimen=\dimen173
-\scratchbox=\box55
-\nofMPsegments=\count282
-\nofMParguments=\count283
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count284
+\scratchbox=\box52
+\nofMPsegments=\count274
+\nofMParguments=\count275
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count276
 \MPscratchDim=\dimen174
-\MPnumerator=\count285
-\makeMPintoPDFobject=\count286
-\everyMPtoPDFconversion=\toks24
-) (c:/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+\MPnumerator=\count277
+\makeMPintoPDFobject=\count278
+\everyMPtoPDFconversion=\toks23
+) (e:/Programme/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (c:/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+ (e:/Programme/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 
@@ -289,104 +289,225 @@ Underfull \hbox (badness 1668) in paragraph at lines 72--77
  []
 
 
-Underfull \hbox (badness 1406) in paragraph at lines 80--88
-\OT1/ptm/m/n/10 den mod-u-lare Re-ac-tkom-po-nen-ten erzeugt, die []uber Tex-
+Underfull \hbox (badness 6876) in paragraph at lines 95--104
+\OT1/ptm/m/n/10 End-punkte f[]ur eine leis-tungsf[]ahige API zu er-stellen.
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 96.
-(c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+Underfull \hbox (badness 3471) in paragraph at lines 95--104
+\OT1/ptm/m/n/10 ein pro-gram-mier-sprachen un-abh[]angiges For-mat, welches
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--104
+
+ []
+
+
+Underfull \hbox (badness 2359) in paragraph at lines 95--104
+\OT1/ptm/m/n/10 Die Funk-tion-alit[]at der Filmver-wal-tung um-fasst fol-gende
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 107.
+(e:/Programme/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 96.
- (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+LaTeX Font Info:    Trying to load font information for U+msb on input line 107.
+ (e:/Programme/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 2096) in paragraph at lines 98--100
+Underfull \hbox (badness 10000) in paragraph at lines 129--131
+[]\OT1/ptm/m/n/10 R[]uckgabe: Liste der Film-mitwirk-enden und
+ []
+
+
+Underfull \hbox (badness 4713) in paragraph at lines 147--149
+[]\OT1/ptm/b/n/10 Suche nach []ahnlichen Fil-men (/db/search-similar-
+ []
+
+
+d:/Dokumente/MKI/SWT/Modularbeit/swt-projekt-modularbeit/doc/Dokumentation der Softwarearchitektur/conference_101719.tex:175: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.175 \\
+        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+d:/Dokumente/MKI/SWT/Modularbeit/swt-projekt-modularbeit/doc/Dokumentation der Softwarearchitektur/conference_101719.tex:176: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.176 D
+       ie Verwaltung der Daten erfolgt mittels einer Virtuoso-Datenbank. Die...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 Die Ver-wal-tung der Daten er-folgt mit-tels einer
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 Virtuoso-Datenbank. Diese enth[]alt Film-daten der
+ []
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 Stream-ing-di-en-stan-bi-eter Net-flix, Amazon-Prime, Dis-ney+
+ []
+
+
+Underfull \hbox (badness 5203) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 und Hulu, welche aus Kag-gle be-zo-gen wur-den. Die
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--198
+
+ []
+
+
+Underfull \hbox (badness 4454) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 Das Modul "Fetch SPARQL End-point" erm[]oglicht es
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 aufzubauen. An-schlie^^Yend k[]onnen SPARQL-Statements
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--198
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 Video-pro-duk-tio-nen und Com-put-er-spie-len sowie []uber
+ []
+
+
+Underfull \hbox (badness 2884) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 Per-so-nen, die daran mit-gewirkt haben. Sie bi-etet eine
+ []
+
+
+Underfull \hbox (badness 5431) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 An-fra-gen-be-gren-zung kann je-doch kostenpflichtig erh[]oht
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--198
+
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 sichergestellt wer-den. Die Tests wur-den dabei mit dem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--198
+\OT1/ptm/m/n/10 Arrange-Act-Assert-Pattern ent-wor-fen. Dieses soll eine
+ []
+
+[1{e:/Programme/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+Underfull \hbox (badness 2096) in paragraph at lines 208--210
 []\OT1/ptm/b/n/10 Movie Com-pare: \OT1/ptm/m/n/10 Angabe von mehreren Filmtiteln
  []
 
 
-LaTeX Warning: Reference `AA' on page 1 undefined on input line 149.
+LaTeX Warning: Reference `AA' on page 2 undefined on input line 259.
 
 
-LaTeX Warning: Reference `SCM' on page 1 undefined on input line 149.
+LaTeX Warning: Reference `SCM' on page 2 undefined on input line 259.
 
-[1{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+[2]
 
-
-]
-
-LaTeX Warning: Reference `eq' on page 2 undefined on input line 183.
+LaTeX Warning: Reference `eq' on page 3 undefined on input line 293.
 
 
-LaTeX Warning: Reference `eq' on page 2 undefined on input line 183.
+LaTeX Warning: Reference `eq' on page 3 undefined on input line 293.
 
 
-LaTeX Warning: Reference `eq' on page 2 undefined on input line 183.
+LaTeX Warning: Reference `eq' on page 3 undefined on input line 293.
 
 
-LaTeX Warning: Reference `eq' on page 2 undefined on input line 184.
+LaTeX Warning: Reference `eq' on page 3 undefined on input line 294.
 
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 188.
-(c:/texlive/2021/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 298.
+(e:/Programme/texlive/2020/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [2]
+)
 
-LaTeX Warning: Citation `b7' on page 3 undefined on input line 237.
+LaTeX Warning: Citation `b7' on page 3 undefined on input line 347.
 
+[3]
 
-LaTeX Warning: Reference `fig' on page 3 undefined on input line 273.
-
-
-LaTeX Warning: File `fig1.png' not found on input line 293.
+LaTeX Warning: Reference `fig' on page 4 undefined on input line 383.
 
 
-./conference_101719.tex:293: Package pdftex.def Error: File `fig1.png' not found: using draft setting.
+LaTeX Warning: File `fig1.png' not found on input line 403.
+
+
+d:/Dokumente/MKI/SWT/Modularbeit/swt-projekt-modularbeit/doc/Dokumentation der Softwarearchitektur/conference_101719.tex:403: Package pdftex.def Error: File `fig1.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.293 \centerline{\includegraphics{fig1.png}}
+l.403 \centerline{\includegraphics{fig1.png}}
                                              
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 304.
-(c:/texlive/2021/texmf-dist/tex/latex/psnfss/omsptm.fd
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 414.
+(e:/Programme/texlive/2020/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 304.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 414.
 
 
-LaTeX Warning: Citation `b1' on page 3 undefined on input line 317.
+LaTeX Warning: Citation `b1' on page 4 undefined on input line 427.
 
 
-LaTeX Warning: Citation `b2' on page 3 undefined on input line 318.
+LaTeX Warning: Citation `b2' on page 4 undefined on input line 428.
 
 
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 319.
+LaTeX Warning: Citation `b3' on page 4 undefined on input line 429.
 
 
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 319.
+LaTeX Warning: Citation `b3' on page 4 undefined on input line 429.
 
 
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 319.
+LaTeX Warning: Citation `b3' on page 4 undefined on input line 429.
 
 
-LaTeX Warning: Citation `b3' on page 3 undefined on input line 320.
+LaTeX Warning: Citation `b3' on page 4 undefined on input line 430.
 
 
-LaTeX Warning: Citation `b4' on page 3 undefined on input line 328.
+LaTeX Warning: Citation `b4' on page 4 undefined on input line 438.
 
 
-LaTeX Warning: Citation `b5' on page 3 undefined on input line 329.
+LaTeX Warning: Citation `b5' on page 4 undefined on input line 439.
 
 
-LaTeX Warning: Citation `b6' on page 3 undefined on input line 334.
+LaTeX Warning: Citation `b6' on page 4 undefined on input line 444.
 
-[3]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -398,9 +519,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4
-
-] (./conference_101719.aux)
+[4] (d:/Dokumente/MKI/SWT/Modularbeit/swt-projekt-modularbeit/doc/Dokumentation der Softwarearchitektur/conference_101719.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -409,17 +528,17 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 4244 strings out of 478353
- 65409 string characters out of 5852100
- 380465 words of memory out of 5000000
- 22320 multiletter control sequences out of 15000+600000
- 444281 words of font info for 103 fonts, out of 8000000 for 9000
+ 3983 strings out of 479917
+ 58897 string characters out of 5881714
+ 347622 words of memory out of 5000000
+ 20506 multiletter control sequences out of 15000+600000
+ 575939 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,11n,62p,588b,301s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on conference_101719.pdf (4 pages, 136493 bytes).
+ 66i,11n,72p,692b,293s stack positions out of 5000i,500n,10000p,200000b,80000s
+{e:/Programme/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}<e:/Programme/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><e:/Programme/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "d:/Dokumente/MKI/SWT/Modularbeit/swt-projekt-modularbeit/doc/Dokumentation der Softwarearchitektur/conference_101719.pdf" (4 pages, 131807 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
+ 62 PDF objects out of 1000 (max. 8388607)
  44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
