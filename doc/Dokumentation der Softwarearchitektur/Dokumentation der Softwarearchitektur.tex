@@ -193,30 +193,34 @@ sichergestellt werden. Die Tests wurden dabei mit dem Arrange-Act-Assert-Pattern
 \section{Frontend}
 
 \subsection{Funktionalitäten Frontend}
-Das Frontend wird über eine Single-Page Applikation (SPA) mit dem Webframework React realisiert.
-Auf der Landingpage werden mehrere Buttons bereitgestellt um auf die verschiedenen Funktionalitäten des Frontends Weiterzuleiten.
-Des weiteren steht in der Kopfzeile immer ein Dropdown mit den gleichen Weiterleitungen zur Verfügung.
-Es stehen folgende Optionen zur Auswahl:
+Mit dem React Webframework ist das Frontend in der Programmiersprachen JavaScript erstellt, 
+dazu wurde mithilfe von React Router Dom mehrere Seiten angelegt um die einzelnen Funktionalitäten breitzustellen. 
+Auf der Startseite befinden sich zur erstmaligen Navigation mehrere Knöpfe, um zu den verschiedenen Funktionalitäten des Frontends weiterzuleiten.
+Für die spätere Navigation wird auf jeder Seite eine Navigationleiste angezeigt, die folgende Weiterleitungen umfasst:
 
 \begin{itemize}
     \item \textbf{Graphvio (/)}
-    Landingpage mit Weiterleitungen
+    Mit einem Klick auf den Namen der Anwendung gelangt man zurück auf die Startseite, die auch beim ersten Aufruf der Seite angezeigt wird.
     \smallskip
-    \item \textbf{Movie Search (/MovieSearchForm)}
-    Seite zur Angabe eines Textes, der als Bestandteil in allen Filmtiteln gesucht wird, die Ergebnisse werden anschließend in einer ausklappbaren Liste präsentiert.
+    \item \textbf{Navigation} 
+    In einem Dropdown können auf die einzelnen Funktionalitäten der Anwendung zugegriffen werden.
     \smallskip
-    \item \textbf{Movie Compare (/MovieCompareSelect)}
-    Seite zur Angabe von mehreren Filmtiteln über eine Mehrfachauswahl, die Verglichen werden und deren gemeinsame Merkmale in verschiedene Kategorien angezeigt werden.
+    \subitem \textbf{Movie Search (/MovieSearchForm)}
+    Auf dieser Seite kann in einem Textfeld der ganze Name eines Films oder ein Teil dessen Namens eigegeben werden und dieser wird in der Datenbank gesucht. 
+    Die Ergebnisse werden in einer ausklappbaren Liste präsentiert, in der Informationen zu den einzelnen Filmen zu finden sind.
     \smallskip
-    \item \textbf{Movie Recommend (/MovieRecommendForm)}
-    Seite zur Angabe von mehreren Filmtiteln über eine Mehrfachauswahl, die Verglichen werden um ähnlichen Filme zu finden, die in einer ausklappbaren Liste präsentiert werden.
+    \subitem \textbf{Movie Compare (/MovieCompareSelect)}
+    Die Movie Compare Seite akzeptiert in einem Textfeld mit Eingabeunterstützung mehrere Filme, die Verglichen werden sollen. 
+    Daraufhin werden gemeinsame Merkmale der Filme, wie Genre, Direktor, Filmmitwirkende und Ursprungsland, angezeigt.
+    \smallskip
+    \subitem \textbf{Movie Recommend (/MovieRecommendForm)}
+    Wie bei Movie Compare können hier mehrere Filme angebegeben werden. Aufgrund der gefundenen Gemeinsamkeiten werden hier ähnliche Filme aufgelistet, die in möglichst vielen Punkten mit den eigegebenen Filmen übereinstimmen. Die Ergebnisse werden in einer Liste wie bei der Filmsuche als ausklappbare liste angezeigt. 
     \smallskip
     \item \textbf{About Us (/about-us)}
-    Seite mit Informationen über das Projekt und dessen Autoren.
+    Unter About Us sind Informationen zum Projekt und den beteiligten Personen zu finden.
 \end{itemize}
 
-Zusätzlich besteht die Möglichkeit über das \textbf{Cast} Feld der Film-Listeneinträge auf die  \textbf{Cast-Seite (/CastList)} zu wechseln,
-auf welcher die Cast-Liste mit Informationen zu allen Film Mitwirkenden des jeweiligen Films angezeigt wird.
+Weiterhin besteht die Möglichkeit auf der Movie Search und Movie Recommend Seite in den Filmlisten über das \textbf{Cast} Feld der Film-Listeneinträge auf die  \textbf{Cast-Seite (/CastList)} zu wechseln, wo durch einen weiteren Datenbank aufruf mehr Informationen zu den Mitwirkenden zu finden. Falls dieser keine zusätzlichen Informationen findet wird dies dem Benutzer mitgeteilt, ansonsten werden die Mitwirkenden in einer ausklappbaren Liste angezeigt mit den erhaltenen Informationen.  
 
 \subsection{Aufbau Frontend}
 
