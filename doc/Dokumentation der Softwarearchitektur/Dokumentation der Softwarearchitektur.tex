@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{float}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -70,7 +71,11 @@ React Webframework.
 
 \section{Architektur Allgemein}
 % TODO:
-% Schönes Bild einfügen
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{UebersichtGesamtsystem.png}
+    \caption{}
+\end{figure*}
 
 Als Architektur wird ein Ansatz verfolgt, der sich stark an Microservices orientiert.
 Dadurch wird eine abgeschlossene Logik von Front- und Backendkomponenten erreicht, die jeweils
