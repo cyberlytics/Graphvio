@@ -59,7 +59,7 @@ Suchanfragen in einer Graphdatenbank auszuwerten und die Ergebnisse
 \end{abstract}
 
 \begin{IEEEkeywords}
- Semantic Web, Syntactic Web, Graph Database, Web UI
+ Semantic Web, Graph Database, Web UI
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -74,7 +74,7 @@ React Webframework.
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{UebersichtGesamtsystem.png}
-    \caption{}
+    \caption{Übersicht Gesamtsystem}
 \end{figure*}
 
 Als Architektur wird ein Ansatz verfolgt, der sich stark an Microservices orientiert.
@@ -215,17 +215,17 @@ Für die spätere Navigation wird auf jeder Seite eine Navigationleiste angezeig
     Die Ergebnisse werden in einer ausklappbaren Liste präsentiert, in der Informationen zu den einzelnen Filmen zu finden sind.
     \smallskip
     \subitem \textbf{Movie Compare (/MovieCompareSelect)}
-    Die Movie Compare Seite akzeptiert in einem Textfeld mit Eingabeunterstützung mehrere Filme, die Verglichen werden sollen. 
+    Die Movie Compare Seite akzeptiert in einem Textfeld mit Eingabeunterstützung mehrere Filme, welche verglichen werden sollen. 
     Daraufhin werden gemeinsame Merkmale der Filme, wie Genre, Direktor, Filmmitwirkende und Ursprungsland, angezeigt.
     \smallskip
     \subitem \textbf{Movie Recommend (/MovieRecommendForm)}
-    Wie bei Movie Compare können hier mehrere Filme angebegeben werden. Aufgrund der gefundenen Gemeinsamkeiten werden hier ähnliche Filme aufgelistet, die in möglichst vielen Punkten mit den eigegebenen Filmen übereinstimmen. Die Ergebnisse werden in einer Liste wie bei der Filmsuche als ausklappbare liste angezeigt. 
+    Wie bei Movie Compare können hier mehrere Filme angebegeben werden. Aufgrund der gefundenen Gemeinsamkeiten werden hier ähnliche Filme aufgelistet, die in möglichst vielen Punkten mit den eigegebenen Filmen übereinstimmen. Die Ergebnisse werden in einer Liste wie bei der Filmsuche als ausklappbare Liste angezeigt. 
     \smallskip
     \item \textbf{About Us (/about-us)}
     Unter About Us sind Informationen zum Projekt und den beteiligten Personen zu finden.
 \end{itemize}
 
-Weiterhin besteht die Möglichkeit auf der Movie Search und Movie Recommend Seite in den Filmlisten über das \textbf{Cast} Feld der Film-Listeneinträge auf die  \textbf{Cast-Seite (/CastList)} zu wechseln, wo durch einen weiteren Datenbank aufruf mehr Informationen zu den Mitwirkenden zu finden. Falls dieser keine zusätzlichen Informationen findet wird dies dem Benutzer mitgeteilt, ansonsten werden die Mitwirkenden in einer ausklappbaren Liste angezeigt mit den erhaltenen Informationen.  
+Weiterhin besteht die Möglichkeit auf der Movie Search und Movie Recommend Seite in den Filmlisten über das \textbf{Cast} Feld der Film-Listeneinträge auf die  \textbf{Cast-Seite (/CastList)} zu wechseln, wo durch einen weiteren Datenbankaufruf mehr Informationen zu den Mitwirkenden zu finden. Falls dieser keine zusätzlichen Informationen findet wird dies dem Benutzer mitgeteilt, ansonsten werden die Mitwirkenden mit den erhaltenen Informationen in einer ausklappbaren Liste angezeigt.
 
 \subsection{Aufbau Frontend}
 
